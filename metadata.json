@@ -1,0 +1,7 @@
+{
+  "name": "Renova Fio - Alta Tricologia Capilar",
+  "description": "Plataforma de alta sofisticação para tratamento avançado de calvície e restauração capilar masculina e feminina.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

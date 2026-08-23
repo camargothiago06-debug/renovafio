@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-cinzel: 'Cinzel', serif;
+    --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-outfit: 'Outfit', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-cinzel);
+  }
+
+  .font-editorial {
+    font-family: var(--font-cormorant);
+  }
+}
+
+/* Luxury Gold & Metallic Gradients */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #FFF6D6 0%, #F5D061 25%, #D4AF37 50%, #B8860B 75%, #FDE087 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-text-radiant {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFEAA7 30%, #F1C40F 60%, #B7870A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rose-gold-text-gradient {
+  background: linear-gradient(135deg, #FFF5F2 0%, #F5C6BA 25%, #E2A999 50%, #B86B77 75%, #FCE4DE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-gradient {
+  border-image: linear-gradient(135deg, rgba(253, 224, 135, 0.8), rgba(212, 175, 55, 0.5), rgba(184, 134, 11, 0.8)) 1;
+}
+
+.gold-glow {
+  box-shadow: 0 0 35px -5px rgba(212, 175, 55, 0.45), 0 0 15px -2px rgba(212, 175, 55, 0.25);
+}
+
+.gold-glow-subtle {
+  box-shadow: 0 0 25px -5px rgba(212, 175, 55, 0.25), 0 0 10px -2px rgba(212, 175, 55, 0.15);
+}
+
+.gold-glow-intense {
+  box-shadow: 0 0 45px 5px rgba(212, 175, 55, 0.55), 0 0 20px rgba(245, 208, 97, 0.35);
+}
+
+.rose-gold-glow {
+  box-shadow: 0 0 35px -5px rgba(226, 169, 153, 0.45), 0 0 15px -2px rgba(226, 169, 153, 0.25);
+}
+
+.gold-card-bg {
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, rgba(18, 18, 22, 0.95) 100%);
+}
+
+.gold-button-gradient {
+  background: linear-gradient(135deg, #FFF5D9 0%, #F5D268 30%, #D4AF37 60%, #AA771C 100%);
+  color: #08080a;
+  box-shadow: 0 10px 30px -5px rgba(212, 175, 55, 0.5), 0 0 15px rgba(245, 208, 97, 0.3);
+}
+
+.gold-button-gradient:hover {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FBE394 30%, #DFB738 60%, #B8860B 100%);
+  box-shadow: 0 12px 35px -3px rgba(212, 175, 55, 0.65), 0 0 25px rgba(245, 208, 97, 0.45);
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* Ambient animated mesh */
+@keyframes luxuryFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+.animate-luxury-float {
+  animation: luxuryFloat 6s ease-in-out infinite;
+}
+
+@keyframes pulseGold {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+.animate-pulse-gold {
+  animation: pulseGold 4s ease-in-out infinite;
+}
+
