@@ -35,40 +35,40 @@ export const Header: React.FC<HeaderProps> = ({
   const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
-      {/* Top micro announcement bar */}
+    <header className="fixed top-0 left-0 right-0 w-full z-40 transition-all duration-300">
+      {/* Top micro announcement bar (100% width) */}
       <div
-        className={`w-full py-1.5 px-4 text-center text-[10px] sm:text-xs font-light tracking-wider transition-colors duration-500 flex items-center justify-center space-x-3 ${
+        className={`w-full py-1.5 px-4 text-center text-[10px] sm:text-xs font-light tracking-wider transition-colors duration-500 flex items-center justify-center space-x-2 sm:space-x-3 ${
           isFemale
             ? 'bg-[#1b1216] text-[#ffdcd3] border-b border-[#E2A999]/20'
             : 'bg-[#12100a] text-[#fae596] border-b border-[#D4AF37]/20'
         }`}
       >
-        <span className="inline-flex items-center gap-1">
+        <span className="inline-flex items-center gap-1 font-medium">
           <Shield className="w-3 h-3 text-emerald-400" />
           Fórmula Manipulada 450mg de Alta Precisão
         </span>
         <span className="hidden sm:inline opacity-40">•</span>
-        <span className="hidden sm:inline">Frete VIP Grátis em Planos a partir de 3 Meses</span>
+        <span className="hidden sm:inline">Frete VIP Grátis a partir de 3 Meses</span>
         <span className="hidden md:inline opacity-40">•</span>
         <span className="hidden md:inline">Garantia Clínica de 90 Dias</span>
       </div>
 
-      {/* Main Navigation Glass Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div
-          className={`rounded-full px-4 sm:px-6 py-2.5 flex items-center justify-between transition-all duration-500 border shadow-2xl backdrop-blur-xl ${
-            scrolled
-              ? isFemale
-                ? 'bg-[#120c10]/95 border-[#E2A999]/50 shadow-[0_4px_25px_rgba(226,169,153,0.15)]'
-                : 'bg-[#0b0b0e]/95 border-[#D4AF37]/50 shadow-[0_4px_30px_rgba(212,175,55,0.2)]'
-              : isFemale
-              ? 'bg-[#111114]/80 border-[#E2A999]/30'
-              : 'bg-[#111114]/80 border-[#D4AF37]/35 shadow-[0_0_20px_rgba(212,175,55,0.1)]'
-          }`}
-        >
+      {/* Main Navigation Bar (100% width with centered responsive inner content) */}
+      <div
+        className={`w-full transition-all duration-500 border-b backdrop-blur-xl ${
+          scrolled
+            ? isFemale
+              ? 'bg-[#120c10]/95 border-[#E2A999]/40 shadow-[0_4px_30px_rgba(226,169,153,0.15)] py-2.5'
+              : 'bg-[#0b0b0e]/95 border-[#D4AF37]/40 shadow-[0_4px_35px_rgba(212,175,55,0.2)] py-2.5'
+            : isFemale
+            ? 'bg-[#111114]/70 border-[#E2A999]/25 py-3 sm:py-3.5'
+            : 'bg-[#111114]/70 border-[#D4AF37]/30 py-3 sm:py-3.5'
+        }`}
+      >
+        <div className="hero-content flex items-center justify-between">
           {/* Brand Logo */}
-          <a href="#" className="flex items-center">
+          <a href="#" className="flex items-center shrink-0">
             <RenovaLogo gender={gender} size="sm" showSubtitle={false} />
           </a>
 
@@ -139,14 +139,14 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Direct Diagnostic CTA (Desktop) */}
             <button
               onClick={onOpenQuiz}
-              className="hidden md:inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium uppercase tracking-wider transition-all border"
+              className="hidden md:inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium uppercase tracking-wider transition-all border shadow-sm"
               style={{
-                borderColor: isFemale ? 'rgba(226, 169, 153, 0.4)' : 'rgba(212, 175, 55, 0.4)',
-                backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.1)' : 'rgba(212, 175, 55, 0.1)',
+                borderColor: isFemale ? 'rgba(226, 169, 153, 0.5)' : 'rgba(212, 175, 55, 0.5)',
+                backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.15)' : 'rgba(212, 175, 55, 0.15)',
                 color: isFemale ? '#ffdcd3' : '#fae596',
               }}
             >
-              <Sparkles className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
               <span>Diagnóstico</span>
             </button>
 
@@ -159,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({
               <ShoppingBag className="w-5 h-5" />
               {cartCount > 0 && (
                 <span
-                  className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-[10px] font-bold text-black flex items-center justify-center"
+                  className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-[10px] font-bold text-black flex items-center justify-center shadow-md"
                   style={{ backgroundColor: goldPrimary }}
                 >
                   {cartCount}
