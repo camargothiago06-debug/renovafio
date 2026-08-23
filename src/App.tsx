@@ -129,7 +129,7 @@ export function App() {
         initial={{ opacity: 0.85 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="w-full overflow-hidden"
+        className="w-full overflow-hidden pt-[var(--header-height,86px)]"
       >
         {/* Fullscreen Editorial Hero Banner Slider with Models & Clinical Gold Telemetry */}
         <HeroBannerSlider

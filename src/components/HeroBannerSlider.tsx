@@ -43,14 +43,14 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
       tagline: 'Fórmula Oral Concentrada com Dutasterida + Minoxidil Micronizado',
       subtitle:
         'Tratamento em dose única diária que atua direto na raiz, bloqueando 98.4% do DHT e estimulando o nascimento de fios grossos e resistentes.',
-      bulletPill: 'Restauração Follicular',
+      bulletPill: 'Restauração Folicular',
       stats: [
         { label: 'Bloqueio do DHT', value: '98.4%', icon: 'shield' },
         { label: 'Pacientes Atendidos', value: '+5.400', icon: 'star' },
         { label: 'Eficácia Clínica', value: '45 Dias', icon: 'zap' },
       ],
       imageDesktop:
-        'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=2560&q=90',
       imageAlt: 'Modelo masculino com cabelos densos e tratamento de calvície bem-sucedido',
     },
     {
@@ -69,7 +69,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
         { label: 'Garantia Clínica', value: '90 Dias', icon: 'award' },
       ],
       imageDesktop:
-        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=2560&q=90',
       imageAlt: 'Homem com linha capilar restaurada e alta densidade de fios',
     },
     {
@@ -88,8 +88,8 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
         { label: 'Embalagem Discreta', value: '100%', icon: 'award' },
       ],
       imageDesktop:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=2000&q=85',
-      imageAlt: 'Homem confiante sorrindo com cabelo espesso e recuperado',
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=2560&q=90',
+      imageAlt: 'Homem confiante com corte alinhado e densidade capilar completa',
     },
   ];
 
@@ -110,7 +110,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
         { label: 'Fios Mais Grossos', value: '45 Dias', icon: 'zap' },
       ],
       imageDesktop:
-        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=2560&q=90',
       imageAlt: 'Mulher sofisticada com cabelos volumosos, densos e brilhantes',
     },
     {
@@ -129,7 +129,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
         { label: 'Satisfação Feminina', value: '98.7%', icon: 'award' },
       ],
       imageDesktop:
-        'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=2560&q=90',
       imageAlt: 'Modelo feminina confiante com cabelos longos e cheios',
     },
     {
@@ -148,7 +148,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
         { label: 'Sem Efeitos Adversos', value: '100%', icon: 'award' },
       ],
       imageDesktop:
-        'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=2560&q=90',
       imageAlt: 'Mulher tocando os cabelos brilhantes e sedosos com plenitude',
     },
   ];
@@ -181,7 +181,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
   return (
     <section
       id="inicio"
-      className="hero-wrapper relative w-full overflow-hidden bg-[#060608] border-b border-[#d4af37]/30 flex flex-col justify-between"
+      className="hero-section bg-[#060608] border-b border-[#d4af37]/30"
       style={{
         width: '100%',
         minHeight: 'calc(100vh - var(--header-height, 86px))',
@@ -189,37 +189,39 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Top Golden Ambient Light Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-[#d4af37]/15 via-[#aa771c]/5 to-transparent blur-3xl pointer-events-none z-10" />
+      {/* Ambient Gold Halo in Top Area */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-64 bg-gradient-to-b from-[#d4af37]/15 via-transparent to-transparent blur-3xl pointer-events-none z-10" />
 
-      {/* Main Full-Bleed Slide Presentation Stage */}
-      <div className="relative flex-1 w-full flex items-center pt-24 sm:pt-28 lg:pt-24 pb-14 sm:pb-16 min-h-[580px] sm:min-h-[640px] lg:min-h-[calc(100vh-var(--header-height,86px)-96px)]">
+      {/* Main Fullscreen Stage */}
+      <div className="relative flex-1 w-full flex items-center py-6 sm:py-8 min-h-[560px] lg:min-h-[calc(100vh-var(--header-height,86px)-82px)]">
+        
+        {/* Full Viewport Slide Background Images (100% Width & Height, Cover, Preserves Ratio) */}
         <AnimatePresence mode="wait">
           <motion.div
             key={`${gender}-${activeSlide.id}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.65 }}
             className="absolute inset-0 w-full h-full z-0 overflow-hidden"
           >
-            {/* Background Model Image: 100% Cover, Center Center, Preserves Proportions */}
+            {/* Background Model Image */}
             <div className="relative w-full h-full">
               <img
                 src={activeSlide.imageDesktop}
                 alt={activeSlide.imageAlt}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-center filter brightness-[0.72] contrast-[1.08] select-none"
+                className="hero-slide-bg filter brightness-[0.78] contrast-[1.06] select-none"
               />
 
-              {/* Multi-layered Obsidian and Gold Gradient Masks for Perfect Readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-[#060608]/75 to-[#060608]/30" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#060608] via-[#060608]/90 to-transparent lg:w-3/5" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,175,55,0.2),_transparent_65%)] pointer-events-none" />
+              {/* Balanced Cinematic Lighting & Contrast Overlays */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-[#060608]/40 to-[#060608]/20" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#060608]/95 via-[#060608]/75 to-transparent lg:w-[62%]" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,175,55,0.18),_transparent_65%)] pointer-events-none" />
               
               {/* Subtle gold grid texture */}
               <div
-                className="absolute inset-0 opacity-[0.025] pointer-events-none"
+                className="absolute inset-0 opacity-[0.02] pointer-events-none"
                 style={{
                   backgroundImage: 'radial-gradient(#d4af37 1px, transparent 1px)',
                   backgroundSize: '24px 24px',
@@ -229,21 +231,21 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
           </motion.div>
         </AnimatePresence>
 
-        {/* Foreground Content Container (Constrained & Centered for clean alignment) */}
-        <div className="hero-content relative z-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+        {/* Foreground Content Container (Constrained Width for Clean Responsive Alignment) */}
+        <div className="hero-content relative z-20 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             
             {/* Slide Text Column (Left) */}
             <motion.div
               key={`content-${activeSlide.id}`}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1 }}
-              className="lg:col-span-8 flex flex-col items-start text-left space-y-4 sm:space-y-5 max-w-3xl"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="lg:col-span-8 flex flex-col items-start text-left space-y-4 max-w-2xl"
             >
               {/* Gold Upper Badge */}
               <div
-                className="inline-flex items-center space-x-2 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full border text-[10px] sm:text-xs font-semibold uppercase tracking-widest backdrop-blur-xl shadow-lg"
+                className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full border text-[10px] sm:text-xs font-semibold uppercase tracking-widest backdrop-blur-xl shadow-lg"
                 style={{
                   borderColor: isFemale ? 'rgba(226, 169, 153, 0.5)' : 'rgba(212, 175, 55, 0.6)',
                   backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.15)' : 'rgba(212, 175, 55, 0.18)',
@@ -258,7 +260,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
               </div>
 
               {/* Monumental Headline */}
-              <h1 className="font-display font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white">
+              <h1 className="font-display font-bold text-2xl sm:text-4xl md:text-5xl lg:text-[3.2rem] tracking-tight leading-[1.1] text-white">
                 {activeSlide.titlePart1}{' '}
                 <span
                   className="bg-clip-text text-transparent italic font-normal inline-block"
@@ -284,19 +286,19 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
               </div>
 
               {/* Detailed Subtitle */}
-              <p className="text-zinc-300 text-xs sm:text-sm lg:text-base font-light leading-relaxed max-w-2xl">
+              <p className="text-zinc-300 text-xs sm:text-sm lg:text-base font-light leading-relaxed max-w-xl">
                 {activeSlide.subtitle}
               </p>
 
               {/* Interactive Slide Telemetry Pill Cards */}
-              <div className="grid grid-cols-3 gap-2.5 sm:gap-3 w-full max-w-xl py-1">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 w-full max-w-lg py-1">
                 {activeSlide.stats.map((st, i) => (
                   <div
                     key={i}
-                    className="p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl bg-[#111116]/90 border border-zinc-800 hover:border-[#d4af37]/60 backdrop-blur-md transition-all group"
+                    className="p-2 sm:p-3 rounded-xl bg-[#111116]/85 border border-zinc-800 hover:border-[#d4af37]/60 backdrop-blur-md transition-all group"
                   >
                     <p
-                      className="font-display font-bold text-base sm:text-xl lg:text-2xl tracking-tight text-white group-hover:text-[#fae596] transition-colors"
+                      className="font-display font-bold text-base sm:text-xl tracking-tight text-white group-hover:text-[#fae596] transition-colors"
                       style={{
                         backgroundImage: isFemale
                           ? 'linear-gradient(135deg, #FFF 0%, #E2A999 100%)'
@@ -307,7 +309,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
                     >
                       {st.value}
                     </p>
-                    <p className="text-[9px] sm:text-[11px] font-mono text-zinc-400 mt-0.5 leading-tight truncate">
+                    <p className="text-[9px] sm:text-[10px] font-mono text-zinc-400 mt-0.5 leading-tight truncate">
                       {st.label}
                     </p>
                   </div>
@@ -315,10 +317,10 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto pt-1">
                 <button
                   onClick={onOpenQuiz}
-                  className="px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-display font-bold text-xs tracking-widest uppercase transition-all duration-300 flex items-center justify-center space-x-3 shadow-2xl hover:scale-[1.03] active:scale-[0.98] gold-button-gradient"
+                  className="px-6 sm:px-8 py-3.5 rounded-full font-display font-bold text-xs tracking-widest uppercase transition-all duration-300 flex items-center justify-center space-x-3 shadow-2xl hover:scale-[1.03] active:scale-[0.98] gold-button-gradient"
                 >
                   <Sparkles className="w-4 h-4 text-black" />
                   <span className="text-black font-extrabold">Iniciar Diagnóstico Capilar</span>
@@ -327,14 +329,14 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
 
                 <button
                   onClick={onExplorePlans}
-                  className="px-6 sm:px-7 py-3.5 sm:py-4 rounded-full font-display font-semibold text-xs tracking-widest uppercase text-white hover:text-[#fae596] border-2 border-[#d4af37]/60 hover:border-[#d4af37] bg-black/60 hover:bg-[#15130b] backdrop-blur-md transition-all flex items-center justify-center space-x-2 shadow-lg"
+                  className="px-6 sm:px-7 py-3.5 rounded-full font-display font-semibold text-xs tracking-widest uppercase text-white hover:text-[#fae596] border-2 border-[#d4af37]/60 hover:border-[#d4af37] bg-black/60 hover:bg-[#15130b] backdrop-blur-md transition-all flex items-center justify-center space-x-2 shadow-lg"
                 >
                   <span>Ver Fórmulas & Valores</span>
                 </button>
               </div>
 
               {/* Trust badges footer */}
-              <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2 text-[11px] sm:text-xs text-zinc-400">
+              <div className="flex flex-wrap items-center gap-4 pt-1 text-[11px] sm:text-xs text-zinc-400">
                 <div className="flex items-center space-x-1.5">
                   <div className="flex text-[#D4AF37]">
                     {Array.from({ length: 5 }).map((_, i) => (
@@ -352,7 +354,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
             </motion.div>
 
             {/* Right Slide Selector Floating Card (Desktop) */}
-            <div className="hidden lg:col-span-4 lg:flex flex-col space-y-3 pl-4">
+            <div className="hidden lg:col-span-4 lg:flex flex-col space-y-3 pl-2">
               <div className="p-4 rounded-3xl bg-[#0e0e13]/90 border border-[#d4af37]/35 backdrop-blur-2xl shadow-2xl space-y-3">
                 <div className="flex items-center justify-between pb-2 border-b border-zinc-800 text-xs font-mono">
                   <span className="text-[#fae596] font-bold flex items-center gap-1.5">
@@ -368,14 +370,14 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
                     <button
                       key={s.id}
                       onClick={() => setCurrentSlide(idx)}
-                      className={`w-full text-left p-3 rounded-2xl border transition-all flex items-center space-x-3.5 ${
+                      className={`w-full text-left p-2.5 rounded-2xl border transition-all flex items-center space-x-3 ${
                         isActive
                           ? 'bg-[#1e1b12] border-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]'
                           : 'bg-zinc-900/40 border-zinc-800/80 hover:border-zinc-700 text-zinc-400'
                       }`}
                     >
                       <div
-                        className="w-11 h-11 rounded-xl overflow-hidden shrink-0 border border-zinc-700 relative"
+                        className="w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-zinc-700 relative"
                       >
                         <img
                           src={s.imageDesktop}
@@ -407,7 +409,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
                 })}
 
                 {/* Progress bar */}
-                <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden mt-2">
+                <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden mt-1">
                   <motion.div
                     key={currentSlide}
                     initial={{ width: '0%' }}
@@ -426,7 +428,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
         <button
           onClick={handlePrev}
           aria-label="Slide anterior"
-          className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/90 border border-[#d4af37]/40 hover:border-[#d4af37] text-zinc-300 hover:text-white flex items-center justify-center backdrop-blur-xl shadow-xl transition-all hover:scale-105 active:scale-95"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-black/90 border border-[#d4af37]/40 hover:border-[#d4af37] text-zinc-300 hover:text-white flex items-center justify-center backdrop-blur-xl shadow-xl transition-all hover:scale-105 active:scale-95"
         >
           <ChevronLeft className="w-5 sm:w-6 h-5 sm:h-6 text-[#fae596]" />
         </button>
@@ -434,37 +436,37 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
         <button
           onClick={handleNext}
           aria-label="Próximo slide"
-          className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/90 border border-[#d4af37]/40 hover:border-[#d4af37] text-zinc-300 hover:text-white flex items-center justify-center backdrop-blur-xl shadow-xl transition-all hover:scale-105 active:scale-95"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-black/90 border border-[#d4af37]/40 hover:border-[#d4af37] text-zinc-300 hover:text-white flex items-center justify-center backdrop-blur-xl shadow-xl transition-all hover:scale-105 active:scale-95"
         >
           <ChevronRight className="w-5 sm:w-6 h-5 sm:h-6 text-[#fae596]" />
         </button>
 
         {/* Bottom Pagination Dots */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center space-x-2">
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-30 flex items-center space-x-2">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrentSlide(i)}
               aria-label={`Ir para slide ${i + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 ${
+              className={`h-1.5 rounded-full transition-all duration-300 ${
                 currentSlide === i
-                  ? 'w-8 bg-gradient-to-r from-[#d4af37] to-[#fae596] shadow-[0_0_10px_#d4af37]'
-                  : 'w-2 bg-zinc-700 hover:bg-zinc-500'
+                  ? 'w-7 bg-gradient-to-r from-[#d4af37] to-[#fae596] shadow-[0_0_10px_#d4af37]'
+                  : 'w-1.5 bg-zinc-700 hover:bg-zinc-500'
               }`}
             />
           ))}
         </div>
       </div>
 
-      {/* Gold Quick Stats Strip (100% width background, aligned inner content) */}
-      <div className="relative z-20 w-full bg-[#0a0a0e]/95 border-t border-[#d4af37]/40 py-4 sm:py-5">
-        <div className="hero-content grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
+      {/* Gold Quick Stats Strip (100% width background, perfectly aligned inner content) */}
+      <div className="relative z-20 w-full bg-[#0a0a0e]/95 border-t border-[#d4af37]/35 py-3 sm:py-3.5">
+        <div className="hero-content grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4">
           
-          <div className="flex items-center space-x-3 p-3 rounded-xl bg-[#121217] border border-[#d4af37]/20 shadow-md">
-            <div className="w-9 h-9 rounded-lg bg-[#d4af37]/15 border border-[#d4af37]/40 flex items-center justify-center text-[#fae596] shrink-0">
+          <div className="flex items-center space-x-2.5 p-2 sm:p-2.5 rounded-xl bg-[#121217] border border-[#d4af37]/20 shadow-md">
+            <div className="w-8 h-8 rounded-lg bg-[#d4af37]/15 border border-[#d4af37]/40 flex items-center justify-center text-[#fae596] shrink-0">
               <Shield className="w-4 h-4 text-[#fae596]" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="font-display font-extrabold text-sm sm:text-base text-white">
                 98.4%
               </p>
@@ -474,11 +476,11 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center space-x-3 p-3 rounded-xl bg-[#121217] border border-[#d4af37]/20 shadow-md">
-            <div className="w-9 h-9 rounded-lg bg-[#d4af37]/15 border border-[#d4af37]/40 flex items-center justify-center text-[#fae596] shrink-0">
+          <div className="flex items-center space-x-2.5 p-2 sm:p-2.5 rounded-xl bg-[#121217] border border-[#d4af37]/20 shadow-md">
+            <div className="w-8 h-8 rounded-lg bg-[#d4af37]/15 border border-[#d4af37]/40 flex items-center justify-center text-[#fae596] shrink-0">
               <Zap className="w-4 h-4 text-[#fae596]" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="font-display font-extrabold text-sm sm:text-base text-white">
                 450mg
               </p>
@@ -488,11 +490,11 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center space-x-3 p-3 rounded-xl bg-[#121217] border border-[#d4af37]/20 shadow-md">
-            <div className="w-9 h-9 rounded-lg bg-[#d4af37]/15 border border-[#d4af37]/40 flex items-center justify-center text-[#fae596] shrink-0">
+          <div className="flex items-center space-x-2.5 p-2 sm:p-2.5 rounded-xl bg-[#121217] border border-[#d4af37]/20 shadow-md">
+            <div className="w-8 h-8 rounded-lg bg-[#d4af37]/15 border border-[#d4af37]/40 flex items-center justify-center text-[#fae596] shrink-0">
               <Star className="w-4 h-4 text-[#fae596]" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="font-display font-extrabold text-sm sm:text-base text-white">
                 +5.400
               </p>
@@ -502,11 +504,11 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center space-x-3 p-3 rounded-xl bg-[#121217] border border-[#d4af37]/20 shadow-md">
-            <div className="w-9 h-9 rounded-lg bg-[#d4af37]/15 border border-[#d4af37]/40 flex items-center justify-center text-[#fae596] shrink-0">
+          <div className="flex items-center space-x-2.5 p-2 sm:p-2.5 rounded-xl bg-[#121217] border border-[#d4af37]/20 shadow-md">
+            <div className="w-8 h-8 rounded-lg bg-[#d4af37]/15 border border-[#d4af37]/40 flex items-center justify-center text-[#fae596] shrink-0">
               <Award className="w-4 h-4 text-[#fae596]" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="font-display font-extrabold text-sm sm:text-base text-white">
                 90 Dias
               </p>
