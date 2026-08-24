@@ -37,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
   const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-40 transition-all duration-300">
+    <header className="w-full relative z-40 transition-all duration-300">
       {/* Top micro announcement bar (100% width) */}
       <div
         className={`w-full py-1.5 px-4 text-center text-[10px] sm:text-xs font-light tracking-wider transition-colors duration-500 flex items-center justify-center space-x-2 sm:space-x-3 ${

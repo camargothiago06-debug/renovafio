@@ -195,7 +195,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
       }`}
       style={{
         width: '100%',
-        minHeight: 'calc(100vh - var(--header-height, 86px))',
+        minHeight: 'calc(100vh - var(--header-height, 136px))',
       }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -211,7 +211,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
       />
 
       {/* Main Fullscreen Stage */}
-      <div className="relative flex-1 w-full flex items-center py-6 sm:py-8 min-h-[560px] lg:min-h-[calc(100vh-var(--header-height,86px)-82px)]">
+      <div className="relative flex-1 w-full flex items-center py-6 sm:py-8 min-h-[560px] lg:min-h-[calc(100vh-var(--header-height,136px)-82px)]">
         
         {/* Full Viewport Slide Background Images (100% Width & Height, Cover, Preserves Ratio) */}
         <AnimatePresence mode="wait">

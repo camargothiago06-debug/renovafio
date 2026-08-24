@@ -147,29 +147,30 @@ export function App() {
         )}
       </div>
 
-      {/* Header & Floating Navigation */}
-      <Header
-        gender={gender}
-        onSelectGender={setGender}
-        onOpenMenu={() => setIsMenuOpen(true)}
-        onOpenQuiz={() => setIsQuizOpen(true)}
-        onOpenCart={() => setIsCartOpen(true)}
-        cartCount={cart.reduce((acc, item) => acc + item.quantity, 0)}
-        onGoHome={() => {
-          setActiveTab('inicio');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-      />
-
-      {/* Main Screen Content with Sticky Navigation Tabs */}
-      <div className="w-full pt-[var(--header-height,86px)]">
-        {/* Sophisticated Luxury Tab Navigation Bar */}
+      {/* Top Fixed Master Bar: Announcement + Header + Navigation Tabs (100% Frozen at Top) */}
+      <div className="fixed top-0 left-0 right-0 w-full z-40">
+        <Header
+          gender={gender}
+          onSelectGender={setGender}
+          onOpenMenu={() => setIsMenuOpen(true)}
+          onOpenQuiz={() => setIsQuizOpen(true)}
+          onOpenCart={() => setIsCartOpen(true)}
+          cartCount={cart.reduce((acc, item) => acc + item.quantity, 0)}
+          onGoHome={() => {
+            setActiveTab('inicio');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
+        {/* Sophisticated Luxury Tab Navigation Bar (Frozen Together) */}
         <NavigationTabs
           activeTab={activeTab}
           onSelectTab={setActiveTab}
           gender={gender}
         />
+      </div>
 
+      {/* Main Screen Content with Top Offset for Combined Frozen Top Bar */}
+      <div className="w-full pt-[var(--header-height,136px)]">
         {/* Expanding Minimalist Menu Drawer */}
         <MenuDrawer
           isOpen={isMenuOpen}
