@@ -72,7 +72,12 @@ export const SocialProofSection: React.FC<SocialProofSectionProps> = ({ gender }
       ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0d0d10] border-t border-zinc-800/80 relative">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-[#d4af37]/20 relative overflow-hidden">
+      {/* Background subtle gold aura */}
+      <div
+        className="absolute top-1/2 left-10 w-96 h-96 rounded-full blur-[160px] opacity-15 pointer-events-none"
+        style={{ backgroundColor: goldPrimary }}
+      />
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Header */}

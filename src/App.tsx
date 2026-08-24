@@ -96,13 +96,44 @@ export function App() {
   };
 
   const isFemale = gender === 'feminino';
+  const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
 
   return (
     <div
-      className={`min-h-screen bg-[#09090b] text-[#f4f4f5] font-sans selection:bg-[#d4af37]/30 transition-colors duration-700 relative ${
+      className={`min-h-screen text-[#f4f4f5] font-sans selection:bg-[#d4af37]/30 transition-colors duration-700 relative overflow-x-hidden ${
         isFemale ? 'theme-feminine' : 'theme-masculine'
       }`}
     >
+      {/* Refined Global Ambient Gold Lighting Orbs */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Top-Center Warm Golden Glow */}
+        <div
+          className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] sm:w-[1100px] h-[500px] rounded-full blur-[160px] opacity-20 transition-all duration-1000"
+          style={{ backgroundColor: goldPrimary }}
+        />
+        {/* Mid-Right Golden Aura */}
+        <div
+          className="absolute top-1/3 -right-48 w-[500px] sm:w-[800px] h-[600px] rounded-full blur-[180px] opacity-15 transition-all duration-1000"
+          style={{ backgroundColor: goldPrimary }}
+        />
+        {/* Lower-Left Golden Atmosphere */}
+        <div
+          className="absolute top-2/3 -left-48 w-[550px] sm:w-[850px] h-[650px] rounded-full blur-[190px] opacity-15 transition-all duration-1000"
+          style={{ backgroundColor: goldPrimary }}
+        />
+        {/* Bottom Ambient Floor Glow */}
+        <div
+          className="absolute -bottom-32 left-1/3 w-[600px] sm:w-[900px] h-[450px] rounded-full blur-[170px] opacity-15 transition-all duration-1000"
+          style={{ backgroundColor: goldPrimary }}
+        />
+        {/* Subtle Editorial Micro-Grid Pattern */}
+        <div
+          className={`absolute inset-0 opacity-[0.025] ${
+            isFemale ? 'luxury-bg-grid-feminine' : 'luxury-bg-grid'
+          }`}
+        />
+      </div>
+
       {/* Header & Floating Navigation */}
       <Header
         gender={gender}

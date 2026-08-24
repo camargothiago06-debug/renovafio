@@ -17,7 +17,12 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
   const goldSecondary = isFemale ? '#DFB775' : '#AA771C';
 
   return (
-    <section id="protocolos" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#09090b] border-t border-zinc-800/80 relative">
+    <section id="protocolos" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-[#d4af37]/20 relative overflow-hidden">
+      {/* Subtle gold aura */}
+      <div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] rounded-full blur-[160px] opacity-15 pointer-events-none"
+        style={{ backgroundColor: goldPrimary }}
+      />
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
