@@ -452,8 +452,8 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       densityIncrease: '+68% de densidade no vértice',
       verifiedDoctor: 'Dr. Leonardo Mattos • CRM/SP 148.920',
       combinedImageUrl: '/images/foto-resultado-3-meses.png.png',
-      beforeImageUrl: '/images/foto-resultado-3-meses.png',
-      afterImageUrl: '/images/foto-resultado-3-meses.png'
+      beforeImageUrl: '/images/clinical-3m-before.svg',
+      afterImageUrl: '/images/clinical-3m-after.svg'
     },
     {
       id: 'caso-2-masc',
@@ -468,8 +468,8 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       densityIncrease: '+114% de folículos ativos terminais',
       verifiedDoctor: 'Dra. Camila Duarte • CRM/RJ 98.412',
       combinedImageUrl: '/images/foto-resultado-11-meses.png.png',
-      beforeImageUrl: '/images/foto-resultado-11-meses.png',
-      afterImageUrl: '/images/foto-resultado-11-meses.png'
+      beforeImageUrl: '/images/clinical-11m-before.svg',
+      afterImageUrl: '/images/clinical-11m-after.svg'
     }
   ],
   feminino: [
@@ -485,9 +485,9 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       afterDesc: 'Risca central fechada, proliferação intensa de novos fios em crescimento e fim total da queda ao pentear.',
       densityIncrease: '+74% de cobertura na risca média',
       verifiedDoctor: 'Dra. Beatriz Albuquerque • CRM/MG 83.104',
-      combinedImageUrl: '/images/foto-resultado-3-meses.png.png',
-      beforeImageUrl: '/images/foto-resultado-3-meses.png',
-      afterImageUrl: '/images/foto-resultado-3-meses.png'
+      combinedImageUrl: '/images/clinical-fem-3m-combined.svg',
+      beforeImageUrl: '/images/clinical-fem-3m-before.svg',
+      afterImageUrl: '/images/clinical-fem-3m-after.svg'
     },
     {
       id: 'caso-2-fem',
@@ -502,8 +502,8 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       densityIncrease: '+92% de espessura da haste capilar',
       verifiedDoctor: 'Dr. Roberto Ferraz • CRM/SP 172.330',
       combinedImageUrl: '/images/foto-resultado-11-meses.png.png',
-      beforeImageUrl: '/images/foto-resultado-11-meses.png',
-      afterImageUrl: '/images/foto-resultado-11-meses.png'
+      beforeImageUrl: '/images/clinical-11m-before.svg',
+      afterImageUrl: '/images/clinical-11m-after.svg'
     }
   ]
 };

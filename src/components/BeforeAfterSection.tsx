@@ -26,17 +26,38 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
   const [sliderPosition, setSliderPosition] = useState(50); // percentage 0 - 100
   const [viewMode, setViewMode] = useState<'sideBySide' | 'interactiveSlider'>('sideBySide');
   const [isZoomed, setIsZoomed] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const sliderRef = React.useRef<HTMLDivElement>(null);
 
   const activeCase = cases[activeCaseIndex] || cases[0];
   const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
   const goldGlow = isFemale ? 'rgba(226, 169, 153, 0.25)' : 'rgba(212, 175, 55, 0.25)';
 
-  const handleSliderMove = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+  const updateSliderPos = (clientX: number) => {
+    if (!sliderRef.current) return;
+    const rect = sliderRef.current.getBoundingClientRect();
     const x = clientX - rect.left;
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
     setSliderPosition(percentage);
+  };
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+    updateSliderPos(e.clientX);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isDragging || e.buttons === 1) {
+      updateSliderPos(e.clientX);
+    }
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    setIsDragging(false);
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {}
   };
 
   return (
@@ -186,77 +207,68 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
                 ) : (
                   /* Mode 2: Interactive Drag Slider */
                   <div
-                    className="relative w-full aspect-[16/9] overflow-hidden cursor-ew-resize select-none bg-zinc-950"
-                    onMouseMove={(e) => {
-                      if (e.buttons === 1) handleSliderMove(e);
-                    }}
-                    onClick={handleSliderMove}
-                    onTouchMove={handleSliderMove}
+                    ref={sliderRef}
+                    className="relative w-full aspect-[16/9] overflow-hidden cursor-ew-resize select-none bg-zinc-950 touch-none"
+                    onPointerDown={handlePointerDown}
+                    onPointerMove={handlePointerMove}
+                    onPointerUp={handlePointerUp}
+                    onPointerCancel={handlePointerUp}
                   >
-                    {/* AFTER Layer (Right / Full background) */}
-                    <div className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center bg-zinc-950">
+                    {/* AFTER Layer (Right / Base background) */}
+                    <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-zinc-950">
                       <img
-                        src={activeCase.afterImageUrl || '/images/foto-resultado-11-meses.png'}
+                        src={activeCase.afterImageUrl || '/images/clinical-11m-after.svg'}
                         alt={`${activeCase.afterLabel} - ${activeCase.patientName}`}
-                        className={`w-full h-full object-cover sm:object-contain transition-transform duration-300 ${
+                        className={`w-full h-full object-cover transition-transform duration-300 pointer-events-none ${
                           isZoomed ? 'scale-125' : 'scale-100'
                         }`}
                         referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          const target = e.currentTarget;
-                          if (target.src.endsWith('.png.png')) {
-                            target.src = target.src.replace('.png.png', '.png');
-                          }
-                        }}
                       />
                       {/* After Badge */}
-                      <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 z-20 px-3 py-1 sm:px-4 sm:py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-black text-xs uppercase tracking-wider shadow-xl border border-[#eaa351]">
+                      <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 z-10 px-3.5 py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-black text-xs uppercase tracking-wider shadow-xl border border-[#eaa351] pointer-events-none">
                         {activeCase.afterLabel}
                       </div>
                     </div>
 
-                    {/* BEFORE Layer (Left / Clipped by slider) */}
+                    {/* BEFORE Layer (Left / Clipped smoothly via inset) */}
                     <div
-                      className="absolute inset-0 h-full overflow-hidden border-r-2"
+                      className="absolute inset-0 w-full h-full flex items-center justify-center bg-zinc-950 pointer-events-none"
                       style={{
-                        width: `${sliderPosition}%`,
-                        borderColor: goldPrimary,
+                        clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`
                       }}
                     >
-                      <div className="relative w-full h-full min-w-[320px] sm:min-w-[500px] flex items-center justify-center bg-zinc-950">
-                        <img
-                          src={activeCase.beforeImageUrl || '/images/foto-resultado-11-meses.png'}
-                          alt={`${activeCase.beforeLabel} - ${activeCase.patientName}`}
-                          className={`w-full h-full object-cover sm:object-contain transition-transform duration-300 ${
-                            isZoomed ? 'scale-125' : 'scale-100'
-                          }`}
-                          referrerPolicy="no-referrer"
-                          onError={(e) => {
-                            const target = e.currentTarget;
-                            if (target.src.endsWith('.png.png')) {
-                              target.src = target.src.replace('.png.png', '.png');
-                            }
-                          }}
-                        />
-                        {/* Before Badge */}
-                        <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 z-20 px-3 py-1 sm:px-4 sm:py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-black text-xs uppercase tracking-wider shadow-xl border border-[#eaa351]">
-                          {activeCase.beforeLabel}
-                        </div>
+                      <img
+                        src={activeCase.beforeImageUrl || '/images/clinical-11m-before.svg'}
+                        alt={`${activeCase.beforeLabel} - ${activeCase.patientName}`}
+                        className={`w-full h-full object-cover transition-transform duration-300 pointer-events-none ${
+                          isZoomed ? 'scale-125' : 'scale-100'
+                        }`}
+                        referrerPolicy="no-referrer"
+                      />
+                      {/* Before Badge */}
+                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 z-10 px-3.5 py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-black text-xs uppercase tracking-wider shadow-xl border border-[#eaa351] pointer-events-none">
+                        {activeCase.beforeLabel}
                       </div>
                     </div>
 
-                    {/* Center Drag Handle */}
+                    {/* Golden Glowing Divider Line & Center Drag Handle */}
                     <div
-                      className="absolute top-0 bottom-0 z-30 flex items-center justify-center -translate-x-1/2 pointer-events-none"
+                      className="absolute top-0 bottom-0 z-30 pointer-events-none -translate-x-1/2 flex flex-col items-center justify-center"
                       style={{ left: `${sliderPosition}%` }}
                     >
                       <div
-                        className="w-8 h-8 sm:w-9 sm:h-9 rounded-full shadow-2xl flex items-center justify-center border-2 border-white bg-black/90 text-white"
+                        className="w-0.5 sm:w-1 h-full shadow-[0_0_15px_rgba(212,175,55,0.9)]"
+                        style={{ backgroundColor: goldPrimary }}
+                      />
+                      <div
+                        className="absolute w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center bg-zinc-950/95 border-2 shadow-2xl transition-transform active:scale-95"
                         style={{
-                          boxShadow: `0 0 15px ${goldPrimary}`,
+                          borderColor: goldPrimary,
+                          boxShadow: `0 0 20px ${goldPrimary}90, 0 4px 12px rgba(0,0,0,0.8)`,
+                          color: goldPrimary
                         }}
                       >
-                        <Sliders className="w-4 h-4" style={{ color: goldPrimary }} />
+                        <Sliders className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                       </div>
                     </div>
                   </div>
