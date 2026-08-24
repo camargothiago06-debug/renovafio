@@ -47,42 +47,42 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
   };
 
   const containerHeights = {
-    sm: 'h-60 sm:h-64',
-    md: 'h-72 sm:h-80',
-    lg: 'h-88 sm:h-96',
+    sm: 'h-64 sm:h-72',
+    md: 'h-88 sm:h-[400px]',
+    lg: 'h-96 sm:h-[460px]',
   };
 
   const imageMaxHeights = {
-    sm: 'max-h-[220px]',
-    md: 'max-h-[280px] sm:max-h-[300px]',
-    lg: 'max-h-[340px] sm:max-h-[360px]',
+    sm: 'max-h-[240px]',
+    md: 'max-h-[340px] sm:max-h-[370px]',
+    lg: 'max-h-[400px] sm:max-h-[430px]',
   };
 
   return (
     <div
-      className={`relative w-full ${containerHeights[size]} flex items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-b from-[#14141a] via-[#0d0d12] to-[#08080a] border border-zinc-800/80 group-hover:border-[#d4af37]/40 transition-all duration-500 shadow-inner ${className}`}
+      className={`relative w-full ${containerHeights[size]} flex items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-b from-[#16161e] via-[#0d0d12] to-[#070709] border border-zinc-800/80 group-hover:border-[#d4af37]/60 transition-all duration-500 shadow-2xl ${className}`}
     >
       {/* Soft Luxury Golden Halo in Background */}
       <div
-        className="absolute w-44 sm:w-56 h-44 sm:h-56 rounded-full blur-3xl opacity-20 group-hover:opacity-35 transition-opacity duration-700 pointer-events-none"
+        className="absolute w-56 sm:w-72 h-56 sm:h-72 rounded-full blur-3xl opacity-25 group-hover:opacity-45 transition-opacity duration-700 pointer-events-none"
         style={{
           backgroundColor: goldPrimary,
         }}
       />
 
       {/* Subtle Ambient Radial Highlight */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.08)_0%,_transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.12)_0%,_transparent_75%)] pointer-events-none" />
 
       {/* Real Product Image Container */}
       {!hasAllErrors ? (
-        <div className="relative z-10 w-full h-full p-4 flex flex-col items-center justify-center">
+        <div className="relative z-10 w-full h-full p-2 sm:p-3 flex flex-col items-center justify-center">
           <img
             src={currentSrc}
             alt={alt}
             referrerPolicy="no-referrer"
             onLoad={() => setImageLoaded(true)}
             onError={handleImageError}
-            className={`w-auto ${imageMaxHeights[size]} object-contain filter drop-shadow-[0_16px_28px_rgba(0,0,0,0.9)] transition-all duration-500 group-hover:scale-105 select-none ${
+            className={`w-full ${imageMaxHeights[size]} object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.95)] transition-all duration-500 group-hover:scale-105 select-none ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
           />
@@ -90,7 +90,7 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
           {/* Loading Skeleton */}
           {!imageLoaded && (
             <div className="absolute inset-0 flex items-center justify-center p-6">
-              <div className="w-44 h-60 rounded-2xl bg-[#1a1a24]/60 border border-[#d4af37]/20 animate-pulse flex flex-col items-center justify-center">
+              <div className="w-52 h-72 rounded-2xl bg-[#1a1a24]/60 border border-[#d4af37]/20 animate-pulse flex flex-col items-center justify-center">
                 <span className="text-[#fae596] font-display text-sm font-bold tracking-wider">
                   RENOVA FIO
                 </span>
@@ -100,7 +100,7 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
           )}
 
           {/* Base Floor Reflection Shadow */}
-          <div className="w-36 sm:w-48 h-3.5 rounded-full bg-black/80 blur-md -mt-1 pointer-events-none" />
+          <div className="w-44 sm:w-60 h-4 rounded-full bg-black/90 blur-md -mt-2 pointer-events-none" />
         </div>
       ) : (
         /* Clean Vector Stand-in (Fallback if image URL cannot be fetched) */
