@@ -1,0 +1,84 @@
+import React from 'react';
+import { motion } from 'motion/react';
+import { TabType, GenderMode } from '../types';
+import { Sparkles, Package, FlaskConical, Award, ShieldCheck, HelpCircle } from 'lucide-react';
+
+interface NavigationTabsProps {
+  activeTab: TabType;
+  onSelectTab: (tab: TabType) => void;
+  gender: GenderMode;
+}
+
+export const NavigationTabs: React.FC<NavigationTabsProps> = ({
+  activeTab,
+  onSelectTab,
+  gender,
+}) => {
+  const isFemale = gender === 'feminino';
+  const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
+
+  const tabs: { id: TabType; label: string; shortLabel: string; icon: React.FC<{ className?: string }> }[] = [
+    { id: 'inicio', label: 'Início', shortLabel: 'Início', icon: Sparkles },
+    { id: 'galeria', label: 'Galeria de Fórmulas', shortLabel: 'Galeria', icon: Package },
+    { id: 'ciencia', label: 'A Ciência 450mg', shortLabel: 'Ciência', icon: FlaskConical },
+    { id: 'resultados', label: 'Resultados Clínicos', shortLabel: 'Resultados', icon: Award },
+    { id: 'protocolos', label: 'Protocolos & Preços', shortLabel: 'Protocolos', icon: ShieldCheck },
+    { id: 'faq', label: 'Dúvidas Frequentes', shortLabel: 'Dúvidas', icon: HelpCircle },
+  ];
+
+  return (
+    <div className="w-full sticky top-[var(--header-height,86px)] z-30 bg-[#09090c]/90 backdrop-blur-xl border-b border-zinc-800/80 transition-all duration-300 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)]">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar py-2.5 gap-1.5 sm:gap-2">
+          {tabs.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.id;
+
+            return (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  onSelectTab(tab.id);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`relative px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-xs font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap select-none shrink-0 ${
+                  isActive
+                    ? 'text-white font-semibold'
+                    : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/40'
+                }`}
+              >
+                {/* Active Indicator Glow Background */}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeTabPill"
+                    className="absolute inset-0 rounded-xl border"
+                    style={{
+                      backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.12)' : 'rgba(212, 175, 55, 0.12)',
+                      borderColor: isFemale ? 'rgba(226, 169, 153, 0.4)' : 'rgba(212, 175, 55, 0.4)',
+                      boxShadow: isFemale
+                        ? '0 0 15px -3px rgba(226, 169, 153, 0.25)'
+                        : '0 0 15px -3px rgba(212, 175, 55, 0.25)',
+                    }}
+                    transition={{ type: 'spring', bounce: 0.15, duration: 0.45 }}
+                  />
+                )}
+
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <Icon
+                    className={`w-3.5 h-3.5 transition-colors ${
+                      isActive
+                        ? isFemale ? 'text-[#ffdcd3]' : 'text-[#fae596]'
+                        : 'text-zinc-500'
+                    }`}
+                  />
+                  <span className="hidden sm:inline">{tab.label}</span>
+                  <span className="sm:hidden">{tab.shortLabel}</span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};

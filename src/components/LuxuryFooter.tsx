@@ -1,5 +1,5 @@
 import React from 'react';
-import { GenderMode } from '../types';
+import { GenderMode, TabType } from '../types';
 import { RenovaLogo } from './RenovaLogo';
 import { ShieldCheck, Lock, Award, Heart, Sparkles } from 'lucide-react';
 
@@ -7,15 +7,24 @@ interface LuxuryFooterProps {
   gender: GenderMode;
   onSelectGender: (gender: GenderMode) => void;
   onOpenQuiz: () => void;
+  onSelectTab?: (tab: TabType) => void;
 }
 
 export const LuxuryFooter: React.FC<LuxuryFooterProps> = ({
   gender,
   onSelectGender,
   onOpenQuiz,
+  onSelectTab,
 }) => {
   const isFemale = gender === 'feminino';
   const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
+
+  const handleTabClick = (tab: TabType) => {
+    if (onSelectTab) {
+      onSelectTab(tab);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <footer className="bg-[#070709] border-t border-zinc-800/80 pt-20 pb-12 px-4 sm:px-6 lg:px-8 text-zinc-400 relative">
@@ -51,19 +60,34 @@ export const LuxuryFooter: React.FC<LuxuryFooterProps> = ({
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#ciencia" className="hover:text-white transition-colors">A Ciência 450mg</a>
+                <button onClick={() => handleTabClick('inicio')} className="hover:text-white transition-colors text-left cursor-pointer">
+                  Início (Visão Geral)
+                </button>
               </li>
               <li>
-                <a href="#produtos" className="hover:text-white transition-colors">Galeria de Fórmulas</a>
+                <button onClick={() => handleTabClick('galeria')} className="hover:text-white transition-colors text-left cursor-pointer">
+                  Galeria de Fórmulas
+                </button>
               </li>
               <li>
-                <a href="#resultados" className="hover:text-white transition-colors">Casos Clínicos</a>
+                <button onClick={() => handleTabClick('ciencia')} className="hover:text-white transition-colors text-left cursor-pointer">
+                  A Ciência 450mg
+                </button>
               </li>
               <li>
-                <a href="#protocolos" className="hover:text-white transition-colors">Protocolos & Valores</a>
+                <button onClick={() => handleTabClick('resultados')} className="hover:text-white transition-colors text-left cursor-pointer">
+                  Casos Clínicos
+                </button>
               </li>
               <li>
-                <a href="#faq" className="hover:text-white transition-colors">Dúvidas Frequentes</a>
+                <button onClick={() => handleTabClick('protocolos')} className="hover:text-white transition-colors text-left cursor-pointer">
+                  Protocolos & Valores
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleTabClick('faq')} className="hover:text-white transition-colors text-left cursor-pointer">
+                  Dúvidas Frequentes
+                </button>
               </li>
             </ul>
           </div>

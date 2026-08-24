@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { GenderMode } from '../types';
+import { GenderMode, TabType } from '../types';
 import { RenovaLogo } from './RenovaLogo';
 import { X, ArrowUpRight, ShieldCheck, Sparkles, Phone, FileText, CheckCircle2 } from 'lucide-react';
 
@@ -11,6 +11,7 @@ interface MenuDrawerProps {
   onSelectGender: (gender: GenderMode) => void;
   onOpenQuiz: () => void;
   onOpenCart: () => void;
+  onSelectTab?: (tab: TabType) => void;
 }
 
 export const MenuDrawer: React.FC<MenuDrawerProps> = ({
@@ -20,16 +21,18 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
   onSelectGender,
   onOpenQuiz,
   onOpenCart,
+  onSelectTab,
 }) => {
   const isFemale = gender === 'feminino';
   const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
 
-  const menuItems = [
-    { label: 'A Ciência & Fórmula', href: '#ciencia', desc: 'Os 4 ativos farmacêuticos em dose única 450mg' },
-    { label: 'Galeria Exclusiva', href: '#produtos', desc: 'Linha completa de cápsulas, séruns e kits' },
-    { label: 'Resultados Clínicos', href: '#resultados', desc: 'Casos reais antes/depois aos 3 e 11 meses' },
-    { label: 'Protocolos & Preços', href: '#protocolos', desc: 'Planos de 1, 3 e 6 meses com garantia de 90 dias' },
-    { label: 'Dúvidas Frequentes', href: '#faq', desc: 'Como tomar, prescrição e envio discreto' },
+  const menuItems: { label: string; tab: TabType; desc: string }[] = [
+    { label: 'Início', tab: 'inicio', desc: 'Visão geral e apresentações clínicas' },
+    { label: 'Galeria Exclusiva', tab: 'galeria', desc: 'Linha completa de cápsulas, séruns e kits' },
+    { label: 'A Ciência & Fórmula', tab: 'ciencia', desc: 'Os 4 ativos farmacêuticos em dose única 450mg' },
+    { label: 'Resultados Clínicos', tab: 'resultados', desc: 'Casos reais antes/depois aos 3 e 11 meses' },
+    { label: 'Protocolos & Preços', tab: 'protocolos', desc: 'Planos de 1, 3 e 6 meses com garantia de 90 dias' },
+    { label: 'Dúvidas Frequentes', tab: 'faq', desc: 'Como tomar, prescrição e envio discreto' },
   ];
 
   return (
@@ -94,19 +97,22 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
               </div>
 
               {/* Navigation Links with staggered animation */}
-              <nav className="space-y-4 my-8">
+              <nav className="space-y-3 my-6">
                 {menuItems.map((item, idx) => (
-                  <motion.a
-                    key={item.href}
-                    href={item.href}
-                    onClick={onClose}
+                  <motion.button
+                    key={item.tab}
+                    onClick={() => {
+                      if (onSelectTab) onSelectTab(item.tab);
+                      onClose();
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + idx * 0.05 }}
-                    className="group block p-3.5 rounded-xl hover:bg-zinc-900/60 border border-transparent hover:border-zinc-800/80 transition-all"
+                    transition={{ delay: 0.08 + idx * 0.04 }}
+                    className="w-full text-left group block p-3.5 rounded-xl hover:bg-zinc-900/60 border border-transparent hover:border-zinc-800/80 transition-all cursor-pointer"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-display text-lg text-zinc-100 group-hover:text-[#fae596] transition-colors">
+                      <span className="font-display text-base sm:text-lg text-zinc-100 group-hover:text-[#fae596] transition-colors">
                         {item.label}
                       </span>
                       <ArrowUpRight className="w-4 h-4 text-zinc-600 group-hover:text-[#fae596] transition-colors" />
@@ -114,7 +120,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
                     <p className="text-xs text-zinc-400 font-light mt-0.5">
                       {item.desc}
                     </p>
-                  </motion.a>
+                  </motion.button>
                 ))}
               </nav>
             </div>

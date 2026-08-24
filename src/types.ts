@@ -1,5 +1,7 @@
 export type GenderMode = 'masculino' | 'feminino';
 
+export type TabType = 'inicio' | 'galeria' | 'ciencia' | 'resultados' | 'protocolos' | 'faq';
+
 export interface Ingredient {
   id: string;
   code: string;

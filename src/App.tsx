@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CartItem, GenderMode, Plan, Product } from './types';
+import { CartItem, GenderMode, Plan, Product, TabType } from './types';
 import { Header } from './components/Header';
+import { NavigationTabs } from './components/NavigationTabs';
 import { MenuDrawer } from './components/MenuDrawer';
-import { HeroBannerSlider } from './components/HeroBannerSlider';
+import { HomeOverview } from './components/HomeOverview';
 import { ScienceSection } from './components/ScienceSection';
 import { BeforeAfterSection } from './components/BeforeAfterSection';
 import { ProductGallery } from './components/ProductGallery';
@@ -19,6 +20,7 @@ import { Sparkles, CheckCircle2 } from 'lucide-react';
 
 export function App() {
   const [gender, setGender] = useState<GenderMode>('masculino');
+  const [activeTab, setActiveTab] = useState<TabType>('inicio');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
@@ -127,60 +129,99 @@ export function App() {
         onOpenQuiz={() => setIsQuizOpen(true)}
         onOpenCart={() => setIsCartOpen(true)}
         cartCount={cart.reduce((acc, item) => acc + item.quantity, 0)}
+        onGoHome={() => {
+          setActiveTab('inicio');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
       />
 
-      {/* Expanding Minimalist Menu Drawer */}
-      <MenuDrawer
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-        gender={gender}
-        onSelectGender={setGender}
-        onOpenQuiz={() => setIsQuizOpen(true)}
-        onOpenCart={() => setIsCartOpen(true)}
-      />
-
-      {/* Main Screen Content with Smooth Theme Switch Fade */}
-      <motion.main
-        key={gender}
-        initial={{ opacity: 0.85 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className="w-full overflow-hidden pt-[var(--header-height,86px)]"
-      >
-        {/* Fullscreen Editorial Hero Banner Slider with Models & Clinical Gold Telemetry */}
-        <HeroBannerSlider
+      {/* Main Screen Content with Sticky Navigation Tabs */}
+      <div className="w-full pt-[var(--header-height,86px)]">
+        {/* Sophisticated Luxury Tab Navigation Bar */}
+        <NavigationTabs
+          activeTab={activeTab}
+          onSelectTab={setActiveTab}
           gender={gender}
-          onOpenQuiz={() => setIsQuizOpen(true)}
-          onExplorePlans={() => {
-            const el = document.getElementById('protocolos');
-            el?.scrollIntoView({ behavior: 'smooth' });
-          }}
         />
 
-        {/* Science & Active Ingredients (Foto 4 Representation) */}
-        <ScienceSection gender={gender} />
+        {/* Expanding Minimalist Menu Drawer */}
+        <MenuDrawer
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+          gender={gender}
+          onSelectGender={setGender}
+          onOpenQuiz={() => setIsQuizOpen(true)}
+          onOpenCart={() => setIsCartOpen(true)}
+          onSelectTab={setActiveTab}
+        />
 
-        {/* Interactive Before & After Slider (Foto 2 & 3 Clinical Results) */}
-        <BeforeAfterSection gender={gender} />
+        {/* Tab Content Display with Smooth Transitions */}
+        <main className="w-full min-h-[60vh]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${activeTab}-${gender}`}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              className="w-full"
+            >
+              {/* TAB 1: INÍCIO (Visão Geral & Destaques) */}
+              {activeTab === 'inicio' && (
+                <HomeOverview
+                  gender={gender}
+                  onSelectTab={setActiveTab}
+                  onOpenQuiz={() => setIsQuizOpen(true)}
+                  onSelectPlan={handleSelectPlan}
+                />
+              )}
 
-        {/* Exclusive Dynamic Product Line Gallery */}
-        <ProductGallery gender={gender} onAddToCart={handleAddToCart} />
+              {/* TAB 2: GALERIA DE FÓRMULAS */}
+              {activeTab === 'galeria' && (
+                <div className="w-full">
+                  <ProductGallery gender={gender} onAddToCart={handleAddToCart} />
+                </div>
+              )}
 
-        {/* Treatment Protocol Tiers & Pricing */}
-        <PricingSection gender={gender} onSelectPlan={handleSelectPlan} />
+              {/* TAB 3: A CIÊNCIA 450MG */}
+              {activeTab === 'ciencia' && (
+                <div className="w-full">
+                  <ScienceSection gender={gender} />
+                </div>
+              )}
 
-        {/* Clinical Proof & Patient Testimonials */}
-        <SocialProofSection gender={gender} />
+              {/* TAB 4: RESULTADOS CLÍNICOS & CASOS REAIS */}
+              {activeTab === 'resultados' && (
+                <div className="w-full space-y-4">
+                  <BeforeAfterSection gender={gender} />
+                  <SocialProofSection gender={gender} />
+                </div>
+              )}
 
-        {/* FAQ Section */}
-        <FaqSection gender={gender} />
-      </motion.main>
+              {/* TAB 5: PROTOCOLOS & PREÇOS */}
+              {activeTab === 'protocolos' && (
+                <div className="w-full">
+                  <PricingSection gender={gender} onSelectPlan={handleSelectPlan} />
+                </div>
+              )}
+
+              {/* TAB 6: DÚVIDAS & FAQ */}
+              {activeTab === 'faq' && (
+                <div className="w-full">
+                  <FaqSection gender={gender} />
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </main>
+      </div>
 
       {/* Editorial Luxury Footer */}
       <LuxuryFooter
         gender={gender}
         onSelectGender={setGender}
         onOpenQuiz={() => setIsQuizOpen(true)}
+        onSelectTab={setActiveTab}
       />
 
       {/* Dedicated Floating WhatsApp Concierge */}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { GenderMode } from '../types';
+import { GenderMode, TabType } from '../types';
 import { RenovaLogo } from './RenovaLogo';
 import { ShoppingBag, Sparkles, Menu, MessageSquare, Shield, Check } from 'lucide-react';
 
@@ -11,6 +11,7 @@ interface HeaderProps {
   onOpenQuiz: () => void;
   onOpenCart: () => void;
   cartCount: number;
+  onGoHome?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -20,6 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenQuiz,
   onOpenCart,
   cartCount,
+  onGoHome,
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const isFemale = gender === 'feminino';
@@ -68,9 +70,16 @@ export const Header: React.FC<HeaderProps> = ({
       >
         <div className="hero-content flex items-center justify-between">
           {/* Brand Logo */}
-          <a href="#" className="flex items-center shrink-0">
+          <button
+            onClick={() => {
+              if (onGoHome) onGoHome();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="flex items-center shrink-0 cursor-pointer bg-transparent border-0 p-0"
+            aria-label="Página inicial"
+          >
             <RenovaLogo gender={gender} size="sm" showSubtitle={false} />
-          </a>
+          </button>
 
           {/* Central Floating Gender Switcher Pill */}
           <div
