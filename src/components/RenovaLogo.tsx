@@ -16,108 +16,103 @@ export const RenovaLogo: React.FC<RenovaLogoProps> = ({
 }) => {
   const isFemale = gender === 'feminino';
 
-  // Responsive dimension constraints for SVG display
-  const dimensions = {
-    sm: { width: 140, height: 46 },
-    md: { width: 185, height: 60 },
-    lg: { width: 240, height: 78 },
-    xl: { width: 320, height: 104 },
+  // Responsive class-based sizing preserving aspect ratio perfectly
+  const sizeClasses = {
+    sm: 'h-7 sm:h-8',
+    md: 'h-8 sm:h-9.5 md:h-10',
+    lg: 'h-10 sm:h-12 md:h-14',
+    xl: 'h-12 sm:h-16 md:h-20',
   };
 
-  const currentDim = dimensions[size];
-  const gradientId = `renovaBrandGrad-${gender}-${size}`;
+  const gradientId = `renovaBrandGrad-${gender}`;
 
   return (
     <div className={`inline-flex flex-col items-start select-none ${className}`}>
       <div className="relative flex items-center">
         <svg
-          viewBox="0 0 760 250"
-          style={{
-            width: `${currentDim.width}px`,
-            height: `${currentDim.height}px`,
-            maxHeight: '100%',
-          }}
-          className="transition-all duration-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]"
+          viewBox="0 0 910 265"
+          preserveAspectRatio="xMinYMid meet"
+          className={`${sizeClasses[size]} w-auto max-w-full transition-all duration-300 drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
             {isFemale ? (
               <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="85%">
-                <stop offset="0%" stopColor="#FFF2EE" />
-                <stop offset="20%" stopColor="#F5CEBE" />
-                <stop offset="45%" stopColor="#E2A999" />
-                <stop offset="70%" stopColor="#DFB775" />
-                <stop offset="90%" stopColor="#D4AF37" />
-                <stop offset="100%" stopColor="#AA771C" />
+                <stop offset="0%" stopColor="#FFF3F0" />
+                <stop offset="20%" stopColor="#F7D2C4" />
+                <stop offset="45%" stopColor="#E5A898" />
+                <stop offset="70%" stopColor="#DCA876" />
+                <stop offset="90%" stopColor="#C98668" />
+                <stop offset="100%" stopColor="#9C5446" />
               </linearGradient>
             ) : (
               <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="85%">
-                <stop offset="0%" stopColor="#FFF3C4" />
-                <stop offset="15%" stopColor="#F2D580" />
-                <stop offset="40%" stopColor="#D8AC51" />
-                <stop offset="70%" stopColor="#C29035" />
-                <stop offset="90%" stopColor="#9B6E22" />
-                <stop offset="100%" stopColor="#7C5214" />
+                <stop offset="0%" stopColor="#FFF6D6" />
+                <stop offset="18%" stopColor="#F3DB8D" />
+                <stop offset="45%" stopColor="#D4A745" />
+                <stop offset="72%" stopColor="#BA882C" />
+                <stop offset="90%" stopColor="#9C6A1E" />
+                <stop offset="100%" stopColor="#784D10" />
               </linearGradient>
             )}
           </defs>
 
           <g fill={`url(#${gradientId})`}>
             {/* Isolated Seed Leaf / Drop on Left */}
-            <path d="M35 145 C32 155 31 168 33 182 C37 182 43 172 42 158 C41 148 37 144 35 145 Z" />
+            <path d="M38 148 C34 158 33 172 36 186 C41 186 47 175 46 160 C45 150 40 146 38 148 Z" />
 
             {/* Stylized Signature 'R' Glyph with Ascending Whisker & Flowing Leg */}
-            <path d="M1 4 C1 12 11 52 46 84 C85 119 135 155 163 245 C164 246 166 242 165 237 C155 178 116 128 72 90 C32 55 18 20 8 0 C4 0 1 1 1 4 Z" />
+            <path d="M2 12 C3 22 14 64 52 98 C94 135 146 172 176 258 C177 259 179 255 178 250 C167 188 126 136 80 96 C38 59 22 23 10 2 C5 2 2 6 2 12 Z" />
             
             {/* Top Horizontal Crossbar & Upper Arch of 'R' */}
-            <path d="M24 38 C60 38 100 38 120 45 C156 57 172 82 167 114 C160 156 128 174 88 175 C85 175 80 174 76 173 C98 166 112 153 118 132 C125 106 114 84 89 74 C70 66 45 66 25 66 Z" />
+            <path d="M26 40 C65 40 108 40 128 48 C166 60 182 87 177 120 C170 163 136 182 94 183 C90 183 85 182 81 181 C104 174 119 160 125 138 C132 111 121 88 95 78 C75 70 48 70 27 70 Z" />
             
             {/* Inner / Middle Right Stem of 'R' Loop */}
-            <path d="M174 95 C176 118 165 145 141 162 C125 173 103 177 82 176 C115 170 148 152 154 116 C158 92 147 70 126 59 C149 67 170 78 174 95 Z" />
+            <path d="M185 102 C187 125 175 152 150 169 C133 180 109 184 87 183 C121 177 155 157 162 121 C166 96 154 73 132 62 C156 71 179 83 185 102 Z" />
 
             {/* Word: 'enova' */}
             {/* 'e' */}
-            <g transform="translate(170, 0)">
-              <path d="M60 178 C35 178 15 158 15 128 C15 96 36 76 62 76 C88 76 103 97 101 130 L28 130 C29 156 42 169 63 169 C74 169 85 164 92 156 L97 162 C88 172 75 178 60 178 Z M62 84 C45 84 31 99 28 123 L90 123 C90 98 78 84 62 84 Z" />
+            <g transform="translate(195, 4)">
+              <path d="M62 186 C36 186 15 165 15 133 C15 100 37 79 65 79 C92 79 108 101 106 135 L29 135 C30 162 44 176 66 176 C78 176 89 171 97 163 L102 169 C92 180 78 186 62 186 Z M65 88 C47 88 32 104 29 128 L94 128 C94 103 82 88 65 88 Z" />
             </g>
 
             {/* 'n' */}
-            <g transform="translate(280, 0)">
-              <path d="M16 80 L27 80 L27 94 C34 83 48 76 64 76 C87 76 98 90 98 116 L98 175 L86 175 L86 118 C86 98 78 86 61 86 C45 86 31 99 28 120 L28 175 L16 175 Z" />
+            <g transform="translate(315, 4)">
+              <path d="M16 83 L28 83 L28 98 C36 86 51 79 68 79 C92 79 104 94 104 121 L104 183 L91 183 L91 123 C91 102 82 90 64 90 C47 90 32 104 29 126 L29 183 L16 183 Z" />
             </g>
 
             {/* 'o' */}
-            <g transform="translate(390, 0)">
-              <path d="M60 178 C29 178 8 155 8 127 C8 98 30 76 60 76 C91 76 112 98 112 127 C112 155 91 178 60 178 Z M60 85 C37 85 22 103 22 127 C22 151 37 169 60 169 C83 169 98 151 98 127 C98 103 83 85 60 85 Z" />
+            <g transform="translate(435, 4)">
+              <path d="M62 186 C30 186 8 162 8 133 C8 102 31 79 62 79 C94 79 116 102 116 133 C116 162 94 186 62 186 Z M62 89 C38 89 23 108 23 133 C23 158 38 177 62 177 C86 177 101 158 101 133 C101 108 86 89 62 89 Z" />
             </g>
 
             {/* 'v' */}
-            <g transform="translate(505, 0)">
-              <path d="M6 80 L20 80 L52 163 L84 80 L98 80 L59 176 L45 176 Z" />
+            <g transform="translate(560, 4)">
+              <path d="M6 83 L21 83 L55 170 L89 83 L104 83 L62 184 L47 184 Z" />
             </g>
 
             {/* 'a' */}
-            <g transform="translate(605, 0)">
-              <path d="M52 178 C30 178 12 163 12 143 C12 122 30 110 57 109 L78 108 L78 100 C78 88 69 82 54 82 C42 82 32 87 25 94 L20 87 C29 79 41 74 57 74 C77 74 91 84 91 102 L91 175 L80 175 L80 162 C73 172 61 178 52 178 Z M56 169 C70 169 80 156 80 138 L80 116 L60 117 C39 118 25 127 25 142 C25 158 38 169 56 169 Z" />
+            <g transform="translate(668, 4)">
+              <path d="M54 186 C31 186 12 170 12 149 C12 127 31 114 59 113 L81 112 L81 104 C81 91 72 85 56 85 C44 85 33 90 26 97 L21 90 C30 82 43 77 59 77 C80 77 95 87 95 106 L95 183 L83 183 L83 169 C76 180 64 186 54 186 Z M58 176 C73 176 83 162 83 143 L83 121 L62 122 C40 123 26 132 26 148 C26 164 40 176 58 176 Z" />
             </g>
 
             {/* Word: 'fio' */}
             {/* 'f' */}
-            <g transform="translate(680, 20)">
-              <path d="M30 155 L19 155 L19 104 L10 104 L10 96 L19 96 L19 86 C19 72 26 62 42 62 C47 62 52 64 55 66 L52 74 C49 73 46 71 42 71 C34 71 30 76 30 87 L30 96 L50 96 L50 104 L30 104 Z" />
-              <circle cx="48" cy="65" r="2.5" />
+            <g transform="translate(768, 22)">
+              <path d="M31 168 L19 168 L19 113 L9 113 L9 104 L19 104 L19 93 C19 77 27 66 45 66 C51 66 56 68 59 70 L56 79 C53 78 49 76 45 76 C36 76 31 82 31 94 L31 104 L53 104 L53 113 L31 113 Z" />
+              <circle cx="51" cy="69" r="2.8" />
             </g>
 
             {/* 'i' */}
-            <g transform="translate(712, 40)">
-              <circle cx="16" cy="74" r="5" />
-              <path d="M11 94 L21 94 L21 135 L11 135 Z" />
+            <g transform="translate(812, 42)">
+              <circle cx="15" cy="74" r="5.5" />
+              <path d="M9 97 L21 97 L21 145 L9 145 Z" />
             </g>
 
             {/* 'o' in fio */}
-            <g transform="translate(732, 40)">
-              <path d="M28 136 C13 136 3 125 3 111 C3 97 13 86 28 86 C43 86 53 97 53 111 C53 125 43 136 28 136 Z M28 92 C18 92 11 100 11 111 C11 122 18 130 28 130 C38 130 45 122 45 111 C45 100 38 92 28 92 Z" />
+            <g transform="translate(838, 42)">
+              <path d="M29 146 C13 146 3 134 3 119 C3 103 13 91 29 91 C45 91 55 103 55 119 C55 134 45 146 29 146 Z M29 98 C19 98 12 107 12 119 C12 130 19 139 29 139 C39 139 46 130 46 119 C46 107 39 98 29 98 Z" />
             </g>
           </g>
         </svg>
@@ -131,3 +126,4 @@ export const RenovaLogo: React.FC<RenovaLogoProps> = ({
     </div>
   );
 };
+

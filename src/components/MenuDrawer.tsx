@@ -62,7 +62,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
             {/* Top Bar inside Drawer */}
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-zinc-800/60">
-                <RenovaLogo gender={gender} size="sm" showSubtitle={false} />
+                <RenovaLogo gender={gender} size="md" showSubtitle={false} />
                 <button
                   onClick={onClose}
                   className="w-10 h-10 rounded-full border border-zinc-700/60 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-500 transition-colors"
