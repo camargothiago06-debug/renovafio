@@ -23,14 +23,14 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div
-            className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border text-xs font-medium uppercase tracking-wider backdrop-blur-md"
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border text-xs sm:text-sm font-medium uppercase tracking-wider backdrop-blur-md"
             style={{
               borderColor: isFemale ? 'rgba(226, 169, 153, 0.3)' : 'rgba(212, 175, 55, 0.3)',
               backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.08)' : 'rgba(212, 175, 55, 0.08)',
               color: isFemale ? '#ffdcd3' : '#fae596',
             }}
           >
-            <ShieldCheck className="w-3.5 h-3.5" />
+            <ShieldCheck className="w-4 h-4" />
             <span>Protocolos Sob Demanda Magistral</span>
           </div>
 
@@ -49,7 +49,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
             </span>
           </h2>
 
-          <p className="text-zinc-400 text-sm sm:text-base font-light">
+          <p className="text-zinc-300 text-base sm:text-lg font-light">
             Tratamento de precisão contínua com garantia clínica, entrega sigilosa e suporte dedicado de tricologia.
           </p>
         </div>
@@ -75,7 +75,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
                 {/* Popular or Best Value Badge */}
                 {plan.isPopular && (
                   <div
-                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest text-black shadow-lg"
+                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-widest text-black shadow-lg whitespace-nowrap"
                     style={{
                       background: isFemale
                         ? 'linear-gradient(135deg, #FFF2F0 0%, #E2A999 100%)'
@@ -86,52 +86,52 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
                   </div>
                 )}
                 {plan.isBestValue && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest bg-zinc-800 text-zinc-200 border border-zinc-700 shadow-lg">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-zinc-800 text-zinc-200 border border-zinc-700 shadow-lg whitespace-nowrap">
                     MELHOR CUSTO-BENEFÍCIO
                   </div>
                 )}
 
                 <div>
                   {/* Phase Subtitle */}
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-400">
+                  <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-medium">
                     {plan.phase}
                   </span>
 
                   {/* Plan Title */}
-                  <h3 className="font-display font-bold text-2xl text-white mt-1 mb-2">
+                  <h3 className="font-display font-bold text-2xl sm:text-3xl text-white mt-1 mb-2">
                     {plan.title}
                   </h3>
 
                   {/* Price Block */}
                   <div className="my-6 p-4 rounded-2xl bg-black/40 border border-zinc-800/80 space-y-1">
                     <div className="flex items-baseline space-x-2">
-                      <span className="text-xs text-zinc-500 line-through">
+                      <span className="text-sm text-zinc-400 line-through font-mono">
                         R$ {plan.originalTotalPrice.toFixed(2)}
                       </span>
-                      <span className="text-xs font-mono font-bold text-emerald-400">
+                      <span className="text-sm font-mono font-bold text-emerald-400">
                         {plan.discountPercentage}% OFF
                       </span>
                     </div>
 
-                    <div className="flex items-baseline space-x-1">
+                    <div className="flex items-baseline space-x-1.5">
                       <span className="text-3xl sm:text-4xl font-bold font-mono text-white">
                         R$ {plan.totalPrice.toFixed(2)}
                       </span>
-                      <span className="text-xs font-mono text-zinc-400">à vista</span>
+                      <span className="text-xs sm:text-sm font-mono text-zinc-400">à vista</span>
                     </div>
 
-                    <p className="text-xs font-mono text-[#fae596] pt-1">
+                    <p className="text-sm font-mono text-[#fae596] pt-1 font-semibold">
                       ou até {plan.installments}
                     </p>
                   </div>
 
                   {/* Features List */}
-                  <div className="space-y-2.5 pt-2">
-                    <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">
+                  <div className="space-y-3 pt-2">
+                    <p className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold">
                       O que está incluído:
                     </p>
                     {plan.features.map((feat, i) => (
-                      <div key={i} className="flex items-start space-x-2.5 text-xs text-zinc-300">
+                      <div key={i} className="flex items-start space-x-2.5 text-sm text-zinc-200">
                         <Check
                           className="w-4 h-4 shrink-0 mt-0.5"
                           style={{ color: goldPrimary }}
@@ -143,13 +143,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
 
                   {/* Freebies Bonus */}
                   {plan.freebies.length > 0 && (
-                    <div className="mt-4 p-3 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-1.5">
-                      <p className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 flex items-center gap-1">
-                        <Gift className="w-3.5 h-3.5" />
+                    <div className="mt-4 p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-1.5">
+                      <p className="text-xs font-mono uppercase tracking-wider text-emerald-400 flex items-center gap-1 font-semibold">
+                        <Gift className="w-4 h-4" />
                         Bônus Exclusivos Inclusos:
                       </p>
                       {plan.freebies.map((freebie, idx) => (
-                        <p key={idx} className="text-xs text-zinc-300 font-medium">
+                        <p key={idx} className="text-sm text-zinc-200 font-medium">
                           + {freebie}
                         </p>
                       ))}
@@ -161,7 +161,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
                 <div className="mt-8 pt-4 border-t border-zinc-800/80 space-y-2">
                   <button
                     onClick={() => onSelectPlan(plan)}
-                    className="w-full py-4 px-4 rounded-xl font-display font-bold text-xs uppercase tracking-widest flex items-center justify-center space-x-2 transition-all shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+                    className="w-full py-4 px-4 rounded-xl font-display font-bold text-sm uppercase tracking-widest flex items-center justify-center space-x-2 transition-all shadow-xl hover:scale-[1.02] active:scale-[0.98]"
                     style={{
                       background: plan.isPopular || plan.isBestValue
                         ? isFemale
@@ -175,8 +175,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
                     <ArrowRight className="w-4 h-4" />
                   </button>
 
-                  <div className="flex items-center justify-center space-x-2 text-[10px] font-mono text-zinc-400">
-                    <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                  <div className="flex items-center justify-center space-x-2 text-xs font-mono text-zinc-300">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                     <span>Garantia Clínica de {plan.guaranteeDays} Dias</span>
                   </div>
                 </div>
@@ -198,11 +198,11 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
             <ShieldCheck className="w-8 h-8" />
           </div>
 
-          <div className="space-y-1">
-            <h4 className="font-display font-bold text-lg text-white">
+          <div className="space-y-1.5">
+            <h4 className="font-display font-bold text-xl text-white">
               Garantia Blindada de Satisfação de até 90 Dias
             </h4>
-            <p className="text-xs text-zinc-400 font-light leading-relaxed">
+            <p className="text-sm text-zinc-300 font-light leading-relaxed">
               Temos total convicção na eficácia biológica da fórmula Renova Fio. Se você seguir o protocolo de acordo com a posologia recomendada e não notar melhora clínica na diminuição da queda e fortalecimento capilar, nossa farmácia reembolsa 100% do seu valor pago.
             </p>
           </div>

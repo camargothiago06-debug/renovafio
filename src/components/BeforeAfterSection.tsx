@@ -33,14 +33,14 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div
-            className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border text-xs font-medium uppercase tracking-wider backdrop-blur-md"
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border text-xs sm:text-sm font-medium uppercase tracking-wider backdrop-blur-md"
             style={{
               borderColor: isFemale ? 'rgba(226, 169, 153, 0.3)' : 'rgba(212, 175, 55, 0.3)',
               backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.08)' : 'rgba(212, 175, 55, 0.08)',
               color: isFemale ? '#ffdcd3' : '#fae596',
             }}
           >
-            <ShieldCheck className="w-3.5 h-3.5" />
+            <ShieldCheck className="w-4 h-4" />
             <span>Evidência Clínica Documentada</span>
           </div>
 
@@ -59,14 +59,14 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
             </span>
           </h2>
 
-          <p className="text-zinc-400 text-sm sm:text-base font-light">
+          <p className="text-zinc-300 text-base sm:text-lg font-light">
             Arraste o divisor interativo abaixo para comparar a evolução clínica dos pacientes desde o Dia 01 até a consolidação total da densidade.
           </p>
         </div>
 
         {/* Case Selectors Tabs */}
         <div className="flex justify-center mb-10">
-          <div className="p-1 rounded-full bg-zinc-900 border border-zinc-800 flex gap-2">
+          <div className="p-1.5 rounded-full bg-zinc-900 border border-zinc-800 flex gap-2">
             {cases.map((c, idx) => (
               <button
                 key={c.id}
@@ -74,7 +74,7 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
                   setActiveCaseIndex(idx);
                   setSliderPosition(50);
                 }}
-                className={`px-5 py-2 rounded-full text-xs font-mono transition-all ${
+                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-mono transition-all ${
                   activeCaseIndex === idx
                     ? 'bg-zinc-800 text-white font-bold shadow-md border'
                     : 'text-zinc-400 hover:text-zinc-200'
@@ -233,42 +233,42 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
 
           {/* Right Column: Case Details & Medical Audit */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="p-6 rounded-2xl bg-[#121216] border border-zinc-800 space-y-4">
+            <div className="p-6 sm:p-7 rounded-2xl bg-[#121216] border border-zinc-800 space-y-4">
               <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
-                <span className="text-xs font-mono text-zinc-400">Paciente Avaliado</span>
-                <span className="text-xs font-mono font-bold text-white">
+                <span className="text-xs sm:text-sm font-mono text-zinc-400">Paciente Avaliado</span>
+                <span className="text-sm sm:text-base font-mono font-bold text-white">
                   {activeCase.patientName}, {activeCase.age} anos
                 </span>
               </div>
 
               <div>
-                <p className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">Diagnóstico Inicial</p>
-                <p className="text-sm font-semibold text-zinc-200 mt-0.5">{activeCase.stage}</p>
-                <p className="text-xs text-zinc-400 mt-1 font-light">{activeCase.beforeDesc}</p>
+                <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider font-semibold">Diagnóstico Inicial</p>
+                <p className="text-base font-semibold text-zinc-200 mt-1">{activeCase.stage}</p>
+                <p className="text-sm text-zinc-300 mt-1 font-light leading-relaxed">{activeCase.beforeDesc}</p>
               </div>
 
               <div>
-                <p className="text-[11px] font-mono uppercase tracking-wider" style={{ color: goldPrimary }}>
+                <p className="text-xs font-mono uppercase tracking-wider font-semibold" style={{ color: goldPrimary }}>
                   Resultado Atingido
                 </p>
-                <p className="text-sm font-semibold text-white mt-0.5">{activeCase.afterDesc}</p>
+                <p className="text-base font-semibold text-white mt-1">{activeCase.afterDesc}</p>
               </div>
 
               {/* Stat callout */}
               <div
-                className="p-3 rounded-xl border text-center"
+                className="p-4 rounded-xl border text-center"
                 style={{
                   borderColor: `${goldPrimary}40`,
                   backgroundColor: `${goldPrimary}10`,
                 }}
               >
-                <p className="text-base font-mono font-bold text-white">
+                <p className="text-lg font-mono font-bold text-white">
                   {activeCase.densityIncrease}
                 </p>
               </div>
 
               {/* Verified Physician */}
-              <div className="pt-2 border-t border-zinc-800/80 flex items-center space-x-2 text-[11px] text-zinc-400">
+              <div className="pt-3 border-t border-zinc-800/80 flex items-center space-x-2.5 text-xs text-zinc-300">
                 <UserCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>{activeCase.verifiedDoctor}</span>
               </div>

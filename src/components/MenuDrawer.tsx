@@ -112,12 +112,12 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
                     className="w-full text-left group block p-3.5 rounded-xl hover:bg-zinc-900/60 border border-transparent hover:border-zinc-800/80 transition-all cursor-pointer"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-display text-base sm:text-lg text-zinc-100 group-hover:text-[#fae596] transition-colors">
+                      <span className="font-display text-lg sm:text-xl text-zinc-100 group-hover:text-[#fae596] transition-colors font-medium">
                         {item.label}
                       </span>
                       <ArrowUpRight className="w-4 h-4 text-zinc-600 group-hover:text-[#fae596] transition-colors" />
                     </div>
-                    <p className="text-xs text-zinc-400 font-light mt-0.5">
+                    <p className="text-sm text-zinc-300 font-light mt-0.5">
                       {item.desc}
                     </p>
                   </motion.button>
@@ -132,7 +132,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
                   onClose();
                   onOpenQuiz();
                 }}
-                className="w-full py-3.5 px-5 rounded-full font-display font-medium text-xs tracking-widest uppercase flex items-center justify-center space-x-2 transition-all shadow-lg"
+                className="w-full py-4 px-5 rounded-full font-display font-bold text-sm tracking-wider uppercase flex items-center justify-center space-x-2 transition-all shadow-lg cursor-pointer"
                 style={{
                   background: isFemale
                     ? 'linear-gradient(135deg, #E2A999 0%, #B86B77 100%)'
@@ -144,9 +144,9 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
                 <span>Fazer Diagnóstico Capilar</span>
               </button>
 
-              <div className="flex items-center justify-between text-[11px] text-zinc-400 pt-2">
-                <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <div className="flex items-center justify-between text-xs text-zinc-400 pt-2">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
                   Farmácia Magistral Homologada
                 </span>
                 <span>CRF/SP 49.201</span>

@@ -51,7 +51,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
             </span>
           </h2>
 
-          <p className="text-zinc-400 text-sm sm:text-base font-light">
+          <p className="text-zinc-300 text-base sm:text-lg font-light">
             Manipulação sob rigorosos padrões farmacêuticos magistrais com ativos biodisponíveis de altíssima pureza.
           </p>
         </div>
@@ -67,7 +67,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
               {/* Top Tag & Rating */}
               <div className="flex items-center justify-between mb-4">
                 <span
-                  className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border"
+                  className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full border"
                   style={{
                     borderColor: `${goldPrimary}50`,
                     backgroundColor: `${goldPrimary}15`,
@@ -77,10 +77,10 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
                   {product.tag}
                 </span>
 
-                <div className="flex items-center space-x-1 text-xs">
-                  <Star className="w-3.5 h-3.5 fill-[#D4AF37] text-[#D4AF37]" />
+                <div className="flex items-center space-x-1.5 text-sm">
+                  <Star className="w-4 h-4 fill-[#D4AF37] text-[#D4AF37]" />
                   <span className="font-bold text-white">{product.rating}</span>
-                  <span className="text-zinc-500 text-[10px]">({product.reviewsCount})</span>
+                  <span className="text-zinc-400 text-xs font-mono">({product.reviewsCount})</span>
                 </div>
               </div>
 
@@ -100,20 +100,20 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
               {/* Product Content Details */}
               <div className="space-y-3 mt-4">
                 <div>
-                  <h3 className="font-display font-bold text-lg text-white group-hover:text-[#fae596] transition-colors">
+                  <h3 className="font-display font-bold text-xl text-white group-hover:text-[#fae596] transition-colors">
                     {product.name}
                   </h3>
-                  <p className="text-xs text-zinc-400 font-light mt-0.5">
+                  <p className="text-sm text-zinc-300 font-light mt-0.5">
                     {product.subtitle}
                   </p>
                 </div>
 
                 {/* Key Actives Badges */}
-                <div className="flex flex-wrap gap-1.5 pt-1">
+                <div className="flex flex-wrap gap-2 pt-1">
                   {product.keyActives.slice(0, 3).map((act, i) => (
                     <span
                       key={i}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 border border-zinc-800"
+                      className="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-zinc-200 border border-zinc-800 font-medium"
                     >
                       {act}
                     </span>
@@ -124,33 +124,33 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
                 <div className="pt-3 border-t border-zinc-800/80 flex items-baseline justify-between">
                   <div>
                     {product.originalPrice && (
-                      <span className="text-xs text-zinc-500 line-through mr-2">
+                      <span className="text-sm text-zinc-400 line-through mr-2 font-mono">
                         R$ {product.originalPrice.toFixed(2)}
                       </span>
                     )}
-                    <span className="text-xl font-bold font-mono text-white">
+                    <span className="text-2xl font-bold font-mono text-white">
                       R$ {product.price.toFixed(2)}
                     </span>
                   </div>
-                  <span className="text-[11px] font-mono text-zinc-400">
+                  <span className="text-xs font-mono text-zinc-300">
                     ou {product.installments}
                   </span>
                 </div>
               </div>
 
               {/* Actions: View Details & Add to Cart */}
-              <div className="grid grid-cols-2 gap-2.5 mt-6 pt-4 border-t border-zinc-800">
+              <div className="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-zinc-800">
                 <button
                   onClick={() => setSelectedProduct(product)}
-                  className="py-2.5 px-3 rounded-xl border border-zinc-700 hover:border-zinc-500 text-xs font-medium text-zinc-300 hover:text-white transition-all flex items-center justify-center space-x-1"
+                  className="py-3 px-3 rounded-xl border border-zinc-700 hover:border-zinc-500 text-sm font-medium text-zinc-200 hover:text-white transition-all flex items-center justify-center space-x-1.5"
                 >
-                  <Info className="w-3.5 h-3.5" />
+                  <Info className="w-4 h-4" />
                   <span>Ver Detalhes</span>
                 </button>
 
                 <button
                   onClick={() => onAddToCart(product)}
-                  className="py-2.5 px-3 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center justify-center space-x-1.5 transition-all shadow-md"
+                  className="py-3 px-3 rounded-xl text-sm font-bold uppercase tracking-wider flex items-center justify-center space-x-1.5 transition-all shadow-md"
                   style={{
                     background: isFemale
                       ? 'linear-gradient(135deg, #E2A999 0%, #B86B77 100%)'
@@ -158,7 +158,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
                     color: '#000',
                   }}
                 >
-                  <Plus className="w-3.5 h-3.5" />
+                  <Plus className="w-4 h-4" />
                   <span>Comprar</span>
                 </button>
               </div>
@@ -201,7 +201,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
                     size="lg"
                     alt={selectedProduct.name}
                   />
-                  <p className="text-[11px] font-mono text-zinc-400 mt-3 text-center">
+                  <p className="text-xs font-mono text-zinc-400 mt-3 text-center">
                     Fórmula Magistral Exclusiva • Manipulação 450mg
                   </p>
                 </div>
@@ -210,34 +210,34 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
                 <div className="space-y-4">
                   <div className="space-y-1">
                     <span
-                      className="text-[10px] font-mono uppercase tracking-widest"
+                      className="text-xs font-mono uppercase tracking-widest font-semibold"
                       style={{ color: goldPrimary }}
                     >
                       {selectedProduct.category}
                     </span>
-                    <h3 className="font-display font-bold text-2xl text-white">
+                    <h3 className="font-display font-bold text-2xl sm:text-3xl text-white">
                       {selectedProduct.name}
                     </h3>
-                    <p className="text-xs text-zinc-400">{selectedProduct.format}</p>
+                    <p className="text-sm text-zinc-300">{selectedProduct.format}</p>
                   </div>
 
-                  <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed">
+                  <p className="text-zinc-200 text-sm sm:text-base leading-relaxed">
                     {selectedProduct.description}
                   </p>
 
                   {/* Benefits */}
-                  <div className="space-y-1.5 pt-2">
-                    <p className="text-xs font-mono text-zinc-400 uppercase">Benefícios Clínicos:</p>
+                  <div className="space-y-2 pt-2">
+                    <p className="text-xs font-mono text-zinc-400 uppercase font-semibold">Benefícios Clínicos:</p>
                     {selectedProduct.benefits.map((b, i) => (
-                      <div key={i} className="flex items-center space-x-2 text-xs text-zinc-300">
-                        <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <div key={i} className="flex items-center space-x-2 text-sm text-zinc-200">
+                        <Check className="w-4 h-4 text-emerald-400 shrink-0" />
                         <span>{b}</span>
                       </div>
                     ))}
                   </div>
 
                   {/* How to use */}
-                  <div className="p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 text-xs text-zinc-300 flex items-center space-x-2">
+                  <div className="p-3.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-sm text-zinc-200 flex items-center space-x-2">
                     <Clock className="w-4 h-4 text-[#D4AF37] shrink-0" />
                     <span><strong>Posologia:</strong> {selectedProduct.howToUse}</span>
                   </div>
@@ -245,10 +245,10 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
                   {/* Price & Checkout CTA */}
                   <div className="pt-4 border-t border-zinc-800 flex items-center justify-between">
                     <div>
-                      <p className="text-2xl font-bold font-mono text-white">
+                      <p className="text-2xl sm:text-3xl font-bold font-mono text-white">
                         R$ {selectedProduct.price.toFixed(2)}
                       </p>
-                      <p className="text-[10px] text-zinc-400 font-mono">
+                      <p className="text-xs text-zinc-400 font-mono">
                         {selectedProduct.installments}
                       </p>
                     </div>
@@ -258,7 +258,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
                         onAddToCart(selectedProduct);
                         setSelectedProduct(null);
                       }}
-                      className="px-6 py-3 rounded-xl font-display font-semibold text-xs tracking-wider uppercase flex items-center space-x-2 shadow-lg transition-transform active:scale-95"
+                      className="px-6 py-3.5 rounded-xl font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center space-x-2 shadow-lg transition-transform active:scale-95"
                       style={{
                         background: isFemale
                           ? 'linear-gradient(135deg, #E2A999 0%, #B86B77 100%)'

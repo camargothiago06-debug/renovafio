@@ -41,10 +41,10 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
                   onSelectTab(tab.id);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className={`relative px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-xs font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap select-none shrink-0 ${
+                className={`relative px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 whitespace-nowrap select-none shrink-0 ${
                   isActive
-                    ? 'text-white font-semibold'
-                    : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/40'
+                    ? 'text-white font-bold'
+                    : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50'
                 }`}
               >
                 {/* Active Indicator Glow Background */}
@@ -53,22 +53,22 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
                     layoutId="activeTabPill"
                     className="absolute inset-0 rounded-xl border"
                     style={{
-                      backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.12)' : 'rgba(212, 175, 55, 0.12)',
-                      borderColor: isFemale ? 'rgba(226, 169, 153, 0.4)' : 'rgba(212, 175, 55, 0.4)',
+                      backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.14)' : 'rgba(212, 175, 55, 0.14)',
+                      borderColor: isFemale ? 'rgba(226, 169, 153, 0.45)' : 'rgba(212, 175, 55, 0.45)',
                       boxShadow: isFemale
-                        ? '0 0 15px -3px rgba(226, 169, 153, 0.25)'
-                        : '0 0 15px -3px rgba(212, 175, 55, 0.25)',
+                        ? '0 0 16px -2px rgba(226, 169, 153, 0.3)'
+                        : '0 0 16px -2px rgba(212, 175, 55, 0.3)',
                     }}
                     transition={{ type: 'spring', bounce: 0.15, duration: 0.45 }}
                   />
                 )}
 
-                <span className="relative z-10 flex items-center gap-1.5">
+                <span className="relative z-10 flex items-center gap-2">
                   <Icon
-                    className={`w-3.5 h-3.5 transition-colors ${
+                    className={`w-4 h-4 transition-colors ${
                       isActive
                         ? isFemale ? 'text-[#ffdcd3]' : 'text-[#fae596]'
-                        : 'text-zinc-500'
+                        : 'text-zinc-400'
                     }`}
                   />
                   <span className="hidden sm:inline">{tab.label}</span>

@@ -78,14 +78,14 @@ export const SocialProofSection: React.FC<SocialProofSectionProps> = ({ gender }
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div
-            className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border text-xs font-medium uppercase tracking-wider backdrop-blur-md"
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border text-xs sm:text-sm font-medium uppercase tracking-wider backdrop-blur-md"
             style={{
               borderColor: isFemale ? 'rgba(226, 169, 153, 0.3)' : 'rgba(212, 175, 55, 0.3)',
               backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.08)' : 'rgba(212, 175, 55, 0.08)',
               color: isFemale ? '#ffdcd3' : '#fae596',
             }}
           >
-            <ThumbsUp className="w-3.5 h-3.5" />
+            <ThumbsUp className="w-4 h-4" />
             <span>Comunidade Renova Fio</span>
           </div>
 
@@ -104,7 +104,7 @@ export const SocialProofSection: React.FC<SocialProofSectionProps> = ({ gender }
             </span>
           </h2>
 
-          <p className="text-zinc-400 text-sm sm:text-base font-light">
+          <p className="text-zinc-300 text-base sm:text-lg font-light">
             Mais de 5.400 homens e mulheres que retomaram a densidade dos cabelos e a segurança no espelho.
           </p>
         </div>
@@ -115,7 +115,7 @@ export const SocialProofSection: React.FC<SocialProofSectionProps> = ({ gender }
             <motion.div
               key={idx}
               whileHover={{ y: -4 }}
-              className="p-6 sm:p-7 rounded-2xl bg-[#131317] border border-zinc-800 hover:border-zinc-700 flex flex-col justify-between space-y-6 shadow-xl relative"
+              className="p-6 sm:p-8 rounded-2xl bg-[#131317] border border-zinc-800 hover:border-zinc-700 flex flex-col justify-between space-y-6 shadow-xl relative"
             >
               <div className="space-y-4">
                 {/* Rating & Verified Badge */}
@@ -127,14 +127,14 @@ export const SocialProofSection: React.FC<SocialProofSectionProps> = ({ gender }
                   </div>
 
                   {t.verified && (
-                    <span className="inline-flex items-center space-x-1 text-[10px] font-mono text-emerald-400">
-                      <CheckCircle className="w-3.5 h-3.5" />
+                    <span className="inline-flex items-center space-x-1.5 text-xs font-mono text-emerald-400">
+                      <CheckCircle className="w-4 h-4" />
                       <span>Compra Verificada</span>
                     </span>
                   )}
                 </div>
 
-                <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed italic">
+                <p className="text-zinc-200 text-sm sm:text-base leading-relaxed italic">
                   "{t.text}"
                 </p>
               </div>
@@ -142,16 +142,16 @@ export const SocialProofSection: React.FC<SocialProofSectionProps> = ({ gender }
               {/* Patient Info */}
               <div className="pt-4 border-t border-zinc-800/80 flex items-center justify-between">
                 <div>
-                  <h4 className="font-display font-bold text-sm text-white">
+                  <h4 className="font-display font-bold text-base text-white">
                     {t.name}
                   </h4>
-                  <p className="text-[11px] text-zinc-500 font-mono">
+                  <p className="text-xs text-zinc-400 font-mono">
                     {t.location} • {t.age}
                   </p>
                 </div>
 
                 <span
-                  className="text-[10px] font-mono font-medium px-2 py-1 rounded bg-black/40 border border-zinc-800 text-zinc-400"
+                  className="text-xs font-mono font-medium px-2.5 py-1 rounded-md bg-black/40 border border-zinc-800 text-zinc-300"
                 >
                   {t.treatment}
                 </span>

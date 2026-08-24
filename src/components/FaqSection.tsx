@@ -26,14 +26,14 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ gender }) => {
         {/* Header */}
         <div className="text-center space-y-4 mb-16">
           <div
-            className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border text-xs font-medium uppercase tracking-wider backdrop-blur-md"
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border text-xs sm:text-sm font-medium uppercase tracking-wider backdrop-blur-md"
             style={{
               borderColor: isFemale ? 'rgba(226, 169, 153, 0.3)' : 'rgba(212, 175, 55, 0.3)',
               backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.08)' : 'rgba(212, 175, 55, 0.08)',
               color: isFemale ? '#ffdcd3' : '#fae596',
             }}
           >
-            <HelpCircle className="w-3.5 h-3.5" />
+            <HelpCircle className="w-4 h-4" />
             <span>Tire Suas Dúvidas</span>
           </div>
 
@@ -64,9 +64,9 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ gender }) => {
               >
                 <button
                   onClick={() => toggleIndex(idx)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 group"
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 group cursor-pointer"
                 >
-                  <span className="font-display font-medium text-sm sm:text-base text-zinc-100 group-hover:text-[#fae596] transition-colors">
+                  <span className="font-display font-semibold text-base sm:text-lg text-zinc-100 group-hover:text-[#fae596] transition-colors">
                     {faq.q}
                   </span>
                   <motion.div
@@ -85,7 +85,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ gender }) => {
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25 }}
-                      className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-zinc-400 leading-relaxed border-t border-zinc-800/60 pt-4"
+                      className="px-5 sm:px-6 pb-6 text-sm sm:text-base text-zinc-300 leading-relaxed border-t border-zinc-800/60 pt-4 font-light"
                     >
                       {faq.a}
                     </motion.div>

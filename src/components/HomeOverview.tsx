@@ -70,20 +70,20 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-3 mb-12">
           <div
-            className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full text-[11px] font-mono tracking-widest uppercase border"
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase border"
             style={{
               borderColor: isFemale ? 'rgba(226, 169, 153, 0.4)' : 'rgba(212, 175, 55, 0.4)',
               backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.08)' : 'rgba(212, 175, 55, 0.08)',
               color: isFemale ? '#ffdcd3' : '#fae596',
             }}
           >
-            <Sparkles className="w-3 h-3" />
+            <Sparkles className="w-3.5 h-3.5" />
             <span>NAVEGAÇÃO EXCLUSIVA RENOVA FIO</span>
           </div>
           <h2 className="font-display text-2xl sm:text-4xl text-white font-normal tracking-tight">
             Explore as <span className="italic font-light text-zinc-300">Dimensões do Tratamento</span>
           </h2>
-          <p className="text-sm text-zinc-400 font-light max-w-xl mx-auto">
+          <p className="text-base sm:text-lg text-zinc-300 font-light max-w-2xl mx-auto">
             Selecione uma das áreas temáticas abaixo para acessar todos os detalhes científicos, produtos e casos clínicos.
           </p>
         </div>
@@ -117,7 +117,7 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({
                   {/* Top Bar */}
                   <div className="flex items-center justify-between">
                     <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center border"
+                      className="w-11 h-11 rounded-xl flex items-center justify-center border"
                       style={{
                         borderColor: isFemale ? 'rgba(226, 169, 153, 0.3)' : 'rgba(212, 175, 55, 0.3)',
                         backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.1)' : 'rgba(212, 175, 55, 0.1)',
@@ -126,29 +126,29 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({
                     >
                       <Icon className="w-5 h-5" />
                     </div>
-                    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider px-2 py-0.5 rounded-full bg-zinc-900 border border-zinc-800">
+                    <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800">
                       {item.badge}
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[10px] font-mono tracking-widest text-zinc-400 block mb-1 uppercase">
+                    <span className="text-xs font-mono tracking-widest text-zinc-400 block mb-1 uppercase font-medium">
                       {item.tag}
                     </span>
-                    <h3 className="font-display text-lg sm:text-xl text-white font-medium group-hover:text-zinc-100 transition-colors">
+                    <h3 className="font-display text-xl sm:text-2xl text-white font-medium group-hover:text-zinc-100 transition-colors">
                       {item.title}
                     </h3>
                   </div>
 
-                  <p className="text-xs text-zinc-400 font-light leading-relaxed">
+                  <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed">
                     {item.description}
                   </p>
                 </div>
 
-                <div className="pt-6 mt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs font-medium">
+                <div className="pt-6 mt-4 border-t border-zinc-800/60 flex items-center justify-between text-sm font-medium">
                   <span
                     style={{ color: isFemale ? '#ffdcd3' : '#fae596' }}
-                    className="flex items-center gap-1 group-hover:underline"
+                    className="flex items-center gap-1 group-hover:underline font-semibold"
                   >
                     Acessar aba
                   </span>
@@ -168,20 +168,20 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({
         <div className="p-8 rounded-3xl bg-gradient-to-r from-[#111116] via-[#15151d] to-[#111116] border border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="flex items-center gap-4">
             <div
-              className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border"
+              className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border"
               style={{
                 borderColor: isFemale ? 'rgba(226, 169, 153, 0.4)' : 'rgba(212, 175, 55, 0.4)',
                 backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.15)' : 'rgba(212, 175, 55, 0.15)',
                 color: isFemale ? '#ffdcd3' : '#fae596',
               }}
             >
-              <Microscope className="w-6 h-6" />
+              <Microscope className="w-7 h-7" />
             </div>
             <div>
-              <h4 className="font-display text-base sm:text-lg text-white font-medium">
+              <h4 className="font-display text-lg sm:text-xl text-white font-medium">
                 Padrão Farmacêutico Magistral Certificado
               </h4>
-              <p className="text-xs text-zinc-400 font-light">
+              <p className="text-sm sm:text-base text-zinc-300 font-light mt-0.5">
                 Manipulação sob controle estrito de dose, estabilidade físico-química e matérias-primas bioidênticas.
               </p>
             </div>
@@ -189,7 +189,7 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({
 
           <button
             onClick={onOpenQuiz}
-            className="w-full md:w-auto px-6 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg shrink-0 cursor-pointer"
+            className="w-full md:w-auto px-7 py-4 rounded-full text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg shrink-0 cursor-pointer"
             style={{
               background: isFemale
                 ? 'linear-gradient(135deg, #E2A999 0%, #B86B77 100%)'
