@@ -1,5 +1,4 @@
 import { ClinicalCase, GenderMode, Ingredient, Plan, Product, QuizQuestion } from '../types';
-import { CLINICAL_IMAGE_DATA } from './clinicalImages';
 
 export const GENDER_CONFIG: Record<GenderMode, {
   label: string;
@@ -452,9 +451,9 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       afterDesc: 'Reativação folicular expressiva, preenchimento denso do vértice e fios escurecidos e engrossados.',
       densityIncrease: '+68% de densidade no vértice',
       verifiedDoctor: 'Dr. Leonardo Mattos • CRM/SP 148.920',
-      combinedImageUrl: CLINICAL_IMAGE_DATA.clinical_3m_combined,
-      beforeImageUrl: CLINICAL_IMAGE_DATA.clinical_3m_before,
-      afterImageUrl: CLINICAL_IMAGE_DATA.clinical_3m_after
+      combinedImageUrl: '/images/clinical-3m-combined.png',
+      beforeImageUrl: '/images/clinical-3m-before.png',
+      afterImageUrl: '/images/clinical-3m-after.png'
     },
     {
       id: 'caso-2-masc',
@@ -468,9 +467,9 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       afterDesc: 'Cobertura capilar completa e contínua, transformação radical da moldura do rosto e autoestima renovada.',
       densityIncrease: '+114% de folículos ativos terminais',
       verifiedDoctor: 'Dra. Camila Duarte • CRM/RJ 98.412',
-      combinedImageUrl: CLINICAL_IMAGE_DATA.clinical_11m_combined,
-      beforeImageUrl: CLINICAL_IMAGE_DATA.clinical_11m_before,
-      afterImageUrl: CLINICAL_IMAGE_DATA.clinical_11m_after
+      combinedImageUrl: '/images/clinical-11m-combined.png',
+      beforeImageUrl: '/images/clinical-11m-before.png',
+      afterImageUrl: '/images/clinical-11m-after.png'
     }
   ],
   feminino: [
@@ -486,9 +485,9 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       afterDesc: 'Risca central fechada, proliferação intensa de novos fios em crescimento e fim total da queda ao pentear.',
       densityIncrease: '+74% de cobertura na risca média',
       verifiedDoctor: 'Dra. Beatriz Albuquerque • CRM/MG 83.104',
-      combinedImageUrl: CLINICAL_IMAGE_DATA.clinical_fem_3m_combined,
-      beforeImageUrl: CLINICAL_IMAGE_DATA.clinical_fem_3m_before,
-      afterImageUrl: CLINICAL_IMAGE_DATA.clinical_fem_3m_after
+      combinedImageUrl: '/images/clinical-fem-3m-combined.png',
+      beforeImageUrl: '/images/clinical-fem-3m-before.png',
+      afterImageUrl: '/images/clinical-fem-3m-after.png'
     },
     {
       id: 'caso-2-fem',
@@ -502,9 +501,9 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       afterDesc: 'Cabelos encorpados com textura encorpada, volume duplicado no rabo de cavalo e brilho radiante.',
       densityIncrease: '+92% de espessura da haste capilar',
       verifiedDoctor: 'Dr. Roberto Ferraz • CRM/SP 172.330',
-      combinedImageUrl: CLINICAL_IMAGE_DATA.clinical_fem_11m_combined,
-      beforeImageUrl: CLINICAL_IMAGE_DATA.clinical_fem_11m_before,
-      afterImageUrl: CLINICAL_IMAGE_DATA.clinical_fem_11m_after
+      combinedImageUrl: '/images/clinical-fem-11m-combined.png',
+      beforeImageUrl: '/images/clinical-fem-11m-before.png',
+      afterImageUrl: '/images/clinical-fem-11m-after.png'
     }
   ]
 };
