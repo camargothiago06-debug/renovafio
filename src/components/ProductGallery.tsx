@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { GenderMode, Product } from '../types';
 import { PRODUCTS_LIST } from '../data/productData';
-import { ProductVisual3D } from './ProductVisual3D';
-import { Sparkles, Star, ShoppingBag, X, Check, ShieldCheck, Zap, Info, Clock, Plus } from 'lucide-react';
+import { ProductCardImage } from './ProductCardImage';
+import { Sparkles, Star, ShoppingBag, X, Check, Info, Clock, Plus } from 'lucide-react';
 
 interface ProductGalleryProps {
   gender: GenderMode;
@@ -84,17 +84,16 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
                 </div>
               </div>
 
-              {/* Product Visual Container */}
+              {/* Product Visual Showcase (Clean, Large, Authentic Product Image) */}
               <div
                 onClick={() => setSelectedProduct(product)}
-                className="w-full py-6 flex items-center justify-center cursor-pointer relative"
+                className="w-full my-2 cursor-pointer relative"
               >
-                <ProductVisual3D
+                <ProductCardImage
                   gender={gender}
-                  variant={product.image === 'amber-jar-floating' ? 'floating' : 'standing'}
                   imageUrl={product.imageUrl}
-                  interactive={false}
-                  className="scale-90"
+                  size="md"
+                  alt={product.name}
                 />
               </div>
 
@@ -194,15 +193,16 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
               </button>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                {/* 3D Product Visual */}
-                <div className="flex flex-col items-center justify-center py-4 bg-zinc-950/60 rounded-2xl border border-zinc-800/80">
-                  <ProductVisual3D
+                {/* Product Showcase Image */}
+                <div className="flex flex-col items-center justify-center">
+                  <ProductCardImage
                     gender={gender}
-                    variant="floating"
                     imageUrl={selectedProduct.imageUrl}
+                    size="lg"
+                    alt={selectedProduct.name}
                   />
-                  <p className="text-[10px] font-mono text-zinc-500 mt-2">
-                    Visualização 3D • Dose Manipulada 450mg
+                  <p className="text-[11px] font-mono text-zinc-400 mt-3 text-center">
+                    Fórmula Magistral Exclusiva • Manipulação 450mg
                   </p>
                 </div>
 
