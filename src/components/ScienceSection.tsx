@@ -18,20 +18,7 @@ export const ScienceSection: React.FC<ScienceSectionProps> = ({ gender }) => {
   const goldSecondary = isFemale ? '#DFB775' : '#AA771C';
 
   return (
-    <section id="ciencia" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-[#d4af37]/20 relative overflow-hidden">
-      {/* Background subtle gold aura & grid */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(to right, ${goldPrimary} 1px, transparent 1px), linear-gradient(to bottom, ${goldPrimary} 1px, transparent 1px)`,
-          backgroundSize: '48px 48px',
-        }}
-      />
-      <div
-        className="absolute top-1/2 -left-40 w-96 h-96 rounded-full blur-[140px] opacity-15 pointer-events-none"
-        style={{ backgroundColor: goldPrimary }}
-      />
-
+    <section id="ciencia" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header (Replicating Foto 4 Layout) */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">

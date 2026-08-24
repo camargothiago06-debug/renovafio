@@ -39,17 +39,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
     window.addEventListener('resize', handleResize);
 
-    const particleCount = 45;
+    const particleCount = 28;
     const particles = Array.from({ length: particleCount }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 2 + 0.6,
-      speedX: (Math.random() - 0.5) * 0.35,
-      speedY: -Math.random() * 0.4 - 0.1,
-      opacity: Math.random() * 0.6 + 0.2,
+      size: Math.random() * 1.5 + 0.4,
+      speedX: (Math.random() - 0.5) * 0.2,
+      speedY: -Math.random() * 0.25 - 0.05,
+      opacity: Math.random() * 0.35 + 0.1,
     }));
 
-    const color = isFemale ? '226, 169, 153' : '212, 175, 55';
+    const color = isFemale ? '240, 210, 200' : '230, 215, 185';
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
@@ -87,24 +87,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-between pt-28 pb-12 overflow-hidden bg-[#09090b]">
+    <section className="relative min-h-screen w-full flex flex-col justify-between pt-28 pb-12 overflow-hidden bg-transparent">
       {/* Background Animated Particle Canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 pointer-events-none z-0 opacity-70"
+        className="absolute inset-0 pointer-events-none z-0 opacity-50"
       />
 
       {/* Atmospheric Ambient Light Cones */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[500px] rounded-full blur-[140px] opacity-15 pointer-events-none transition-colors duration-1000"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[400px] rounded-full blur-[160px] opacity-[0.07] pointer-events-none transition-colors duration-1000"
         style={{
-          backgroundColor: isFemale ? '#b86b77' : '#d4af37',
-        }}
-      />
-      <div
-        className="absolute bottom-10 right-10 w-96 h-96 rounded-full blur-[160px] opacity-10 pointer-events-none transition-colors duration-1000"
-        style={{
-          backgroundColor: isFemale ? '#e2a999' : '#aa771c',
+          backgroundColor: isFemale ? '#e2a999' : '#d4af37',
         }}
       />
 

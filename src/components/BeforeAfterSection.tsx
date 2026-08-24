@@ -27,12 +27,7 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
   };
 
   return (
-    <section id="resultados" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-[#d4af37]/20 relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div
-        className="absolute top-1/2 -right-40 w-96 h-96 rounded-full blur-[150px] opacity-15 pointer-events-none"
-        style={{ backgroundColor: goldPrimary }}
-      />
+    <section id="resultados" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}

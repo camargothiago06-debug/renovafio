@@ -104,31 +104,16 @@ export function App() {
         isFemale ? 'theme-feminine' : 'theme-masculine'
       }`}
     >
-      {/* Refined Global Ambient Gold Lighting Orbs */}
+      {/* Refined Minimalist Soft Lighting Backdrop */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Top-Center Warm Golden Glow */}
+        {/* Soft, Gentle Top Atmospheric Luminescence */}
         <div
-          className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] sm:w-[1100px] h-[500px] rounded-full blur-[160px] opacity-20 transition-all duration-1000"
-          style={{ backgroundColor: goldPrimary }}
+          className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[350px] rounded-full blur-[140px] opacity-10 transition-all duration-1000"
+          style={{ backgroundColor: isFemale ? '#E2A999' : '#D4AF37' }}
         />
-        {/* Mid-Right Golden Aura */}
+        {/* Ultra-Soft Editorial Grid Overlay */}
         <div
-          className="absolute top-1/3 -right-48 w-[500px] sm:w-[800px] h-[600px] rounded-full blur-[180px] opacity-15 transition-all duration-1000"
-          style={{ backgroundColor: goldPrimary }}
-        />
-        {/* Lower-Left Golden Atmosphere */}
-        <div
-          className="absolute top-2/3 -left-48 w-[550px] sm:w-[850px] h-[650px] rounded-full blur-[190px] opacity-15 transition-all duration-1000"
-          style={{ backgroundColor: goldPrimary }}
-        />
-        {/* Bottom Ambient Floor Glow */}
-        <div
-          className="absolute -bottom-32 left-1/3 w-[600px] sm:w-[900px] h-[450px] rounded-full blur-[170px] opacity-15 transition-all duration-1000"
-          style={{ backgroundColor: goldPrimary }}
-        />
-        {/* Subtle Editorial Micro-Grid Pattern */}
-        <div
-          className={`absolute inset-0 opacity-[0.025] ${
+          className={`absolute inset-0 opacity-[0.015] ${
             isFemale ? 'luxury-bg-grid-feminine' : 'luxury-bg-grid'
           }`}
         />

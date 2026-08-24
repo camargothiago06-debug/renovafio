@@ -20,12 +20,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ gender }) => {
   };
 
   return (
-    <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-[#d4af37]/20 relative overflow-hidden">
-      {/* Background subtle gold aura */}
-      <div
-        className="absolute top-1/2 right-10 w-96 h-96 rounded-full blur-[170px] opacity-15 pointer-events-none"
-        style={{ backgroundColor: goldPrimary }}
-      />
+    <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
       <div className="max-w-4xl mx-auto relative z-10">
         
         {/* Header */}
