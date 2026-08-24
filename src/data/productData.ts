@@ -164,6 +164,7 @@ export const PRODUCTS_LIST: Record<GenderMode, Product[]> = {
       howToUse: 'Ingerir 1 cápsula pela manhã com água, preferencialmente após o café.',
       isBestSeller: true,
       image: 'amber-jar-standing',
+      imageUrl: '/images/produto-formula-capilar.png.png',
       tag: 'Produto Estrela'
     },
     {
@@ -187,6 +188,7 @@ export const PRODUCTS_LIST: Record<GenderMode, Product[]> = {
       keyActives: ['Nanofator IGF-1', 'Copper Tripeptide-1', 'Cafeína 2%', 'Pantenol'],
       howToUse: 'Aplicar 1ml (um conta-gotas) nas áreas com falhas antes de dormir, massageando suavemente.',
       image: 'serum-dropper',
+      imageUrl: '/images/produto-formula-capilar.png.png',
       tag: 'Potencializador'
     },
     {
@@ -212,6 +214,7 @@ export const PRODUCTS_LIST: Record<GenderMode, Product[]> = {
       howToUse: 'Rotina completa diária de 1 cápsula matinal + aplicação tópica noturna.',
       isBestSeller: true,
       image: 'amber-jar-floating',
+      imageUrl: '/images/produto-formula-capilar.png.png',
       tag: 'Melhor Custo-Benefício'
     }
   ],
@@ -239,6 +242,7 @@ export const PRODUCTS_LIST: Record<GenderMode, Product[]> = {
       howToUse: 'Ingerir 1 cápsula ao dia com água, junto a uma refeição principal.',
       isBestSeller: true,
       image: 'amber-jar-standing',
+      imageUrl: '/images/produto-formula-capilar.png.png',
       tag: 'Mais Vendido'
     },
     {
@@ -262,6 +266,7 @@ export const PRODUCTS_LIST: Record<GenderMode, Product[]> = {
       keyActives: ['Bio-Peptídeos', 'Ácido Hialurônico', 'Extrato de Flor de Lótus', 'Niacinamida'],
       howToUse: 'Borrifar 4 a 6 jatos diretamente no couro cabeludo e espalhar com a ponta dos dedos.',
       image: 'serum-dropper',
+      imageUrl: '/images/produto-formula-capilar.png.png',
       tag: 'Toque de Seda'
     },
     {
@@ -287,6 +292,7 @@ export const PRODUCTS_LIST: Record<GenderMode, Product[]> = {
       howToUse: '1 cápsula ao dia + aplicação do elixir fortificante 1x ao dia.',
       isBestSeller: true,
       image: 'amber-jar-floating',
+      imageUrl: '/images/produto-formula-capilar.png.png',
       tag: 'Escolha das Especialistas'
     }
   ]

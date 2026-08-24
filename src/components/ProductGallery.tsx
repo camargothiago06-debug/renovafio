@@ -92,6 +92,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
                 <ProductVisual3D
                   gender={gender}
                   variant={product.image === 'amber-jar-floating' ? 'floating' : 'standing'}
+                  imageUrl={product.imageUrl}
                   interactive={false}
                   className="scale-90"
                 />
@@ -195,7 +196,11 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 {/* 3D Product Visual */}
                 <div className="flex flex-col items-center justify-center py-4 bg-zinc-950/60 rounded-2xl border border-zinc-800/80">
-                  <ProductVisual3D gender={gender} variant="floating" />
+                  <ProductVisual3D
+                    gender={gender}
+                    variant="floating"
+                    imageUrl={selectedProduct.imageUrl}
+                  />
                   <p className="text-[10px] font-mono text-zinc-500 mt-2">
                     Visualização 3D • Dose Manipulada 450mg
                   </p>

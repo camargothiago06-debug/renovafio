@@ -29,6 +29,7 @@ export interface Product {
   howToUse: string;
   isBestSeller?: boolean;
   image: string;
+  imageUrl?: string;
   tag: string;
 }
 
