@@ -21,6 +21,7 @@ interface SlideData {
   imageDesktop: string;
   imageAlt: string;
   bulletPill: string;
+  imagePosition?: string;
 }
 
 export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
@@ -51,7 +52,8 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
       ],
       imageDesktop:
         'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=2560&q=90',
-      imageAlt: 'Modelo masculino com cabelos densos e tratamento de calvície bem-sucedido',
+      imagePosition: 'center 22%',
+      imageAlt: 'Modelo masculino atraente com cabelo volumoso, textura saudável e linha capilar perfeita',
     },
     {
       id: 'male-2',
@@ -69,8 +71,9 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
         { label: 'Garantia Clínica', value: '90 Dias', icon: 'award' },
       ],
       imageDesktop:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=2560&q=90',
-      imageAlt: 'Homem com linha capilar restaurada e alta densidade de fios',
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=2560&q=90',
+      imagePosition: 'center 15%',
+      imageAlt: 'Homem com entradas preenchidas e linha capilar perfeitamente alinhada',
     },
     {
       id: 'male-3',
@@ -88,8 +91,9 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
         { label: 'Embalagem Discreta', value: '100%', icon: 'award' },
       ],
       imageDesktop:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=2560&q=90',
-      imageAlt: 'Homem confiante com corte alinhado e densidade capilar completa',
+        'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=2560&q=90',
+      imagePosition: 'center 15%',
+      imageAlt: 'Homem atraente com corte impecável, cabelos bem cuidados e densidade uniforme',
     },
   ];
 
@@ -111,6 +115,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
       ],
       imageDesktop:
         'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=2560&q=90',
+      imagePosition: 'center 15%',
       imageAlt: 'Mulher sofisticada com cabelos volumosos, densos e brilhantes',
     },
     {
@@ -130,6 +135,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
       ],
       imageDesktop:
         'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=2560&q=90',
+      imagePosition: 'center 18%',
       imageAlt: 'Modelo feminina confiante com cabelos longos e cheios',
     },
     {
@@ -149,6 +155,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
       ],
       imageDesktop:
         'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=2560&q=90',
+      imagePosition: 'center 20%',
       imageAlt: 'Mulher tocando os cabelos brilhantes e sedosos com plenitude',
     },
   ];
@@ -211,12 +218,15 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
                 src={activeSlide.imageDesktop}
                 alt={activeSlide.imageAlt}
                 referrerPolicy="no-referrer"
-                className="hero-slide-bg filter brightness-[0.78] contrast-[1.06] select-none"
+                className="hero-slide-bg filter brightness-[0.82] contrast-[1.05] select-none"
+                style={{
+                  objectPosition: activeSlide.imagePosition || 'center 15%',
+                }}
               />
 
               {/* Balanced Cinematic Lighting & Contrast Overlays */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-[#060608]/40 to-[#060608]/20" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#060608]/95 via-[#060608]/75 to-transparent lg:w-[62%]" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#060608]/95 via-[#060608]/70 to-transparent lg:w-[58%]" />
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,175,55,0.18),_transparent_65%)] pointer-events-none" />
               
               {/* Subtle gold grid texture */}
@@ -384,6 +394,9 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
                           alt={s.bulletPill}
                           referrerPolicy="no-referrer"
                           className="w-full h-full object-cover"
+                          style={{
+                            objectPosition: s.imagePosition || 'center 15%',
+                          }}
                         />
                         {isActive && (
                           <div className="absolute inset-0 bg-[#d4af37]/20 flex items-center justify-center">
