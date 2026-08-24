@@ -47,15 +47,15 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
   };
 
   const containerHeights = {
-    sm: 'h-72 sm:h-80',
-    md: 'h-[440px] sm:h-[500px] md:h-[540px]',
-    lg: 'h-[480px] sm:h-[540px] md:h-[580px]',
+    sm: 'h-80 sm:h-96',
+    md: 'h-[460px] sm:h-[520px] md:h-[560px]',
+    lg: 'h-[500px] sm:h-[560px] md:h-[600px]',
   };
 
-  const imageMaxHeights = {
-    sm: 'h-[92%]',
-    md: 'h-[96%]',
-    lg: 'h-[98%]',
+  const imageScales = {
+    sm: 'scale-[1.8] sm:scale-[2.0]',
+    md: 'scale-[2.1] sm:scale-[2.3] md:scale-[2.45]',
+    lg: 'scale-[2.2] sm:scale-[2.4] md:scale-[2.55]',
   };
 
   return (
@@ -64,25 +64,25 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
     >
       {/* Soft Luxury Golden Halo in Background */}
       <div
-        className="absolute w-72 sm:w-96 h-72 sm:h-96 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-700 pointer-events-none"
+        className="absolute w-80 sm:w-[420px] h-80 sm:h-[420px] rounded-full blur-3xl opacity-35 group-hover:opacity-55 transition-opacity duration-700 pointer-events-none"
         style={{
           backgroundColor: goldPrimary,
         }}
       />
 
       {/* Subtle Ambient Radial Highlight */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.15)_0%,_transparent_75%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.18)_0%,_transparent_75%)] pointer-events-none" />
 
       {/* Real Product Image Container */}
       {!hasAllErrors ? (
-        <div className="relative z-10 w-full h-full p-2 flex flex-col items-center justify-center">
+        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center overflow-hidden">
           <img
             src={currentSrc}
             alt={alt}
             referrerPolicy="no-referrer"
             onLoad={() => setImageLoaded(true)}
             onError={handleImageError}
-            className={`w-full ${imageMaxHeights[size]} object-contain filter drop-shadow-[0_25px_45px_rgba(0,0,0,0.98)] transition-all duration-500 group-hover:scale-105 select-none ${
+            className={`w-full h-full object-contain ${imageScales[size]} filter drop-shadow-[0_25px_45px_rgba(0,0,0,0.98)] transition-all duration-500 group-hover:scale-[2.55] select-none ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
           />
@@ -98,9 +98,6 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
               </div>
             </div>
           )}
-
-          {/* Base Floor Reflection Shadow */}
-          <div className="w-52 sm:w-72 h-5 rounded-full bg-black/95 blur-md -mt-3 pointer-events-none" />
         </div>
       ) : (
         /* Clean Vector Stand-in (Fallback if image URL cannot be fetched) */
