@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { GenderMode } from '../types';
 import { CLINICAL_CASES } from '../data/productData';
-import { Sparkles, ShieldCheck, UserCheck, Calendar, Sliders, ZoomIn } from 'lucide-react';
+import {
+  Sparkles,
+  ShieldCheck,
+  UserCheck,
+  Sliders,
+  ZoomIn,
+  Columns,
+  CheckCircle2,
+  Calendar,
+  Layers,
+  Award
+} from 'lucide-react';
 
 interface BeforeAfterSectionProps {
   gender: GenderMode;
@@ -13,10 +24,12 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
   const cases = CLINICAL_CASES[gender];
   const [activeCaseIndex, setActiveCaseIndex] = useState(0);
   const [sliderPosition, setSliderPosition] = useState(50); // percentage 0 - 100
+  const [viewMode, setViewMode] = useState<'sideBySide' | 'interactiveSlider'>('sideBySide');
   const [isZoomed, setIsZoomed] = useState(false);
 
-  const activeCase = cases[activeCaseIndex];
+  const activeCase = cases[activeCaseIndex] || cases[0];
   const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
+  const goldGlow = isFemale ? 'rgba(226, 169, 153, 0.25)' : 'rgba(212, 175, 55, 0.25)';
 
   const handleSliderMove = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -28,10 +41,18 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
 
   return (
     <section id="resultados" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
+      {/* Background Subtle Ambient Glow */}
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full blur-[140px] pointer-events-none opacity-20"
+        style={{
+          backgroundColor: isFemale ? '#E2A999' : '#D4AF37',
+        }}
+      />
+
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
           <div
             className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border text-xs sm:text-sm font-medium uppercase tracking-wider backdrop-blur-md"
             style={{
@@ -41,7 +62,7 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
             }}
           >
             <ShieldCheck className="w-4 h-4" />
-            <span>Evidência Clínica Documentada</span>
+            <span>Evidência Clínica Documentada em Consultório</span>
           </div>
 
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white uppercase">
@@ -59,14 +80,15 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
             </span>
           </h2>
 
-          <p className="text-zinc-300 text-base sm:text-lg font-light">
-            Arraste o divisor interativo abaixo para comparar a evolução clínica dos pacientes desde o Dia 01 até a consolidação total da densidade.
+          <p className="text-zinc-300 text-base sm:text-lg font-light max-w-2xl mx-auto">
+            Registros fotográficos padronizados em consultório dermatológico, comprovando o fechamento do vértice, aumento de densidade e espessamento da haste.
           </p>
         </div>
 
-        {/* Case Selectors Tabs */}
-        <div className="flex justify-center mb-10">
-          <div className="p-1.5 rounded-full bg-zinc-900 border border-zinc-800 flex gap-2">
+        {/* Master Control Bar: Case Selector Tabs + View Mode Toggle */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 max-w-5xl mx-auto">
+          {/* Case Selector Tabs */}
+          <div className="p-1.5 rounded-2xl bg-zinc-950/90 border border-zinc-800/90 backdrop-blur-xl flex flex-wrap gap-2 shadow-xl">
             {cases.map((c, idx) => (
               <button
                 key={c.id}
@@ -74,210 +96,356 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
                   setActiveCaseIndex(idx);
                   setSliderPosition(50);
                 }}
-                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-mono transition-all ${
+                className={`px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-medium transition-all flex items-center gap-2 cursor-pointer ${
                   activeCaseIndex === idx
-                    ? 'bg-zinc-800 text-white font-bold shadow-md border'
-                    : 'text-zinc-400 hover:text-zinc-200'
+                    ? 'text-white font-bold shadow-lg'
+                    : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/60'
                 }`}
                 style={{
-                  borderColor: activeCaseIndex === idx ? goldPrimary : 'transparent',
+                  backgroundColor: activeCaseIndex === idx ? (isFemale ? '#2a1622' : '#1e1b12') : 'transparent',
+                  border: activeCaseIndex === idx ? `1px solid ${goldPrimary}` : '1px solid transparent',
+                  boxShadow: activeCaseIndex === idx ? `0 0 15px ${goldGlow}` : 'none',
                 }}
               >
-                Caso {idx + 1}: {c.treatmentDuration} ({c.patientName})
+                <Award className="w-3.5 h-3.5" style={{ color: activeCaseIndex === idx ? goldPrimary : '#71717a' }} />
+                <span>Caso 0{idx + 1}: {c.treatmentDuration}</span>
+                <span className="text-[11px] opacity-70 hidden sm:inline">({c.patientName})</span>
               </button>
             ))}
           </div>
+
+          {/* View Mode Switcher (Side by Side vs Slider) */}
+          <div className="p-1.5 rounded-2xl bg-zinc-950/90 border border-zinc-800/90 backdrop-blur-xl flex gap-1 shadow-xl">
+            <button
+              onClick={() => setViewMode('sideBySide')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-mono font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                viewMode === 'sideBySide'
+                  ? 'bg-zinc-800 text-white border border-zinc-700 shadow-md'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Columns className="w-3.5 h-3.5" />
+              <span>Lado a Lado</span>
+            </button>
+            <button
+              onClick={() => setViewMode('interactiveSlider')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-mono font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                viewMode === 'interactiveSlider'
+                  ? 'bg-zinc-800 text-white border border-zinc-700 shadow-md'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Sliders className="w-3.5 h-3.5" />
+              <span>Divisor Interativo</span>
+            </button>
+          </div>
         </div>
 
-        {/* Interactive Comparison Stage */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
+        {/* Interactive Showcase Container with Synchronized Luxury Contour & Margins */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-5xl mx-auto">
           
-          {/* Comparison Canvas / Slider */}
-          <div className="lg:col-span-8 flex flex-col items-center">
+          {/* Main Photo Frame (Desktop 7/12 cols) */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
             <div
-              className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-zinc-800 cursor-ew-resize select-none bg-zinc-950"
-              onMouseMove={(e) => {
-                if (e.buttons === 1) handleSliderMove(e);
+              className="relative p-2.5 sm:p-4 rounded-3xl backdrop-blur-2xl transition-all duration-500 shadow-2xl"
+              style={{
+                background: isFemale
+                  ? 'linear-gradient(145deg, rgba(35, 18, 28, 0.96), rgba(18, 9, 14, 0.98))'
+                  : 'linear-gradient(145deg, rgba(26, 21, 15, 0.96), rgba(13, 11, 8, 0.98))',
+                border: `1.5px solid ${goldPrimary}60`,
+                boxShadow: `0 25px 60px -15px rgba(0,0,0,0.9), 0 0 35px ${goldGlow}`,
               }}
-              onClick={handleSliderMove}
-              onTouchMove={handleSliderMove}
             >
-              {/* "AFTER" Image Layer (Underneath or Right Side) */}
-              <div className="absolute inset-0 w-full h-full bg-[#18181b] flex items-center justify-center overflow-hidden">
-                {/* Visual Representation of Full Hair Crown Restoration */}
-                <div
-                  className={`w-full h-full flex flex-col items-center justify-center p-6 text-center transition-transform duration-300 ${
-                    isZoomed ? 'scale-125' : 'scale-100'
-                  }`}
-                  style={{
-                    background: isFemale
-                      ? 'radial-gradient(circle at center, #2e1a22 0%, #150d12 60%, #0a0608 100%)'
-                      : 'radial-gradient(circle at center, #241c14 0%, #12100d 60%, #080706 100%)',
-                  }}
-                >
-                  {/* Dense Crown Scalp Simulation */}
-                  <div className="relative w-56 sm:w-72 h-56 sm:h-72 rounded-full bg-zinc-900 border-4 border-zinc-800 shadow-2xl overflow-hidden flex items-center justify-center">
+              {/* Luxury Corner Crosshairs / Accents */}
+              <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t-2 border-l-2 pointer-events-none rounded-tl-sm" style={{ borderColor: goldPrimary }} />
+              <div className="absolute top-2 right-2 w-3.5 h-3.5 border-t-2 border-r-2 pointer-events-none rounded-tr-sm" style={{ borderColor: goldPrimary }} />
+              <div className="absolute bottom-2 left-2 w-3.5 h-3.5 border-b-2 border-l-2 pointer-events-none rounded-bl-sm" style={{ borderColor: goldPrimary }} />
+              <div className="absolute bottom-2 right-2 w-3.5 h-3.5 border-b-2 border-r-2 pointer-events-none rounded-br-sm" style={{ borderColor: goldPrimary }} />
+
+              {/* Inner Luxury Frame */}
+              <div className="relative rounded-2xl overflow-hidden bg-zinc-950 border border-zinc-800/90 shadow-inner">
+                
+                {/* Mode 1: Side by Side Real Clinical Photo */}
+                {viewMode === 'sideBySide' ? (
+                  <div className="relative w-full aspect-[16/9] overflow-hidden bg-zinc-950 flex items-center justify-center">
+                    <img
+                      src={activeCase.combinedImageUrl || '/images/foto-resultado-11-meses.png.png'}
+                      alt={`Resultado Clínico ${activeCase.patientName} - ${activeCase.treatmentDuration}`}
+                      className={`w-full h-full object-cover sm:object-contain transition-transform duration-300 ${
+                        isZoomed ? 'scale-125' : 'scale-100'
+                      }`}
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (target.src.endsWith('.png.png')) {
+                          target.src = target.src.replace('.png.png', '.png');
+                        }
+                      }}
+                    />
+                  </div>
+                ) : (
+                  /* Mode 2: Interactive Drag Slider */
+                  <div
+                    className="relative w-full aspect-[16/9] overflow-hidden cursor-ew-resize select-none bg-zinc-950"
+                    onMouseMove={(e) => {
+                      if (e.buttons === 1) handleSliderMove(e);
+                    }}
+                    onClick={handleSliderMove}
+                    onTouchMove={handleSliderMove}
+                  >
+                    {/* AFTER Layer (Right / Full background) */}
+                    <div className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center bg-zinc-950">
+                      <img
+                        src={activeCase.afterImageUrl || '/images/foto-resultado-11-meses.png'}
+                        alt={`${activeCase.afterLabel} - ${activeCase.patientName}`}
+                        className={`w-full h-full object-cover sm:object-contain transition-transform duration-300 ${
+                          isZoomed ? 'scale-125' : 'scale-100'
+                        }`}
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (target.src.endsWith('.png.png')) {
+                            target.src = target.src.replace('.png.png', '.png');
+                          }
+                        }}
+                      />
+                      {/* After Badge */}
+                      <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 z-20 px-3 py-1 sm:px-4 sm:py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-black text-xs uppercase tracking-wider shadow-xl border border-[#eaa351]">
+                        {activeCase.afterLabel}
+                      </div>
+                    </div>
+
+                    {/* BEFORE Layer (Left / Clipped by slider) */}
                     <div
-                      className="absolute inset-0 opacity-90"
+                      className="absolute inset-0 h-full overflow-hidden border-r-2"
                       style={{
-                        background: 'radial-gradient(circle at center, #1c1917 0%, #09090b 80%)',
+                        width: `${sliderPosition}%`,
+                        borderColor: goldPrimary,
                       }}
                     >
-                      {/* Dense Hair Swirl Vortex Pattern */}
-                      <svg className="w-full h-full opacity-80" viewBox="0 0 200 200">
-                        {Array.from({ length: 140 }).map((_, i) => {
-                          const angle = (i * 137.5 * Math.PI) / 180;
-                          const r = Math.sqrt(i) * 7.5;
-                          const cx = 100 + r * Math.cos(angle);
-                          const cy = 100 + r * Math.sin(angle);
-                          return (
-                            <circle
-                              key={i}
-                              cx={cx}
-                              cy={cy}
-                              r={1.2}
-                              fill="#000"
-                              stroke={isFemale ? '#4a2f2b' : '#3f3f46'}
-                              strokeWidth={0.8}
-                            />
-                          );
-                        })}
-                      </svg>
+                      <div className="relative w-full h-full min-w-[320px] sm:min-w-[500px] flex items-center justify-center bg-zinc-950">
+                        <img
+                          src={activeCase.beforeImageUrl || '/images/foto-resultado-11-meses.png'}
+                          alt={`${activeCase.beforeLabel} - ${activeCase.patientName}`}
+                          className={`w-full h-full object-cover sm:object-contain transition-transform duration-300 ${
+                            isZoomed ? 'scale-125' : 'scale-100'
+                          }`}
+                          referrerPolicy="no-referrer"
+                          onError={(e) => {
+                            const target = e.currentTarget;
+                            if (target.src.endsWith('.png.png')) {
+                              target.src = target.src.replace('.png.png', '.png');
+                            }
+                          }}
+                        />
+                        {/* Before Badge */}
+                        <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 z-20 px-3 py-1 sm:px-4 sm:py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-black text-xs uppercase tracking-wider shadow-xl border border-[#eaa351]">
+                          {activeCase.beforeLabel}
+                        </div>
+                      </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  </div>
-                </div>
 
-                {/* After Badge (Inspired by Foto 2/3 orange label) */}
-                <div className="absolute bottom-4 right-4 z-20 px-3.5 py-1.5 rounded-md bg-[#e5a65c] text-black font-mono font-bold text-xs uppercase tracking-wider shadow-lg">
-                  {activeCase.afterLabel}
-                </div>
-              </div>
-
-              {/* "BEFORE" Image Layer (Clipped by Slider Position) */}
-              <div
-                className="absolute inset-0 h-full overflow-hidden border-r-2"
-                style={{
-                  width: `${sliderPosition}%`,
-                  borderColor: goldPrimary,
-                }}
-              >
-                <div
-                  className={`w-full h-full min-w-[320px] sm:min-w-[500px] flex flex-col items-center justify-center p-6 text-center transition-transform duration-300 ${
-                    isZoomed ? 'scale-125' : 'scale-100'
-                  }`}
-                  style={{
-                    background: 'radial-gradient(circle at center, #3f2f25 0%, #1f1712 60%, #0d0a08 100%)',
-                  }}
-                >
-                  {/* Rarefied / Thinning Scalp Vortex Simulation */}
-                  <div className="relative w-56 sm:w-72 h-56 sm:h-72 rounded-full bg-amber-950/40 border-4 border-zinc-800 shadow-2xl overflow-hidden flex items-center justify-center">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      {/* Exposed Skin Glow at Center */}
-                      <div className="w-24 h-24 rounded-full bg-[#c28e75]/40 blur-xl"></div>
-                      <svg className="w-full h-full opacity-40" viewBox="0 0 200 200">
-                        {Array.from({ length: 45 }).map((_, i) => {
-                          const angle = (i * 137.5 * Math.PI) / 180;
-                          const r = Math.sqrt(i) * 11 + 25;
-                          const cx = 100 + r * Math.cos(angle);
-                          const cy = 100 + r * Math.sin(angle);
-                          return (
-                            <circle
-                              key={i}
-                              cx={cx}
-                              cy={cy}
-                              r={0.9}
-                              fill="#18181b"
-                            />
-                          );
-                        })}
-                      </svg>
+                    {/* Center Drag Handle */}
+                    <div
+                      className="absolute top-0 bottom-0 z-30 flex items-center justify-center -translate-x-1/2 pointer-events-none"
+                      style={{ left: `${sliderPosition}%` }}
+                    >
+                      <div
+                        className="w-8 h-8 sm:w-9 sm:h-9 rounded-full shadow-2xl flex items-center justify-center border-2 border-white bg-black/90 text-white"
+                        style={{
+                          boxShadow: `0 0 15px ${goldPrimary}`,
+                        }}
+                      >
+                        <Sliders className="w-4 h-4" style={{ color: goldPrimary }} />
+                      </div>
                     </div>
                   </div>
+                )}
+
+                {/* Sub-bar inside frame with controls & caption */}
+                <div className="px-4 py-2.5 bg-zinc-950/95 border-t border-zinc-800/80 flex items-center justify-between text-xs text-zinc-400 font-mono">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Registro Fotográfico Padronizado</span>
+                  </div>
+                  <button
+                    onClick={() => setIsZoomed(!isZoomed)}
+                    className="flex items-center space-x-1.5 text-zinc-300 hover:text-white transition-colors cursor-pointer py-0.5 px-2 rounded-md hover:bg-zinc-800/60"
+                  >
+                    <ZoomIn className="w-3.5 h-3.5" />
+                    <span>{isZoomed ? 'Reduzir' : 'Zoom Folicular'}</span>
+                  </button>
                 </div>
 
-                {/* Before Badge (Inspired by Foto 2/3 orange label) */}
-                <div className="absolute bottom-4 left-4 z-20 px-3.5 py-1.5 rounded-md bg-[#e5a65c] text-black font-mono font-bold text-xs uppercase tracking-wider shadow-lg">
-                  {activeCase.beforeLabel}
-                </div>
-              </div>
-
-              {/* Center Slider Divider Bar & Handle */}
-              <div
-                className="absolute top-0 bottom-0 z-30 flex items-center justify-center -translate-x-1/2 pointer-events-none"
-                style={{ left: `${sliderPosition}%` }}
-              >
-                <div
-                  className="w-8 h-8 rounded-full shadow-2xl flex items-center justify-center border-2 border-white bg-black/90 text-white"
-                  style={{
-                    boxShadow: `0 0 15px ${goldPrimary}`,
-                  }}
-                >
-                  <Sliders className="w-4 h-4 text-[#fae596]" />
-                </div>
               </div>
             </div>
 
-            {/* Slider Hint and Zoom Toggle */}
-            <div className="flex items-center justify-between w-full mt-3 px-2 text-xs text-zinc-500 font-mono">
-              <span>← Deslize para comparar →</span>
-              <button
-                onClick={() => setIsZoomed(!isZoomed)}
-                className="flex items-center space-x-1 text-zinc-400 hover:text-white transition-colors"
-              >
-                <ZoomIn className="w-3.5 h-3.5" />
-                <span>{isZoomed ? 'Reduzir Zoom' : 'Zoom Folicular'}</span>
-              </button>
-            </div>
+            {/* Hint below photo */}
+            <p className="text-center text-xs text-zinc-400 font-mono mt-3">
+              {viewMode === 'interactiveSlider'
+                ? '← Arraste o botão central para inspecionar a transição dos folículos →'
+                : 'Fotografia em alta definição registrada sob a mesma iluminação e ângulo de vértice.'}
+            </p>
           </div>
 
-          {/* Right Column: Case Details & Medical Audit */}
-          <div className="lg:col-span-4 space-y-6">
-            <div className="p-6 sm:p-7 rounded-2xl bg-[#121216] border border-zinc-800 space-y-4">
-              <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
-                <span className="text-xs sm:text-sm font-mono text-zinc-400">Paciente Avaliado</span>
-                <span className="text-sm sm:text-base font-mono font-bold text-white">
-                  {activeCase.patientName}, {activeCase.age} anos
-                </span>
+          {/* Right Clinical Audit Panel (Desktop 5/12 cols) */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+            
+            {/* Clinical Card Box */}
+            <div
+              className="p-6 sm:p-7 rounded-3xl backdrop-blur-2xl transition-all duration-300 flex-1 flex flex-col justify-between space-y-5"
+              style={{
+                background: isFemale
+                  ? 'linear-gradient(145deg, rgba(28, 15, 23, 0.95), rgba(14, 8, 12, 0.98))'
+                  : 'linear-gradient(145deg, rgba(22, 18, 14, 0.95), rgba(11, 9, 7, 0.98))',
+                border: `1px solid ${goldPrimary}35`,
+                boxShadow: `0 15px 40px -10px rgba(0,0,0,0.6)`,
+              }}
+            >
+              {/* Header Info */}
+              <div className="flex items-center justify-between border-b border-zinc-800/80 pb-3.5">
+                <div>
+                  <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block">Paciente Auditado</span>
+                  <span className="text-base font-bold text-white font-mono">{activeCase.patientName}, {activeCase.age} anos</span>
+                </div>
+                <div
+                  className="px-3 py-1 rounded-full text-xs font-mono font-bold border"
+                  style={{
+                    borderColor: `${goldPrimary}50`,
+                    backgroundColor: `${goldPrimary}15`,
+                    color: isFemale ? '#ffdcd3' : '#fae596',
+                  }}
+                >
+                  {activeCase.treatmentDuration}
+                </div>
               </div>
 
-              <div>
-                <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider font-semibold">Diagnóstico Inicial</p>
-                <p className="text-base font-semibold text-zinc-200 mt-1">{activeCase.stage}</p>
-                <p className="text-sm text-zinc-300 mt-1 font-light leading-relaxed">{activeCase.beforeDesc}</p>
+              {/* Diagnosis and Progress */}
+              <div className="space-y-3.5">
+                <div>
+                  <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider font-semibold">
+                    Quadro Clínico Inicial ({activeCase.beforeLabel})
+                  </p>
+                  <p className="text-sm font-semibold text-zinc-200 mt-0.5">{activeCase.stage}</p>
+                  <p className="text-xs sm:text-sm text-zinc-300 font-light mt-1 leading-relaxed">
+                    {activeCase.beforeDesc}
+                  </p>
+                </div>
+
+                <div className="pt-2 border-t border-zinc-800/60">
+                  <p className="text-xs font-mono uppercase tracking-wider font-semibold" style={{ color: goldPrimary }}>
+                    Evolução Terapêutica ({activeCase.afterLabel})
+                  </p>
+                  <p className="text-xs sm:text-sm text-zinc-200 font-light mt-1 leading-relaxed">
+                    {activeCase.afterDesc}
+                  </p>
+                </div>
               </div>
 
-              <div>
-                <p className="text-xs font-mono uppercase tracking-wider font-semibold" style={{ color: goldPrimary }}>
-                  Resultado Atingido
-                </p>
-                <p className="text-base font-semibold text-white mt-1">{activeCase.afterDesc}</p>
-              </div>
-
-              {/* Stat callout */}
+              {/* Density Callout Stat Pill */}
               <div
-                className="p-4 rounded-xl border text-center"
+                className="p-4 rounded-2xl border text-center relative overflow-hidden"
                 style={{
-                  borderColor: `${goldPrimary}40`,
-                  backgroundColor: `${goldPrimary}10`,
+                  borderColor: `${goldPrimary}50`,
+                  backgroundColor: `${goldPrimary}12`,
+                  boxShadow: `inset 0 0 20px ${goldGlow}`,
                 }}
               >
-                <p className="text-lg font-mono font-bold text-white">
+                <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-300 block mb-0.5">
+                  Ganho Folicular Documentado
+                </span>
+                <p className="text-xl sm:text-2xl font-mono font-bold text-white tracking-tight">
                   {activeCase.densityIncrease}
                 </p>
               </div>
 
-              {/* Verified Physician */}
+              {/* Physician CRM Verification */}
               <div className="pt-3 border-t border-zinc-800/80 flex items-center space-x-2.5 text-xs text-zinc-300">
                 <UserCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>{activeCase.verifiedDoctor}</span>
+                <span className="font-mono text-[11px] sm:text-xs">{activeCase.verifiedDoctor}</span>
               </div>
             </div>
+
+            {/* Quick Summary Pill below */}
+            <div className="p-4 rounded-2xl bg-zinc-950/80 border border-zinc-800/80 flex items-center justify-between text-xs font-mono text-zinc-400">
+              <span className="flex items-center gap-1.5 text-zinc-300">
+                <CheckCircle2 className="w-4 h-4 text-[#fae596]" />
+                Sem oleosidade tópica
+              </span>
+              <span className="flex items-center gap-1.5 text-zinc-300">
+                <CheckCircle2 className="w-4 h-4 text-[#fae596]" />
+                1 dose oral diária
+              </span>
+            </div>
+
           </div>
 
+        </div>
+
+        {/* Gallery Thumbnails of All Available Clinical Cases */}
+        <div className="mt-14 pt-12 border-t border-zinc-800/80 max-w-5xl mx-auto">
+          <p className="text-center text-xs font-mono text-zinc-400 uppercase tracking-widest mb-6">
+            Explore Todos os Registros Clínicos da Linha
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {cases.map((c, idx) => {
+              const isSelected = activeCaseIndex === idx;
+              return (
+                <div
+                  key={c.id}
+                  onClick={() => {
+                    setActiveCaseIndex(idx);
+                    setSliderPosition(50);
+                    window.scrollTo({
+                      top: document.getElementById('resultados')?.offsetTop || 0,
+                      behavior: 'smooth',
+                    });
+                  }}
+                  className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex gap-4 items-center ${
+                    isSelected
+                      ? 'bg-zinc-900/90 shadow-xl'
+                      : 'bg-zinc-950/60 hover:bg-zinc-900/50 border-zinc-800/80 hover:border-zinc-700'
+                  }`}
+                  style={{
+                    borderColor: isSelected ? goldPrimary : 'rgba(39, 39, 42, 0.8)',
+                    boxShadow: isSelected ? `0 0 20px ${goldGlow}` : 'none',
+                  }}
+                >
+                  <div className="w-28 sm:w-36 aspect-[16/9] rounded-xl overflow-hidden bg-black shrink-0 border border-zinc-700/60">
+                    <img
+                      src={c.combinedImageUrl || '/images/foto-resultado-11-meses.png.png'}
+                      alt={c.patientName}
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (target.src.endsWith('.png.png')) {
+                          target.src = target.src.replace('.png.png', '.png');
+                        }
+                      }}
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono font-bold" style={{ color: goldPrimary }}>
+                        Caso 0{idx + 1}
+                      </span>
+                      <span className="text-[11px] font-mono text-zinc-400">{c.treatmentDuration}</span>
+                    </div>
+                    <p className="text-sm font-bold text-white truncate mt-0.5">{c.patientName}, {c.age} anos</p>
+                    <p className="text-xs font-mono text-emerald-400 font-semibold mt-1 truncate">
+                      {c.densityIncrease}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
       </div>
     </section>
   );
 };
+

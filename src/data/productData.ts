@@ -446,11 +446,14 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       stage: 'Calvície Grau III (Vértice / Coroa)',
       treatmentDuration: '3 Meses de Tratamento',
       beforeLabel: 'Dia 01',
-      afterLabel: '3 Meses',
+      afterLabel: '3 meses',
       beforeDesc: 'Afinamento severo na região do redemoinho (coroa), com couro cabeludo amplamente exposto sob luz direta.',
       afterDesc: 'Reativação folicular expressiva, preenchimento denso do vértice e fios escurecidos e engrossados.',
       densityIncrease: '+68% de densidade no vértice',
-      verifiedDoctor: 'Dr. Leonardo Mattos • CRM/SP 148.920'
+      verifiedDoctor: 'Dr. Leonardo Mattos • CRM/SP 148.920',
+      combinedImageUrl: '/images/foto-resultado-3-meses.png.png',
+      beforeImageUrl: '/images/foto-resultado-3-meses.png',
+      afterImageUrl: '/images/foto-resultado-3-meses.png'
     },
     {
       id: 'caso-2-masc',
@@ -459,11 +462,14 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       stage: 'Calvície Grau IV (Entradas e Coroa Avançadas)',
       treatmentDuration: '11 Meses de Tratamento',
       beforeLabel: 'Dia 01',
-      afterLabel: '11 Meses',
+      afterLabel: '11 meses',
       beforeDesc: 'Recuo profundo da linha frontal e rarefação quase total no topo da cabeça há mais de 4 anos.',
       afterDesc: 'Cobertura capilar completa e contínua, transformação radical da moldura do rosto e autoestima renovada.',
       densityIncrease: '+114% de folículos ativos terminais',
-      verifiedDoctor: 'Dra. Camila Duarte • CRM/RJ 98.412'
+      verifiedDoctor: 'Dra. Camila Duarte • CRM/RJ 98.412',
+      combinedImageUrl: '/images/foto-resultado-11-meses.png.png',
+      beforeImageUrl: '/images/foto-resultado-11-meses.png',
+      afterImageUrl: '/images/foto-resultado-11-meses.png'
     }
   ],
   feminino: [
@@ -474,11 +480,14 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       stage: 'Eflúvio Telógeno Crônico & Raleamento Difuso',
       treatmentDuration: '3 Meses de Tratamento',
       beforeLabel: 'Dia 01',
-      afterLabel: '3 Meses',
+      afterLabel: '3 meses',
       beforeDesc: 'Queda acentuada pós-estresse com alargamento visível da risca central e perda de volume nas têmporas.',
       afterDesc: 'Risca central fechada, proliferação intensa de novos fios em crescimento e fim total da queda ao pentear.',
       densityIncrease: '+74% de cobertura na risca média',
-      verifiedDoctor: 'Dra. Beatriz Albuquerque • CRM/MG 83.104'
+      verifiedDoctor: 'Dra. Beatriz Albuquerque • CRM/MG 83.104',
+      combinedImageUrl: '/images/foto-resultado-3-meses.png.png',
+      beforeImageUrl: '/images/foto-resultado-3-meses.png',
+      afterImageUrl: '/images/foto-resultado-3-meses.png'
     },
     {
       id: 'caso-2-fem',
@@ -487,11 +496,14 @@ export const CLINICAL_CASES: Record<GenderMode, ClinicalCase[]> = {
       stage: 'Alopecia Padrão Feminino (Escala Ludwig II)',
       treatmentDuration: '9 Meses de Tratamento',
       beforeLabel: 'Dia 01',
-      afterLabel: '9 Meses',
+      afterLabel: '9 meses',
       beforeDesc: 'Fios extremamente finos, quebradiços e couro cabeludo transparente na região frontal e topo.',
       afterDesc: 'Cabelos encorpados com textura encorpada, volume duplicado no rabo de cavalo e brilho radiante.',
       densityIncrease: '+92% de espessura da haste capilar',
-      verifiedDoctor: 'Dr. Roberto Ferraz • CRM/SP 172.330'
+      verifiedDoctor: 'Dr. Roberto Ferraz • CRM/SP 172.330',
+      combinedImageUrl: '/images/foto-resultado-11-meses.png.png',
+      beforeImageUrl: '/images/foto-resultado-11-meses.png',
+      afterImageUrl: '/images/foto-resultado-11-meses.png'
     }
   ]
 };
