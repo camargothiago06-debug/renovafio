@@ -188,7 +188,11 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
   return (
     <section
       id="inicio"
-      className="hero-section bg-[#060608] border-b border-[#d4af37]/30"
+      className={`hero-section ${
+        isFemale
+          ? 'bg-[#0d070a] border-b border-[#E2A999]/35'
+          : 'bg-[#060608] border-b border-[#d4af37]/30'
+      }`}
       style={{
         width: '100%',
         minHeight: 'calc(100vh - var(--header-height, 86px))',
@@ -196,8 +200,15 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Ambient Gold Halo in Top Area */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-64 bg-gradient-to-b from-[#d4af37]/15 via-transparent to-transparent blur-3xl pointer-events-none z-10" />
+      {/* Ambient Halo in Top Area */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-64 blur-3xl pointer-events-none z-10"
+        style={{
+          background: isFemale
+            ? 'radial-gradient(ellipse at 50% 0%, rgba(226,169,153,0.3) 0%, rgba(212,175,55,0.18) 35%, transparent 70%)'
+            : 'radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.2) 0%, transparent 70%)',
+        }}
+      />
 
       {/* Main Fullscreen Stage */}
       <div className="relative flex-1 w-full flex items-center py-6 sm:py-8 min-h-[560px] lg:min-h-[calc(100vh-var(--header-height,86px)-82px)]">
@@ -225,15 +236,38 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
               />
 
               {/* Balanced Cinematic Lighting & Contrast Overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-[#060608]/40 to-[#060608]/20" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#060608]/95 via-[#060608]/70 to-transparent lg:w-[58%]" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,175,55,0.18),_transparent_65%)] pointer-events-none" />
-              
-              {/* Subtle gold grid texture */}
               <div
-                className="absolute inset-0 opacity-[0.02] pointer-events-none"
+                className="absolute inset-0"
                 style={{
-                  backgroundImage: 'radial-gradient(#d4af37 1px, transparent 1px)',
+                  background: isFemale
+                    ? 'linear-gradient(to top, #0d070a 0%, rgba(13,7,10,0.45) 50%, rgba(13,7,10,0.2) 100%)'
+                    : 'linear-gradient(to top, #060608 0%, rgba(6,6,8,0.4) 50%, rgba(6,6,8,0.2) 100%)',
+                }}
+              />
+              <div
+                className="absolute inset-0 lg:w-[58%]"
+                style={{
+                  background: isFemale
+                    ? 'linear-gradient(to right, rgba(13,7,10,0.96) 0%, rgba(13,7,10,0.75) 60%, transparent 100%)'
+                    : 'linear-gradient(to right, rgba(6,6,8,0.95) 0%, rgba(6,6,8,0.7) 60%, transparent 100%)',
+                }}
+              />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: isFemale
+                    ? 'radial-gradient(ellipse at top right, rgba(226,169,153,0.25) 0%, rgba(212,175,55,0.14) 40%, transparent 70%)'
+                    : 'radial-gradient(ellipse at top right, rgba(212,175,55,0.18) 0%, transparent 65%)',
+                }}
+              />
+              
+              {/* Subtle gold / rose-gold grid texture */}
+              <div
+                className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                style={{
+                  backgroundImage: isFemale
+                    ? 'radial-gradient(#E2A999 1px, transparent 1px)'
+                    : 'radial-gradient(#d4af37 1px, transparent 1px)',
                   backgroundSize: '24px 24px',
                 }}
               />

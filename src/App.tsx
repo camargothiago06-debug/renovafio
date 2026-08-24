@@ -108,17 +108,43 @@ export function App() {
     >
       {/* Refined Minimalist Soft Lighting Backdrop */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Soft, Gentle Top Atmospheric Luminescence */}
-        <div
-          className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[350px] rounded-full blur-[140px] opacity-10 transition-all duration-1000"
-          style={{ backgroundColor: isFemale ? '#E2A999' : '#D4AF37' }}
-        />
-        {/* Ultra-Soft Editorial Grid Overlay */}
-        <div
-          className={`absolute inset-0 opacity-[0.015] ${
-            isFemale ? 'luxury-bg-grid-feminine' : 'luxury-bg-grid'
-          }`}
-        />
+        {isFemale ? (
+          <>
+            {/* Top Rose-Gold & Champagne Atmospheric Crown */}
+            <div
+              className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] sm:w-[1100px] h-[450px] rounded-full blur-[150px] opacity-35 transition-all duration-1000"
+              style={{
+                background: 'radial-gradient(circle, #E2A999 0%, #D4AF37 40%, transparent 70%)',
+              }}
+            />
+            {/* Right Side Rose Champagne Bloom */}
+            <div
+              className="absolute top-[30%] -right-40 w-[600px] h-[600px] rounded-full blur-[160px] opacity-25"
+              style={{
+                background: 'radial-gradient(circle, #E2A999 0%, #B86B77 45%, transparent 70%)',
+              }}
+            />
+            {/* Left Side Warm Gold Accent */}
+            <div
+              className="absolute top-[65%] -left-40 w-[600px] h-[600px] rounded-full blur-[160px] opacity-20"
+              style={{
+                background: 'radial-gradient(circle, #D4AF37 0%, #E2A999 50%, transparent 70%)',
+              }}
+            />
+            {/* Ultra-Soft Editorial Grid Overlay */}
+            <div className="absolute inset-0 opacity-[0.035] luxury-bg-grid-feminine" />
+          </>
+        ) : (
+          <>
+            {/* Soft, Gentle Top Atmospheric Luminescence */}
+            <div
+              className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[350px] rounded-full blur-[140px] opacity-15 transition-all duration-1000"
+              style={{ backgroundColor: '#D4AF37' }}
+            />
+            {/* Ultra-Soft Editorial Grid Overlay */}
+            <div className="absolute inset-0 opacity-[0.015] luxury-bg-grid" />
+          </>
+        )}
       </div>
 
       {/* Header & Floating Navigation */}

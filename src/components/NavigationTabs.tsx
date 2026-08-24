@@ -27,7 +27,13 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
   ];
 
   return (
-    <div className="w-full sticky top-[var(--header-height,86px)] z-30 bg-[#09090c]/90 backdrop-blur-xl border-b border-zinc-800/80 transition-all duration-300 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)]">
+    <div
+      className={`w-full sticky top-[var(--header-height,86px)] z-30 backdrop-blur-xl transition-all duration-300 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)] ${
+        isFemale
+          ? 'bg-[#130b10]/95 border-b border-[#E2A999]/25 shadow-[0_10px_30px_-15px_rgba(226,169,153,0.15)]'
+          : 'bg-[#09090c]/90 border-b border-zinc-800/80'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar py-2.5 gap-1.5 sm:gap-2">
           {tabs.map((tab) => {
