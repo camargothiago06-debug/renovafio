@@ -1,337 +1,457 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { GenderMode } from '../types';
+import { CLINICAL_CASES } from '../data/productData';
+import {
+  Sparkles,
+  ShieldCheck,
+  UserCheck,
+  Sliders,
+  ZoomIn,
+  Columns,
+  CheckCircle2,
+  Calendar,
+  Layers,
+  Award
+} from 'lucide-react';
 
-interface ScalpCanvasProps {
-  gender: 'masculino' | 'feminino';
-  caseIndex: number; // 0: 3 months, 1: 11 months
-  stage: 'before' | 'after' | 'combined';
-  className?: string;
-  isZoomed?: boolean;
+interface BeforeAfterSectionProps {
+  gender: GenderMode;
 }
 
-export const ScalpClinicalCanvas: React.FC<ScalpCanvasProps> = ({
-  gender,
-  caseIndex,
-  stage,
-  className = '',
-  isZoomed = false
-}) => {
+export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }) => {
   const isFemale = gender === 'feminino';
-  const durationLabel = caseIndex === 0 ? '3 meses' : '11 meses';
+  const cases = CLINICAL_CASES[gender];
+  const [activeCaseIndex, setActiveCaseIndex] = useState(0);
+  const [sliderPosition, setSliderPosition] = useState(50); // percentage 0 - 100
+  const [viewMode, setViewMode] = useState<'sideBySide' | 'interactiveSlider'>('sideBySide');
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const sliderRef = React.useRef<HTMLDivElement>(null);
 
-  // Sub-component to render a single scalp state (Before or After)
-  const renderSingleScalp = (
-    subStage: 'before' | 'after',
-    cx: number,
-    cy: number,
-    scale: number,
-    label: string,
-    tagX: number,
-    tagY: number
-  ) => {
-    const isBefore = subStage === 'before';
-    const baldRadiusX = isFemale ? (isBefore ? 16 : 5) : (caseIndex === 1 ? (isBefore ? 62 : 10) : (isBefore ? 48 : 12));
-    const baldRadiusY = isFemale ? (isBefore ? 88 : 15) : (caseIndex === 1 ? (isBefore ? 70 : 12) : (isBefore ? 54 : 14));
+  const activeCase = cases[activeCaseIndex] || cases[0];
+  const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
+  const goldGlow = isFemale ? 'rgba(226, 169, 153, 0.25)' : 'rgba(212, 175, 55, 0.25)';
 
-    return (
-      <g transform={`translate(${cx}, ${cy}) scale(${scale})`}>
-        {/* Salon Clinic Background with modern tiles and reflections */}
-        <rect x="-350" y="-220" width="700" height="440" fill="url(#clinicFloorTiling)" />
-        <rect x="-350" y="-220" width="700" height="150" fill="url(#clinicWallLight)" />
+  const updateSliderPos = (clientX: number) => {
+    if (!sliderRef.current) return;
+    const rect = sliderRef.current.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    setSliderPosition(percentage);
+  };
 
-        {/* Salon Interior Furniture in background (Stools and countertop) */}
-        <g opacity="0.5" transform="translate(-160, -140)">
-          <rect x="-35" y="0" width="70" height="10" rx="3" fill="#181818" />
-          <line x1="-25" y1="10" x2="-25" y2="120" stroke="#222" strokeWidth="4" />
-          <line x1="25" y1="10" x2="25" y2="120" stroke="#222" strokeWidth="4" />
-          <line x1="-25" y1="60" x2="25" y2="60" stroke="#222" strokeWidth="3" />
-        </g>
-        <g opacity="0.5" transform="translate(160, -140)">
-          <rect x="-35" y="0" width="70" height="10" rx="3" fill="#181818" />
-          <line x1="-25" y1="10" x2="-25" y2="120" stroke="#222" strokeWidth="4" />
-          <line x1="25" y1="10" x2="25" y2="120" stroke="#222" strokeWidth="4" />
-          <line x1="-25" y1="60" x2="25" y2="60" stroke="#222" strokeWidth="3" />
-        </g>
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+    updateSliderPos(e.clientX);
+  };
 
-        {/* Overhead Clinical Examination Spotlight */}
-        <ellipse cx="0" cy="-30" rx="260" ry="180" fill="url(#overheadSpotlight)" />
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isDragging || e.buttons === 1) {
+      updateSliderPos(e.clientX);
+    }
+  };
 
-        {/* Salon Client Chair (Black Leather with Armrest & Headrest) */}
-        <g transform="translate(0, 70)">
-          {/* Chair Back Contour */}
-          <path
-            d="M -190 20 C -190 -70 -110 -95 0 -95 C 110 -95 190 -70 190 20 L 210 130 L -210 130 Z"
-            fill="#121418"
-          />
-          <path
-            d="M -160 20 C -160 -50 -90 -75 0 -75 C 90 -75 160 -50 160 20 Z"
-            fill="#222630"
-            opacity="0.4"
-          />
-          {/* Chair Armrests */}
-          <rect x="-215" y="25" width="28" height="95" rx="8" fill="#0c0d10" />
-          <rect x="187" y="25" width="28" height="95" rx="8" fill="#0c0d10" />
-        </g>
-
-        {/* Patient Body (Shoulders & Black / Navy Cape) */}
-        <g transform="translate(0, 15)">
-          <path
-            d="M -180 160 C -150 70 -90 40 -40 36 L 0 38 L 40 36 C 90 40 150 70 180 160 Z"
-            fill={isBefore ? "#14151a" : "#172338"}
-          />
-          <path
-            d="M -95 50 C -50 40 0 40 95 50 L 110 160 L -110 160 Z"
-            fill={isBefore ? "#21242d" : "#243450"}
-          />
-
-          {/* Neck */}
-          <rect x="-36" y="-5" width="72" height="48" rx="14" fill={isFemale ? "#eccdb9" : "#debba2"} />
-
-          {/* Ears */}
-          <ellipse cx="-94" cy="-22" rx="11" ry="26" fill={isFemale ? "#e8c4b0" : "#d9b29a"} />
-          <ellipse cx="-94" cy="-22" rx="7" ry="17" fill={isFemale ? "#d9af9b" : "#c79e86"} />
-          <ellipse cx="94" cy="-22" rx="11" ry="26" fill={isFemale ? "#e8c4b0" : "#d9b29a"} />
-          <ellipse cx="94" cy="-22" rx="7" ry="17" fill={isFemale ? "#d9af9b" : "#c79e86"} />
-
-          {/* Head Shape (Top-Down Clinical View) */}
-          <ellipse cx="0" cy="-26" rx="90" ry="110" fill={isFemale ? "#eccdb9" : "#debba2"} />
-
-          {/* Hair Base Layer */}
-          <ellipse
-            cx="0"
-            cy="-26"
-            rx="90"
-            ry="110"
-            fill={isFemale ? (isBefore ? "url(#femHairSparse)" : "url(#femHairDense)") : (isBefore ? "url(#maleHairSparse)" : "url(#maleHairDense)")}
-          />
-
-          {/* BEFORE: Exposed Scalp Skin Glow in Crown */}
-          {isBefore && (
-            <ellipse
-              cx={isFemale ? 0 : -5}
-              cy={isFemale ? -15 : -24}
-              rx={baldRadiusX}
-              ry={baldRadiusY}
-              fill={isFemale ? "url(#femScalpSkinGleam)" : "url(#maleScalpSkinGleam)"}
-            />
-          )}
-
-          {/* Detailed Hair Texture / Strands */}
-          {isFemale ? (
-            /* Female Long Hair Flow */
-            <g>
-              {Array.from({ length: isBefore ? 60 : 160 }).map((_, i) => {
-                const yOffset = -90 + i * 2.2;
-                const curve = (i % 2 === 0 ? 18 : -14);
-                const strokeW = isBefore ? 1.5 : 2.2;
-                return (
-                  <g key={`fem-s-${i}`} opacity={isBefore ? 0.5 : 0.85}>
-                    <path
-                      d={`M -3 ${yOffset} Q ${-35 + curve} ${yOffset + 20} -85 ${yOffset + 45}`}
-                      stroke="#1a110a"
-                      strokeWidth={strokeW}
-                      fill="none"
-                    />
-                    <path
-                      d={`M 3 ${yOffset} Q ${35 - curve} ${yOffset + 20} 85 ${yOffset + 45}`}
-                      stroke="#1a110a"
-                      strokeWidth={strokeW}
-                      fill="none"
-                    />
-                  </g>
-                );
-              })}
-              {/* Parting line */}
-              {isBefore ? (
-                <path d="M 0 -85 C -6 -35 -8 15 0 50 C 8 15 6 -35 0 -85 Z" fill="url(#femScalpSkinGleam)" />
-              ) : (
-                <path d="M 0 -80 L 0 45" stroke="#140c07" strokeWidth="2.2" opacity="0.9" />
-              )}
-            </g>
-          ) : (
-            /* Male Vertex Crown Swirl */
-            <g>
-              {Array.from({ length: isBefore ? 70 : 200 }).map((_, i) => {
-                const total = isBefore ? 70 : 200;
-                const angle = (i / total) * Math.PI * 2;
-                const rad = 20 + ((i * 37) % 68);
-                const sx = -5 + Math.cos(angle) * rad;
-                const sy = -24 + Math.sin(angle) * rad;
-
-                const vDx = (sx + 5) / baldRadiusX;
-                const vDy = (sy + 24) / baldRadiusY;
-                if (isBefore && (vDx * vDx + vDy * vDy < 0.82) && (i % 4 !== 0)) {
-                  return null;
-                }
-
-                const curl = angle + 0.65;
-                const len = isBefore ? 14 : 24;
-                const ex = sx + Math.cos(curl) * len;
-                const ey = sy + Math.sin(curl) * len;
-                const strokeCol = i % 4 === 0 ? '#0b0d10' : (i % 2 === 0 ? '#1b1e26' : '#282d38');
-                const strokeW = isBefore ? 1.6 : 2.4;
-
-                return (
-                  <path
-                    key={`m-s-${i}`}
-                    d={`M ${sx} ${sy} Q ${(sx + ex) / 2 + 3} ${(sy + ey) / 2 - 2} ${ex} ${ey}`}
-                    stroke={strokeCol}
-                    strokeWidth={strokeW}
-                    strokeLinecap="round"
-                    opacity={isBefore ? 0.75 : 0.95}
-                    fill="none"
-                  />
-                );
-              })}
-
-              {/* Before: Miniaturized follicles in vertex */}
-              {isBefore && Array.from({ length: 30 }).map((_, i) => {
-                const a = (i / 30) * Math.PI * 2;
-                const r = (i * 13) % Math.round(baldRadiusX * 0.75);
-                const fx = -5 + Math.cos(a) * r;
-                const fy = -24 + Math.sin(a) * r;
-                return (
-                  <g key={`mini-${i}`}>
-                    <circle cx={fx} cy={fy} r="1.1" fill="#44352b" opacity="0.6" />
-                    <path d={`M ${fx} ${fy} L ${fx + 2.5} ${fy + 2}`} stroke="#554236" strokeWidth="0.8" opacity="0.5" />
-                  </g>
-                );
-              })}
-            </g>
-          )}
-        </g>
-
-        {/* Clinical Tag (Dia 01 / 3 meses) */}
-        <g transform={`translate(${tagX}, ${tagY})`}>
-          <rect
-            x="-60"
-            y="-16"
-            width="120"
-            height="32"
-            rx="5"
-            fill="#F6B867"
-            stroke="#df9d45"
-            strokeWidth="1.2"
-            filter="drop-shadow(0 4px 8px rgba(0,0,0,0.6))"
-          />
-          <text
-            x="0"
-            y="5"
-            textAnchor="middle"
-            fontFamily="'Courier New', Courier, monospace"
-            fontSize="14"
-            fontWeight="900"
-            fill="#111111"
-            letterSpacing="1.2"
-          >
-            {label}
-          </text>
-        </g>
-      </g>
-    );
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    setIsDragging(false);
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {}
   };
 
   return (
-    <svg
-      viewBox="0 0 960 540"
-      className={`w-full h-full object-cover transition-transform duration-300 ${isZoomed ? 'scale-125' : 'scale-100'} ${className}`}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        {/* Clinic Floor & Wall Gradients */}
-        <linearGradient id="clinicFloorTiling" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#ede8df" />
-          <stop offset="50%" stopColor="#dfd9cd" />
-          <stop offset="100%" stopColor="#d1c9bc" />
-        </linearGradient>
+    <section id="resultados" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
+      {/* Background Subtle Ambient Glow */}
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full blur-[140px] pointer-events-none opacity-20"
+        style={{
+          backgroundColor: isFemale ? '#E2A999' : '#D4AF37',
+        }}
+      />
 
-        <linearGradient id="clinicWallLight" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#fafafa" />
-          <stop offset="100%" stopColor="#eaeaea" />
-        </linearGradient>
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
+          <div
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border text-xs sm:text-sm font-medium uppercase tracking-wider backdrop-blur-md"
+            style={{
+              borderColor: isFemale ? 'rgba(226, 169, 153, 0.3)' : 'rgba(212, 175, 55, 0.3)',
+              backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.08)' : 'rgba(212, 175, 55, 0.08)',
+              color: isFemale ? '#ffdcd3' : '#fae596',
+            }}
+          >
+            <ShieldCheck className="w-4 h-4" />
+            <span>Evidência Clínica Documentada em Consultório</span>
+          </div>
 
-        <radialGradient id="overheadSpotlight" cx="50%" cy="40%" r="50%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.55" />
-          <stop offset="70%" stopColor="#ffffff" stopOpacity="0.08" />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-        </radialGradient>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white uppercase">
+            TRANSFORMAÇÕES REAIS{' '}
+            <span
+              className="bg-clip-text text-transparent italic font-normal"
+              style={{
+                backgroundImage: isFemale
+                  ? 'linear-gradient(135deg, #FFF2F0 0%, #E2A999 50%, #DFB775 100%)'
+                  : 'linear-gradient(135deg, #FFF0D0 0%, #D4AF37 50%, #AA771C 100%)',
+                fontFamily: 'var(--font-cormorant)',
+              }}
+            >
+              Documentadas.
+            </span>
+          </h2>
 
-        {/* Scalp Skin Tones */}
-        <radialGradient id="maleScalpSkinGleam" cx="45%" cy="45%" r="55%">
-          <stop offset="0%" stopColor="#fbe2d2" />
-          <stop offset="60%" stopColor="#edbfa0" />
-          <stop offset="100%" stopColor="#d8a381" />
-        </radialGradient>
+          <p className="text-zinc-300 text-base sm:text-lg font-light max-w-2xl mx-auto">
+            Registros fotográficos padronizados em consultório dermatológico, comprovando o fechamento do vértice, aumento de densidade e espessamento da haste.
+          </p>
+        </div>
 
-        <radialGradient id="femScalpSkinGleam" cx="45%" cy="45%" r="55%">
-          <stop offset="0%" stopColor="#fdefdf" />
-          <stop offset="60%" stopColor="#f2cfb8" />
-          <stop offset="100%" stopColor="#dfb295" />
-        </radialGradient>
+        {/* Master Control Bar: Case Selector Tabs + View Mode Toggle */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 max-w-5xl mx-auto">
+          {/* Case Selector Tabs */}
+          <div className="p-1.5 rounded-2xl bg-zinc-950/90 border border-zinc-800/90 backdrop-blur-xl flex flex-wrap gap-2 shadow-xl">
+            {cases.map((c, idx) => (
+              <button
+                key={c.id}
+                onClick={() => {
+                  setActiveCaseIndex(idx);
+                  setSliderPosition(50);
+                }}
+                className={`px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-medium transition-all flex items-center gap-2 cursor-pointer ${
+                  activeCaseIndex === idx
+                    ? 'text-white font-bold shadow-lg'
+                    : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/60'
+                }`}
+                style={{
+                  backgroundColor: activeCaseIndex === idx ? (isFemale ? '#2a1622' : '#1e1b12') : 'transparent',
+                  border: activeCaseIndex === idx ? `1px solid ${goldPrimary}` : '1px solid transparent',
+                  boxShadow: activeCaseIndex === idx ? `0 0 15px ${goldGlow}` : 'none',
+                }}
+              >
+                <Award className="w-3.5 h-3.5" style={{ color: activeCaseIndex === idx ? goldPrimary : '#71717a' }} />
+                <span>Caso 0{idx + 1}: {c.treatmentDuration}</span>
+                <span className="text-[11px] opacity-70 hidden sm:inline">({c.patientName})</span>
+              </button>
+            ))}
+          </div>
 
-        {/* Hair Undercoats */}
-        <radialGradient id="maleHairSparse" cx="50%" cy="45%" r="60%">
-          <stop offset="0%" stopColor="#323540" />
-          <stop offset="70%" stopColor="#1c1e26" />
-          <stop offset="100%" stopColor="#090a0d" />
-        </radialGradient>
+          {/* View Mode Switcher (Side by Side vs Slider) */}
+          <div className="p-1.5 rounded-2xl bg-zinc-950/90 border border-zinc-800/90 backdrop-blur-xl flex gap-1 shadow-xl">
+            <button
+              onClick={() => setViewMode('sideBySide')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-mono font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                viewMode === 'sideBySide'
+                  ? 'bg-zinc-800 text-white border border-zinc-700 shadow-md'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Columns className="w-3.5 h-3.5" />
+              <span>Lado a Lado</span>
+            </button>
+            <button
+              onClick={() => setViewMode('interactiveSlider')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-mono font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                viewMode === 'interactiveSlider'
+                  ? 'bg-zinc-800 text-white border border-zinc-700 shadow-md'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Sliders className="w-3.5 h-3.5" />
+              <span>Divisor Interativo</span>
+            </button>
+          </div>
+        </div>
 
-        <radialGradient id="maleHairDense" cx="50%" cy="45%" r="60%">
-          <stop offset="0%" stopColor="#1a1c22" />
-          <stop offset="70%" stopColor="#0f1014" />
-          <stop offset="100%" stopColor="#050608" />
-        </radialGradient>
+        {/* Interactive Showcase Container with Synchronized Luxury Contour & Margins */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-5xl mx-auto">
+          
+          {/* Main Photo Frame (Desktop 7/12 cols) */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            <div
+              className="relative p-2.5 sm:p-4 rounded-3xl backdrop-blur-2xl transition-all duration-500 shadow-2xl"
+              style={{
+                background: isFemale
+                  ? 'linear-gradient(145deg, rgba(35, 18, 28, 0.96), rgba(18, 9, 14, 0.98))'
+                  : 'linear-gradient(145deg, rgba(26, 21, 15, 0.96), rgba(13, 11, 8, 0.98))',
+                border: `1.5px solid ${goldPrimary}60`,
+                boxShadow: `0 25px 60px -15px rgba(0,0,0,0.9), 0 0 35px ${goldGlow}`,
+              }}
+            >
+              {/* Luxury Corner Crosshairs / Accents */}
+              <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t-2 border-l-2 pointer-events-none rounded-tl-sm" style={{ borderColor: goldPrimary }} />
+              <div className="absolute top-2 right-2 w-3.5 h-3.5 border-t-2 border-r-2 pointer-events-none rounded-tr-sm" style={{ borderColor: goldPrimary }} />
+              <div className="absolute bottom-2 left-2 w-3.5 h-3.5 border-b-2 border-l-2 pointer-events-none rounded-bl-sm" style={{ borderColor: goldPrimary }} />
+              <div className="absolute bottom-2 right-2 w-3.5 h-3.5 border-b-2 border-r-2 pointer-events-none rounded-br-sm" style={{ borderColor: goldPrimary }} />
 
-        <radialGradient id="femHairSparse" cx="50%" cy="45%" r="60%">
-          <stop offset="0%" stopColor="#3c2c22" />
-          <stop offset="70%" stopColor="#251811" />
-          <stop offset="100%" stopColor="#0e0704" />
-        </radialGradient>
+              {/* Inner Luxury Frame */}
+              <div className="relative rounded-2xl overflow-hidden bg-zinc-950 border border-zinc-800/90 shadow-inner">
+                
+                {/* Mode 1: Side by Side Real Clinical Photo */}
+                {viewMode === 'sideBySide' ? (
+                  <div className="relative w-full aspect-[16/9] overflow-hidden bg-zinc-950 flex items-center justify-center">
+                    <img
+                      src={activeCase.combinedImageUrl}
+                      alt={`Fotografia Clínica ${activeCase.patientName} - ${activeCase.treatmentDuration}`}
+                      className={`w-full h-full object-contain transition-transform duration-300 ${
+                        isZoomed ? 'scale-125' : 'scale-100'
+                      }`}
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                ) : (
+                  /* Mode 2: Interactive Drag Slider */
+                  <div
+                    ref={sliderRef}
+                    className="relative w-full aspect-[16/9] overflow-hidden cursor-ew-resize select-none bg-zinc-950 touch-none"
+                    onPointerDown={handlePointerDown}
+                    onPointerMove={handlePointerMove}
+                    onPointerUp={handlePointerUp}
+                    onPointerCancel={handlePointerUp}
+                  >
+                    {/* AFTER Layer (Right / Base background) */}
+                    <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-zinc-950">
+                      <img
+                        src={activeCase.afterImageUrl}
+                        alt={`${activeCase.afterLabel} - ${activeCase.patientName}`}
+                        className={`w-full h-full object-contain transition-transform duration-300 pointer-events-none select-none ${
+                          isZoomed ? 'scale-125' : 'scale-100'
+                        }`}
+                        referrerPolicy="no-referrer"
+                      />
+                      {/* After Badge */}
+                      <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 z-10 px-3.5 py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-bold text-xs uppercase tracking-wider shadow-xl border border-[#eaa351] pointer-events-none">
+                        {activeCase.afterLabel}
+                      </div>
+                    </div>
 
-        <radialGradient id="femHairDense" cx="50%" cy="45%" r="60%">
-          <stop offset="0%" stopColor="#2a1c14" />
-          <stop offset="70%" stopColor="#180e08" />
-          <stop offset="100%" stopColor="#0a0503" />
-        </radialGradient>
-      </defs>
+                    {/* BEFORE Layer (Left / Clipped smoothly via inset) */}
+                    <div
+                      className="absolute inset-0 w-full h-full flex items-center justify-center bg-zinc-950 pointer-events-none overflow-hidden"
+                      style={{
+                        clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`
+                      }}
+                    >
+                      <img
+                        src={activeCase.beforeImageUrl}
+                        alt={`${activeCase.beforeLabel} - ${activeCase.patientName}`}
+                        className={`w-full h-full object-contain transition-transform duration-300 pointer-events-none select-none ${
+                          isZoomed ? 'scale-125' : 'scale-100'
+                        }`}
+                        referrerPolicy="no-referrer"
+                      />
+                      {/* Before Badge */}
+                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 z-10 px-3.5 py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-bold text-xs uppercase tracking-wider shadow-xl border border-[#eaa351] pointer-events-none">
+                        {activeCase.beforeLabel}
+                      </div>
+                    </div>
 
-      {/* RENDER MODES */}
-      {stage === 'combined' && (
-        <g>
-          {/* Left Side: Dia 01 */}
-          <g clipPath="url(#leftClipSide)">
-            {renderSingleScalp('before', 240, 260, 1.25, 'Dia 01', 0, 160)}
-          </g>
+                    {/* Golden Glowing Divider Line & Center Drag Handle */}
+                    <div
+                      className="absolute top-0 bottom-0 z-30 pointer-events-none -translate-x-1/2 flex flex-col items-center justify-center"
+                      style={{ left: `${sliderPosition}%` }}
+                    >
+                      <div
+                        className="w-0.5 sm:w-1 h-full shadow-[0_0_15px_rgba(212,175,55,0.9)]"
+                        style={{ backgroundColor: goldPrimary }}
+                      />
+                      <div
+                        className="absolute w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center bg-zinc-950/95 border-2 shadow-2xl transition-transform active:scale-95"
+                        style={{
+                          borderColor: goldPrimary,
+                          boxShadow: `0 0 20px ${goldPrimary}90, 0 4px 12px rgba(0,0,0,0.8)`,
+                          color: goldPrimary
+                        }}
+                      >
+                        <Sliders className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                      </div>
+                    </div>
+                  </div>
+                )}
 
-          {/* Right Side: Post-Treatment */}
-          <g clipPath="url(#rightClipSide)">
-            {renderSingleScalp('after', 720, 260, 1.25, durationLabel, 0, 160)}
-          </g>
+                {/* Sub-bar inside frame with controls & caption */}
+                <div className="px-4 py-2.5 bg-zinc-950/95 border-t border-zinc-800/80 flex items-center justify-between text-xs text-zinc-400 font-mono">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Registro Fotográfico Padronizado</span>
+                  </div>
+                  <button
+                    onClick={() => setIsZoomed(!isZoomed)}
+                    className="flex items-center space-x-1.5 text-zinc-300 hover:text-white transition-colors cursor-pointer py-0.5 px-2 rounded-md hover:bg-zinc-800/60"
+                  >
+                    <ZoomIn className="w-3.5 h-3.5" />
+                    <span>{isZoomed ? 'Reduzir' : 'Zoom Folicular'}</span>
+                  </button>
+                </div>
 
-          {/* Center Dividing White Border Line */}
-          <line x1="480" y1="0" x2="480" y2="540" stroke="#ffffff" strokeWidth="3" opacity="0.95" />
+              </div>
+            </div>
 
-          {/* Clip Paths */}
-          <clipPath id="leftClipSide">
-            <rect x="0" y="0" width="480" height="540" />
-          </clipPath>
-          <clipPath id="rightClipSide">
-            <rect x="480" y="0" width="480" height="540" />
-          </clipPath>
-        </g>
-      )}
+            {/* Hint below photo */}
+            <p className="text-center text-xs text-zinc-400 font-mono mt-3">
+              {viewMode === 'interactiveSlider'
+                ? '← Arraste o botão central para inspecionar a transição dos folículos →'
+                : 'Fotografia em alta definição registrada sob a mesma iluminação e ângulo de vértice.'}
+            </p>
+          </div>
 
-      {stage === 'before' && (
-        <g>
-          {renderSingleScalp('before', 480, 260, 1.35, 'Dia 01', 0, 165)}
-        </g>
-      )}
+          {/* Right Clinical Audit Panel (Desktop 5/12 cols) */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+            
+            {/* Clinical Card Box */}
+            <div
+              className="p-6 sm:p-7 rounded-3xl backdrop-blur-2xl transition-all duration-300 flex-1 flex flex-col justify-between space-y-5"
+              style={{
+                background: isFemale
+                  ? 'linear-gradient(145deg, rgba(28, 15, 23, 0.95), rgba(14, 8, 12, 0.98))'
+                  : 'linear-gradient(145deg, rgba(22, 18, 14, 0.95), rgba(11, 9, 7, 0.98))',
+                border: `1px solid ${goldPrimary}35`,
+                boxShadow: `0 15px 40px -10px rgba(0,0,0,0.6)`,
+              }}
+            >
+              {/* Header Info */}
+              <div className="flex items-center justify-between border-b border-zinc-800/80 pb-3.5">
+                <div>
+                  <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block">Paciente Auditado</span>
+                  <span className="text-base font-bold text-white font-mono">{activeCase.patientName}, {activeCase.age} anos</span>
+                </div>
+                <div
+                  className="px-3 py-1 rounded-full text-xs font-mono font-bold border"
+                  style={{
+                    borderColor: `${goldPrimary}50`,
+                    backgroundColor: `${goldPrimary}15`,
+                    color: isFemale ? '#ffdcd3' : '#fae596',
+                  }}
+                >
+                  {activeCase.treatmentDuration}
+                </div>
+              </div>
 
-      {stage === 'after' && (
-        <g>
-          {renderSingleScalp('after', 480, 260, 1.35, durationLabel, 0, 165)}
-        </g>
-      )}
-    </svg>
+              {/* Diagnosis and Progress */}
+              <div className="space-y-3.5">
+                <div>
+                  <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider font-semibold">
+                    Quadro Clínico Inicial ({activeCase.beforeLabel})
+                  </p>
+                  <p className="text-sm font-semibold text-zinc-200 mt-0.5">{activeCase.stage}</p>
+                  <p className="text-xs sm:text-sm text-zinc-300 font-light mt-1 leading-relaxed">
+                    {activeCase.beforeDesc}
+                  </p>
+                </div>
+
+                <div className="pt-2 border-t border-zinc-800/60">
+                  <p className="text-xs font-mono uppercase tracking-wider font-semibold" style={{ color: goldPrimary }}>
+                    Evolução Terapêutica ({activeCase.afterLabel})
+                  </p>
+                  <p className="text-xs sm:text-sm text-zinc-200 font-light mt-1 leading-relaxed">
+                    {activeCase.afterDesc}
+                  </p>
+                </div>
+              </div>
+
+              {/* Density Callout Stat Pill */}
+              <div
+                className="p-4 rounded-2xl border text-center relative overflow-hidden"
+                style={{
+                  borderColor: `${goldPrimary}50`,
+                  backgroundColor: `${goldPrimary}12`,
+                  boxShadow: `inset 0 0 20px ${goldGlow}`,
+                }}
+              >
+                <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-300 block mb-0.5">
+                  Ganho Folicular Documentado
+                </span>
+                <p className="text-xl sm:text-2xl font-mono font-bold text-white tracking-tight">
+                  {activeCase.densityIncrease}
+                </p>
+              </div>
+
+              {/* Physician CRM Verification */}
+              <div className="pt-3 border-t border-zinc-800/80 flex items-center space-x-2.5 text-xs text-zinc-300">
+                <UserCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span className="font-mono text-[11px] sm:text-xs">{activeCase.verifiedDoctor}</span>
+              </div>
+            </div>
+
+            {/* Quick Summary Pill below */}
+            <div className="p-4 rounded-2xl bg-zinc-950/80 border border-zinc-800/80 flex items-center justify-between text-xs font-mono text-zinc-400">
+              <span className="flex items-center gap-1.5 text-zinc-300">
+                <CheckCircle2 className="w-4 h-4 text-[#fae596]" />
+                Sem oleosidade tópica
+              </span>
+              <span className="flex items-center gap-1.5 text-zinc-300">
+                <CheckCircle2 className="w-4 h-4 text-[#fae596]" />
+                1 dose oral diária
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Gallery Thumbnails of All Available Clinical Cases */}
+        <div className="mt-14 pt-12 border-t border-zinc-800/80 max-w-5xl mx-auto">
+          <p className="text-center text-xs font-mono text-zinc-400 uppercase tracking-widest mb-6">
+            Explore Todos os Registros Clínicos da Linha
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {cases.map((c, idx) => {
+              const isSelected = activeCaseIndex === idx;
+              return (
+                <div
+                  key={c.id}
+                  onClick={() => {
+                    setActiveCaseIndex(idx);
+                    setSliderPosition(50);
+                    window.scrollTo({
+                      top: document.getElementById('resultados')?.offsetTop || 0,
+                      behavior: 'smooth',
+                    });
+                  }}
+                  className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex gap-4 items-center ${
+                    isSelected
+                      ? 'bg-zinc-900/90 shadow-xl'
+                      : 'bg-zinc-950/60 hover:bg-zinc-900/50 border-zinc-800/80 hover:border-zinc-700'
+                  }`}
+                  style={{
+                    borderColor: isSelected ? goldPrimary : 'rgba(39, 39, 42, 0.8)',
+                    boxShadow: isSelected ? `0 0 20px ${goldGlow}` : 'none',
+                  }}
+                >
+                  <div className="w-28 sm:w-36 aspect-[16/9] rounded-xl overflow-hidden bg-black shrink-0 border border-zinc-700/60">
+                    <img
+                      src={c.combinedImageUrl || '/images/foto-resultado-11-meses.png.png'}
+                      alt={c.patientName}
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (target.src.endsWith('.png.png')) {
+                          target.src = target.src.replace('.png.png', '.png');
+                        }
+                      }}
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono font-bold" style={{ color: goldPrimary }}>
+                        Caso 0{idx + 1}
+                      </span>
+                      <span className="text-[11px] font-mono text-zinc-400">{c.treatmentDuration}</span>
+                    </div>
+                    <p className="text-sm font-bold text-white truncate mt-0.5">{c.patientName}, {c.age} anos</p>
+                    <p className="text-xs font-mono text-emerald-400 font-semibold mt-1 truncate">
+                      {c.densityIncrease}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+      </div>
+    </section>
   );
 };
 

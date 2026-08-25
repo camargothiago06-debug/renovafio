@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { GenderMode } from '../types';
 import { CLINICAL_CASES } from '../data/productData';
-import { ScalpClinicalCanvas } from './ScalpClinicalCanvas';
 import {
   Sparkles,
   ShieldCheck,
@@ -190,11 +189,13 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
                 {/* Mode 1: Side by Side Real Clinical Photo */}
                 {viewMode === 'sideBySide' ? (
                   <div className="relative w-full aspect-[16/9] overflow-hidden bg-zinc-950 flex items-center justify-center">
-                    <ScalpClinicalCanvas
-                      gender={gender}
-                      caseIndex={activeCaseIndex}
-                      stage="combined"
-                      isZoomed={isZoomed}
+                    <img
+                      src={activeCase.combinedImageUrl}
+                      alt={`Fotografia Clínica ${activeCase.patientName} - ${activeCase.treatmentDuration}`}
+                      className={`w-full h-full object-contain transition-transform duration-300 ${
+                        isZoomed ? 'scale-125' : 'scale-100'
+                      }`}
+                      referrerPolicy="no-referrer"
                     />
                   </div>
                 ) : (
@@ -209,27 +210,39 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
                   >
                     {/* AFTER Layer (Right / Base background) */}
                     <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-zinc-950">
-                      <ScalpClinicalCanvas
-                        gender={gender}
-                        caseIndex={activeCaseIndex}
-                        stage="after"
-                        isZoomed={isZoomed}
+                      <img
+                        src={activeCase.afterImageUrl}
+                        alt={`${activeCase.afterLabel} - ${activeCase.patientName}`}
+                        className={`w-full h-full object-contain transition-transform duration-300 pointer-events-none select-none ${
+                          isZoomed ? 'scale-125' : 'scale-100'
+                        }`}
+                        referrerPolicy="no-referrer"
                       />
+                      {/* After Badge */}
+                      <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 z-10 px-3.5 py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-bold text-xs uppercase tracking-wider shadow-xl border border-[#eaa351] pointer-events-none">
+                        {activeCase.afterLabel}
+                      </div>
                     </div>
 
                     {/* BEFORE Layer (Left / Clipped smoothly via inset) */}
                     <div
-                      className="absolute inset-0 w-full h-full flex items-center justify-center bg-zinc-950 pointer-events-none"
+                      className="absolute inset-0 w-full h-full flex items-center justify-center bg-zinc-950 pointer-events-none overflow-hidden"
                       style={{
                         clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`
                       }}
                     >
-                      <ScalpClinicalCanvas
-                        gender={gender}
-                        caseIndex={activeCaseIndex}
-                        stage="before"
-                        isZoomed={isZoomed}
+                      <img
+                        src={activeCase.beforeImageUrl}
+                        alt={`${activeCase.beforeLabel} - ${activeCase.patientName}`}
+                        className={`w-full h-full object-contain transition-transform duration-300 pointer-events-none select-none ${
+                          isZoomed ? 'scale-125' : 'scale-100'
+                        }`}
+                        referrerPolicy="no-referrer"
                       />
+                      {/* Before Badge */}
+                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 z-10 px-3.5 py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-bold text-xs uppercase tracking-wider shadow-xl border border-[#eaa351] pointer-events-none">
+                        {activeCase.beforeLabel}
+                      </div>
                     </div>
 
                     {/* Golden Glowing Divider Line & Center Drag Handle */}
