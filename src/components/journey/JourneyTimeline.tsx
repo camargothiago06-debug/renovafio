@@ -144,19 +144,19 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
       {/* Section Title */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
-          <h2 className="font-display text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-            <Calendar className="w-5 h-5" style={{ color: goldPrimary }} />
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white flex items-center gap-2.5">
+            <Calendar className="w-6 h-6" style={{ color: goldPrimary }} />
             Linha do Tempo de Evolução Folicular
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 font-light mt-0.5">
+          <p className="text-sm sm:text-base text-zinc-300 font-light mt-1">
             Selecione uma etapa para registrar fotos, acompanhar mudanças esperadas e registrar notas do seu protocolo.
           </p>
         </div>
       </div>
 
       {/* Interactive Horizontal / Responsive Stepper Bar */}
-      <div className="w-full bg-[#0d0d12]/90 border border-zinc-800/80 rounded-2xl p-3 sm:p-4 backdrop-blur-md overflow-x-auto no-scrollbar">
-        <div className="min-w-[650px] flex items-center justify-between relative px-4">
+      <div className="w-full bg-[#0d0d12]/90 border border-zinc-800/80 rounded-2xl p-4 sm:p-5 backdrop-blur-md overflow-x-auto no-scrollbar">
+        <div className="min-w-[680px] flex items-center justify-between relative px-4">
           
           {/* Connector Line behind steps */}
           <div className="absolute left-8 right-8 top-1/2 -translate-y-1/2 h-1 bg-zinc-800 z-0" />
@@ -172,13 +172,13 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
               <button
                 key={milestone.stageKey}
                 onClick={() => onSelectStageKey(milestone.stageKey)}
-                className={`relative z-10 flex flex-col items-center group cursor-pointer transition-all p-2 rounded-xl ${
+                className={`relative z-10 flex flex-col items-center group cursor-pointer transition-all p-2.5 rounded-xl ${
                   isSelected ? 'scale-105' : 'hover:scale-102 opacity-85 hover:opacity-100'
                 }`}
               >
                 {/* Node Circle */}
                 <div
-                  className={`w-11 h-11 rounded-full flex items-center justify-center font-mono font-bold text-xs transition-all duration-300 shadow-xl border-2 ${
+                  className={`w-12 h-12 rounded-full flex items-center justify-center font-mono font-bold text-sm transition-all duration-300 shadow-xl border-2 ${
                     isCompleted
                       ? 'bg-emerald-950/90 text-emerald-300 border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)]'
                       : isInProgress
@@ -205,16 +205,16 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
                 </div>
 
                 {/* Node Labels */}
-                <div className="mt-2 text-center">
+                <div className="mt-2.5 text-center">
                   <div
-                    className={`font-display text-xs font-bold transition-colors ${
+                    className={`font-display text-sm sm:text-base font-bold transition-colors ${
                       isSelected ? 'text-white' : 'text-zinc-400 group-hover:text-zinc-200'
                     }`}
                   >
                     {milestone.shortLabel}
                   </div>
-                  <div className="text-[10px] font-mono text-zinc-400 flex items-center justify-center gap-1 mt-0.5">
-                    {hasPhoto && <Camera className="w-2.5 h-2.5 text-amber-400" />}
+                  <div className="text-xs font-mono text-zinc-400 flex items-center justify-center gap-1 mt-0.5">
+                    {hasPhoto && <Camera className="w-3.5 h-3.5 text-amber-400" />}
                     <span>
                       {isCompleted
                         ? milestone.completedDate || 'Concluído'
@@ -230,7 +230,7 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
                 {/* Active Indicator Ring */}
                 {isSelected && (
                   <div
-                    className="absolute -bottom-2 w-8 h-1 rounded-full"
+                    className="absolute -bottom-2 w-10 h-1 rounded-full"
                     style={{ backgroundColor: goldPrimary }}
                   />
                 )}
@@ -241,14 +241,14 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
       </div>
 
       {/* Active Stage Detailed Management Card */}
-      <div className="w-full bg-[#0c0c10] border border-zinc-800 rounded-3xl p-5 sm:p-8 backdrop-blur-xl space-y-8 relative overflow-hidden">
+      <div className="w-full bg-[#0c0c10] border border-zinc-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl space-y-8 relative overflow-hidden">
         
         {/* Header of Active Stage */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-zinc-800/80">
           <div>
-            <div className="flex items-center gap-2 mb-1.5">
+            <div className="flex items-center gap-2.5 mb-2">
               <span
-                className={`px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider border flex items-center gap-1.5 ${
+                className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-mono font-bold uppercase tracking-wider border flex items-center gap-1.5 ${
                   activeMilestone.status === 'concluido'
                     ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                     : activeMilestone.status === 'atrasado'
@@ -256,23 +256,23 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
                     : 'bg-amber-500/10 text-amber-300 border-amber-500/30'
                 }`}
               >
-                {activeMilestone.status === 'concluido' && <CheckCircle2 className="w-3.5 h-3.5" />}
-                {activeMilestone.status === 'atrasado' && <AlertCircle className="w-3.5 h-3.5" />}
-                {activeMilestone.status === 'em_andamento' && <Clock className="w-3.5 h-3.5" />}
+                {activeMilestone.status === 'concluido' && <CheckCircle2 className="w-4 h-4" />}
+                {activeMilestone.status === 'atrasado' && <AlertCircle className="w-4 h-4" />}
+                {activeMilestone.status === 'em_andamento' && <Clock className="w-4 h-4" />}
                 Status: {activeMilestone.status === 'concluido' ? 'Concluído' : activeMilestone.status === 'atrasado' ? 'Atrasado' : activeMilestone.status === 'em_andamento' ? 'Em Andamento' : 'Próxima Etapa'}
               </span>
 
               {activeMilestone.completedDate && (
-                <span className="text-xs font-mono text-zinc-400">
+                <span className="text-xs sm:text-sm font-mono text-zinc-400">
                   Registrado em: {activeMilestone.completedDate}
                 </span>
               )}
             </div>
 
-            <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white">
               {activeMilestone.title}
             </h3>
-            <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+            <p className="text-sm sm:text-base text-zinc-300 mt-1.5">
               {activeMilestone.clinicalGuidelines.phaseName} • {activeMilestone.clinicalGuidelines.description}
             </p>
           </div>
@@ -281,7 +281,7 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => handleToggleStatus(activeMilestone.stageKey)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 border cursor-pointer ${
+              className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 border cursor-pointer ${
                 activeMilestone.status === 'concluido'
                   ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:text-white'
                   : 'bg-emerald-600 hover:bg-emerald-500 text-white border-emerald-500 shadow-lg shadow-emerald-950/50'
@@ -289,12 +289,12 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
             >
               {activeMilestone.status === 'concluido' ? (
                 <>
-                  <RotateCcw className="w-3.5 h-3.5" />
+                  <RotateCcw className="w-4 h-4" />
                   Reabrir Etapa
                 </>
               ) : (
                 <>
-                  <Check className="w-3.5 h-3.5" />
+                  <Check className="w-4 h-4" />
                   Marcar como Concluída
                 </>
               )}
@@ -308,16 +308,16 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
           {/* Column 1 (Left 5 cols): Photo Upload & Preview */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center justify-between">
-              <label className="text-sm font-display font-bold text-white flex items-center gap-2">
-                <Camera className="w-4 h-4" style={{ color: goldPrimary }} />
+              <label className="text-base sm:text-lg font-display font-bold text-white flex items-center gap-2">
+                <Camera className="w-5 h-5" style={{ color: goldPrimary }} />
                 Fotografia da Etapa ({activeMilestone.shortLabel})
               </label>
               {activeMilestone.photoUrl && (
                 <button
                   onClick={() => onOpenComparatorWithStage(activeMilestone.stageKey)}
-                  className="text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1 font-medium cursor-pointer"
+                  className="text-xs sm:text-sm text-amber-400 hover:text-amber-300 flex items-center gap-1 font-medium cursor-pointer"
                 >
-                  <Eye className="w-3.5 h-3.5" /> Comparar
+                  <Eye className="w-4 h-4" /> Comparar
                 </button>
               )}
             </div>
@@ -340,22 +340,22 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
                       setActiveUploadStage(activeMilestone.stageKey);
                       fileInputRef.current?.click();
                     }}
-                    className="px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold flex items-center gap-1.5 border border-zinc-600 transition-colors cursor-pointer"
+                    className="px-3.5 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-xs sm:text-sm font-bold flex items-center gap-1.5 border border-zinc-600 transition-colors cursor-pointer"
                   >
-                    <Upload className="w-3.5 h-3.5" />
+                    <Upload className="w-4 h-4" />
                     Substituir
                   </button>
                   <button
                     onClick={() => handleRemovePhoto(activeMilestone.stageKey)}
-                    className="px-3 py-1.5 rounded-lg bg-rose-900/80 hover:bg-rose-800 text-white text-xs font-bold flex items-center gap-1.5 border border-rose-700 transition-colors cursor-pointer"
+                    className="px-3.5 py-2 rounded-lg bg-rose-900/80 hover:bg-rose-800 text-white text-xs sm:text-sm font-bold flex items-center gap-1.5 border border-rose-700 transition-colors cursor-pointer"
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
+                    <Trash2 className="w-4 h-4" />
                     Remover
                   </button>
                 </div>
 
                 {/* Badge Bottom Corner */}
-                <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded-md bg-black/80 border border-zinc-700 text-[11px] font-mono text-zinc-300">
+                <div className="absolute bottom-2 left-2 px-3 py-1 rounded-md bg-black/80 border border-zinc-700 text-xs font-mono text-zinc-300">
                   {activeMilestone.shortLabel} • {activeMilestone.completedDate || 'Registrado'}
                 </div>
               </div>
@@ -377,17 +377,17 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
                     : 'border-zinc-800 hover:border-zinc-600 bg-zinc-950/60 hover:bg-zinc-900/40'
                 }`}
               >
-                <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 mb-3 group-hover:text-white">
-                  <Upload className="w-6 h-6" />
+                <div className="w-14 h-14 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 mb-3 group-hover:text-white">
+                  <Upload className="w-7 h-7" />
                 </div>
-                <p className="text-sm font-medium text-white">
+                <p className="text-base sm:text-lg font-medium text-white">
                   Arraste ou clique para enviar a foto do {activeMilestone.shortLabel}
                 </p>
-                <p className="text-xs text-zinc-400 mt-1">
+                <p className="text-xs sm:text-sm text-zinc-300 mt-1">
                   Formatos aceitos: JPG, PNG, WEBP (Máximo 5 MB)
                 </p>
-                <div className="mt-4 px-3 py-1 rounded-full bg-zinc-900/80 border border-zinc-800 text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                <div className="mt-4 px-3.5 py-1.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-xs font-mono text-zinc-400 flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                   Armazenada localmente e 100% privada
                 </div>
               </div>
@@ -395,7 +395,7 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
 
             {/* Error Message */}
             {uploadError && (
-              <div className="p-3 rounded-xl bg-rose-950/50 border border-rose-800 text-rose-300 text-xs flex items-center gap-2">
+              <div className="p-3.5 rounded-xl bg-rose-950/50 border border-rose-800 text-rose-300 text-xs sm:text-sm flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{uploadError}</span>
               </div>
@@ -406,8 +406,8 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
           <div className="lg:col-span-7 space-y-6">
             
             {/* Clinical Guidance Box */}
-            <div className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800/90 space-y-4">
-              <div className="flex items-center justify-between text-xs font-mono text-zinc-400 border-b border-zinc-800 pb-2">
+            <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800/90 space-y-4">
+              <div className="flex items-center justify-between text-xs sm:text-sm font-mono text-zinc-400 border-b border-zinc-800 pb-2.5">
                 <span className="flex items-center gap-1.5 text-zinc-200 font-bold uppercase">
                   <Info className="w-4 h-4 text-[#D4AF37]" />
                   Guia Fisiológico desta Etapa
@@ -416,18 +416,18 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
               </div>
 
               <div>
-                <h4 className="text-sm font-bold text-white">O que esperar nesta fase:</h4>
-                <p className="text-xs sm:text-sm text-zinc-300 font-light mt-1 leading-relaxed">
+                <h4 className="text-base font-bold text-white">O que esperar nesta fase:</h4>
+                <p className="text-sm sm:text-base text-zinc-300 font-light mt-1.5 leading-relaxed">
                   {activeMilestone.clinicalGuidelines.whatToExpect}
                 </p>
               </div>
 
               <div>
-                <h4 className="text-sm font-bold text-white mb-2">Recomendações Práticas:</h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-zinc-400">
+                <h4 className="text-base font-bold text-white mb-2">Recomendações Práticas:</h4>
+                <ul className="space-y-2 text-sm sm:text-base text-zinc-300">
                   {activeMilestone.clinicalGuidelines.careTips.map((tip, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 shrink-0" />
+                    <li key={idx} className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#D4AF37] mt-2 shrink-0" />
                       <span>{tip}</span>
                     </li>
                   ))}
@@ -436,14 +436,14 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
             </div>
 
             {/* Client Notes Textarea */}
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-display font-bold text-white flex items-center gap-2">
+                <label className="text-base sm:text-lg font-display font-bold text-white flex items-center gap-2">
                   Anotações Pessoais & Sintomas ({activeMilestone.shortLabel})
                 </label>
                 {saveSuccessMap[activeMilestone.stageKey] && (
-                  <span className="text-xs text-emerald-400 flex items-center gap-1 font-mono">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> Salvo com sucesso!
+                  <span className="text-xs sm:text-sm text-emerald-400 flex items-center gap-1 font-mono">
+                    <CheckCircle2 className="w-4 h-4" /> Salvo com sucesso!
                   </span>
                 )}
               </div>
@@ -460,15 +460,15 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
                 }}
                 placeholder="Ex: Notei que os fios estão menos oleosos, menos queda no banho e fios novos nascendo na risca..."
                 rows={3}
-                className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-white placeholder-zinc-400 focus:outline-none focus:border-[#D4AF37] transition-colors resize-none"
+                className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-800 text-sm sm:text-base text-white placeholder-zinc-400 focus:outline-none focus:border-[#D4AF37] transition-colors resize-none leading-relaxed"
               />
 
               <div className="flex justify-end">
                 <button
                   onClick={() => handleSaveNotes(activeMilestone.stageKey)}
-                  className="px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer border border-zinc-700"
+                  className="px-5 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white text-xs sm:text-sm font-bold flex items-center gap-2 transition-colors cursor-pointer border border-zinc-700"
                 >
-                  <Save className="w-3.5 h-3.5" />
+                  <Save className="w-4 h-4" />
                   Salvar Anotações
                 </button>
               </div>

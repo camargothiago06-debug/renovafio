@@ -97,52 +97,52 @@ export const CustomerJourneySection: React.FC<CustomerJourneySectionProps> = ({
       />
 
       {/* Sub-Navigation Tabs inside Journey Area */}
-      <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-2 p-1.5 rounded-2xl bg-[#0b0b0f] border border-zinc-800">
+      <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-2.5 p-2 rounded-2xl bg-[#0b0b0f] border border-zinc-800">
         <button
           onClick={() => setActiveSubView('timeline')}
-          className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shrink-0 cursor-pointer ${
+          className={`px-5 py-3 rounded-xl text-sm sm:text-base font-bold transition-all flex items-center gap-2.5 shrink-0 cursor-pointer ${
             activeSubView === 'timeline'
               ? 'bg-zinc-800 text-white shadow-md border border-zinc-700'
               : 'text-zinc-400 hover:text-zinc-200'
           }`}
         >
-          <Calendar className="w-4 h-4" style={activeSubView === 'timeline' ? { color: goldPrimary } : {}} />
+          <Calendar className="w-5 h-5" style={activeSubView === 'timeline' ? { color: goldPrimary } : {}} />
           <span>Linha do Tempo</span>
         </button>
 
         <button
           onClick={() => setActiveSubView('comparator')}
-          className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shrink-0 cursor-pointer ${
+          className={`px-5 py-3 rounded-xl text-sm sm:text-base font-bold transition-all flex items-center gap-2.5 shrink-0 cursor-pointer ${
             activeSubView === 'comparator'
               ? 'bg-zinc-800 text-white shadow-md border border-zinc-700'
               : 'text-zinc-400 hover:text-zinc-200'
           }`}
         >
-          <Layers className="w-4 h-4" style={activeSubView === 'comparator' ? { color: goldPrimary } : {}} />
+          <Layers className="w-5 h-5" style={activeSubView === 'comparator' ? { color: goldPrimary } : {}} />
           <span>Comparador de Evolução</span>
         </button>
 
         <button
           onClick={() => setActiveSubView('reminders')}
-          className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shrink-0 cursor-pointer ${
+          className={`px-5 py-3 rounded-xl text-sm sm:text-base font-bold transition-all flex items-center gap-2.5 shrink-0 cursor-pointer ${
             activeSubView === 'reminders'
               ? 'bg-zinc-800 text-white shadow-md border border-zinc-700'
               : 'text-zinc-400 hover:text-zinc-200'
           }`}
         >
-          <Bell className="w-4 h-4" style={activeSubView === 'reminders' ? { color: goldPrimary } : {}} />
+          <Bell className="w-5 h-5" style={activeSubView === 'reminders' ? { color: goldPrimary } : {}} />
           <span>Lembretes & Posologia</span>
         </button>
 
         <button
           onClick={() => setActiveSubView('history')}
-          className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shrink-0 cursor-pointer ${
+          className={`px-5 py-3 rounded-xl text-sm sm:text-base font-bold transition-all flex items-center gap-2.5 shrink-0 cursor-pointer ${
             activeSubView === 'history'
               ? 'bg-zinc-800 text-white shadow-md border border-zinc-700'
               : 'text-zinc-400 hover:text-zinc-200'
           }`}
         >
-          <History className="w-4 h-4" style={activeSubView === 'history' ? { color: goldPrimary } : {}} />
+          <History className="w-5 h-5" style={activeSubView === 'history' ? { color: goldPrimary } : {}} />
           <span>Histórico & Relatório</span>
         </button>
       </div>

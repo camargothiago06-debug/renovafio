@@ -100,11 +100,11 @@ export const JourneyVisualComparator: React.FC<JourneyVisualComparatorProps> = (
       {/* Comparator Header & Controls */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="font-display text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-            <Layers className="w-5 h-5" style={{ color: goldPrimary }} />
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white flex items-center gap-2.5">
+            <Layers className="w-6 h-6" style={{ color: goldPrimary }} />
             Comparador Visual de Evolução Pessoal
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 font-light mt-0.5">
+          <p className="text-sm sm:text-base text-zinc-300 font-light mt-1">
             Selecione dois momentos da sua jornada para confrontar a densidade capilar e cobertura do couro cabeludo.
           </p>
         </div>
@@ -115,24 +115,24 @@ export const JourneyVisualComparator: React.FC<JourneyVisualComparatorProps> = (
           <div className="p-1 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center gap-1">
             <button
               onClick={() => setViewMode('slider')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
                 viewMode === 'slider'
                   ? 'bg-zinc-800 text-white shadow-sm border border-zinc-700'
                   : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
-              <SlidersHorizontal className="w-3.5 h-3.5" />
+              <SlidersHorizontal className="w-4 h-4" />
               Divisor Interativo
             </button>
             <button
               onClick={() => setViewMode('sideBySide')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
                 viewMode === 'sideBySide'
                   ? 'bg-zinc-800 text-white shadow-sm border border-zinc-700'
                   : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
-              <Columns className="w-3.5 h-3.5" />
+              <Columns className="w-4 h-4" />
               Lado a Lado
             </button>
           </div>
@@ -140,7 +140,7 @@ export const JourneyVisualComparator: React.FC<JourneyVisualComparatorProps> = (
           {/* Zoom Toggle */}
           <button
             onClick={() => setIsZoomed(!isZoomed)}
-            className={`p-2 rounded-xl border text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
+            className={`p-2.5 rounded-xl border text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
               isZoomed
                 ? 'bg-amber-500/20 text-amber-300 border-amber-500/50'
                 : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white'
@@ -154,20 +154,20 @@ export const JourneyVisualComparator: React.FC<JourneyVisualComparatorProps> = (
       </div>
 
       {/* Stage Selectors Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-[#0c0c10] border border-zinc-800">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 rounded-2xl bg-[#0c0c10] border border-zinc-800">
         
         {/* Left Stage Selector (Before) */}
         <div className="space-y-1.5">
-          <label className="text-xs font-mono text-zinc-400 uppercase tracking-wider flex items-center justify-between">
+          <label className="text-xs sm:text-sm font-mono text-zinc-300 uppercase tracking-wider flex items-center justify-between">
             <span>Imagem Base (Antes / Inicial):</span>
-            <span className="text-[10px] text-zinc-400">
+            <span className="text-xs text-zinc-400">
               {beforeMilestone.completedDate || 'Sem data'}
             </span>
           </label>
           <select
             value={beforeStageKey}
             onChange={(e) => setBeforeStageKey(e.target.value as CustomerJourneyProfile['currentStageKey'])}
-            className="w-full px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-700 text-sm text-white focus:outline-none focus:border-[#D4AF37] cursor-pointer"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-sm sm:text-base text-white focus:outline-none focus:border-[#D4AF37] cursor-pointer"
           >
             {profile.milestones.map((m) => (
               <option key={m.stageKey} value={m.stageKey}>
@@ -179,16 +179,16 @@ export const JourneyVisualComparator: React.FC<JourneyVisualComparatorProps> = (
 
         {/* Right Stage Selector (After) */}
         <div className="space-y-1.5">
-          <label className="text-xs font-mono text-zinc-400 uppercase tracking-wider flex items-center justify-between">
+          <label className="text-xs sm:text-sm font-mono text-zinc-300 uppercase tracking-wider flex items-center justify-between">
             <span>Imagem de Evolução (Depois / Atual):</span>
-            <span className="text-[10px] text-zinc-400">
+            <span className="text-xs text-zinc-400">
               {afterMilestone.completedDate || 'Sem data'}
             </span>
           </label>
           <select
             value={afterStageKey}
             onChange={(e) => setAfterStageKey(e.target.value as CustomerJourneyProfile['currentStageKey'])}
-            className="w-full px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-700 text-sm text-white focus:outline-none focus:border-[#D4AF37] cursor-pointer"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-sm sm:text-base text-white focus:outline-none focus:border-[#D4AF37] cursor-pointer"
           >
             {profile.milestones.map((m) => (
               <option key={m.stageKey} value={m.stageKey}>
@@ -216,8 +216,8 @@ export const JourneyVisualComparator: React.FC<JourneyVisualComparatorProps> = (
                   isZoomed ? 'scale-125' : 'scale-100'
                 }`}
               />
-              <div className="absolute bottom-3 left-3 px-3 py-1.5 rounded-lg bg-black/80 border border-zinc-700 backdrop-blur-md text-xs font-mono text-white font-bold flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-amber-400" />
+              <div className="absolute bottom-3 left-3 px-3.5 py-1.5 rounded-lg bg-black/80 border border-zinc-700 backdrop-blur-md text-xs sm:text-sm font-mono text-white font-bold flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
                 {beforeMilestone.shortLabel} {beforeMilestone.completedDate ? `(${beforeMilestone.completedDate})` : ''}
               </div>
             </div>
@@ -231,8 +231,8 @@ export const JourneyVisualComparator: React.FC<JourneyVisualComparatorProps> = (
                   isZoomed ? 'scale-125' : 'scale-100'
                 }`}
               />
-              <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-lg bg-[#D4AF37] text-black font-bold text-xs font-mono shadow-lg flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5" />
+              <div className="absolute bottom-3 right-3 px-3.5 py-1.5 rounded-lg bg-[#D4AF37] text-black font-bold text-xs sm:text-sm font-mono shadow-lg flex items-center gap-1.5">
+                <Sparkles className="w-4 h-4" />
                 {afterMilestone.shortLabel} {afterMilestone.completedDate ? `(${afterMilestone.completedDate})` : ''}
               </div>
             </div>
@@ -256,7 +256,7 @@ export const JourneyVisualComparator: React.FC<JourneyVisualComparatorProps> = (
                 }`}
               />
               {/* After Badge Right */}
-              <div className="absolute bottom-4 right-4 z-10 px-3.5 py-1.5 rounded-lg bg-[#D4AF37] text-black font-mono font-bold text-xs uppercase tracking-wider shadow-xl border border-amber-300 pointer-events-none">
+              <div className="absolute bottom-4 right-4 z-10 px-4 py-2 rounded-lg bg-[#D4AF37] text-black font-mono font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl border border-amber-300 pointer-events-none">
                 {afterMilestone.shortLabel}
               </div>
             </div>
@@ -276,7 +276,7 @@ export const JourneyVisualComparator: React.FC<JourneyVisualComparatorProps> = (
                 }`}
               />
               {/* Before Badge Left */}
-              <div className="absolute bottom-4 left-4 z-10 px-3.5 py-1.5 rounded-lg bg-zinc-900/90 text-zinc-200 font-mono font-bold text-xs uppercase tracking-wider shadow-xl border border-zinc-700 pointer-events-none">
+              <div className="absolute bottom-4 left-4 z-10 px-4 py-2 rounded-lg bg-zinc-900/90 text-zinc-200 font-mono font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl border border-zinc-700 pointer-events-none">
                 {beforeMilestone.shortLabel}
               </div>
             </div>
@@ -293,14 +293,14 @@ export const JourneyVisualComparator: React.FC<JourneyVisualComparatorProps> = (
             </div>
 
             {/* Drag helper hint overlay */}
-            <div className="absolute top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/60 border border-zinc-700 backdrop-blur-md text-[10px] font-mono text-zinc-300 pointer-events-none">
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 px-3.5 py-1.5 rounded-full bg-black/60 border border-zinc-700 backdrop-blur-md text-xs font-mono text-zinc-200 pointer-events-none">
               Arraste para comparar os folículos
             </div>
           </div>
         )}
 
         {/* Footer info inside comparator */}
-        <div className="p-4 bg-[#0d0d12] border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-400 gap-2">
+        <div className="p-4 bg-[#0d0d12] border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between text-xs sm:text-sm text-zinc-300 gap-2">
           <div className="flex items-center gap-1.5">
             <Info className="w-4 h-4 text-amber-400 shrink-0" />
             <span>
@@ -311,9 +311,9 @@ export const JourneyVisualComparator: React.FC<JourneyVisualComparatorProps> = (
           {(!beforeMilestone.photoUrl || !afterMilestone.photoUrl) && onOpenStageToUpload && (
             <button
               onClick={() => onOpenStageToUpload(!beforeMilestone.photoUrl ? beforeStageKey : afterStageKey)}
-              className="text-xs text-[#D4AF37] hover:underline flex items-center gap-1 font-bold cursor-pointer"
+              className="text-xs sm:text-sm text-[#D4AF37] hover:underline flex items-center gap-1.5 font-bold cursor-pointer"
             >
-              <Camera className="w-3.5 h-3.5" /> Adicionar fotos reais da sua evolução
+              <Camera className="w-4 h-4" /> Adicionar fotos reais da sua evolução
             </button>
           )}
         </div>

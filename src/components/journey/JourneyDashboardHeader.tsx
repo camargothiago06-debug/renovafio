@@ -61,21 +61,21 @@ export const JourneyDashboardHeader: React.FC<JourneyDashboardHeaderProps> = ({
       {/* Top Welcome & Interactive Simulator Switcher */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-2 border-b border-zinc-800/60">
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-2 mb-1.5">
             <span
-              className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider uppercase border inline-flex items-center gap-1.5"
+              className="px-3 py-1 rounded-full text-xs sm:text-sm font-mono font-bold tracking-wider uppercase border inline-flex items-center gap-1.5"
               style={{
                 backgroundColor: isFemale ? 'rgba(226, 169, 153, 0.15)' : 'rgba(212, 175, 55, 0.15)',
                 borderColor: isFemale ? 'rgba(226, 169, 153, 0.4)' : 'rgba(212, 175, 55, 0.4)',
                 color: isFemale ? '#ffdcd3' : '#fae596',
               }}
             >
-              <Sparkles className="w-3 h-3" />
+              <Sparkles className="w-3.5 h-3.5" />
               Área Exclusiva de Acompanhamento
             </span>
-            <span className="text-zinc-400 text-xs font-mono hidden sm:inline">•</span>
-            <span className="text-zinc-400 text-xs font-mono hidden sm:inline flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="text-zinc-400 text-sm font-mono hidden sm:inline">•</span>
+            <span className="text-zinc-400 text-xs sm:text-sm font-mono hidden sm:inline flex items-center gap-1">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
               Privacidade Local Criptografada
             </span>
           </div>
@@ -87,12 +87,12 @@ export const JourneyDashboardHeader: React.FC<JourneyDashboardHeaderProps> = ({
                   type="text"
                   value={nameInput}
                   onChange={(e) => setNameInput(e.target.value)}
-                  className="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-700 text-white font-display text-lg focus:outline-none focus:border-[#D4AF37]"
+                  className="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-700 text-white font-display text-xl sm:text-2xl focus:outline-none focus:border-[#D4AF37]"
                   autoFocus
                 />
                 <button
                   onClick={handleSaveName}
-                  className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors"
+                  className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold transition-colors"
                 >
                   Salvar
                 </button>
@@ -104,7 +104,7 @@ export const JourneyDashboardHeader: React.FC<JourneyDashboardHeaderProps> = ({
                 </h1>
                 <button
                   onClick={() => setIsEditingName(true)}
-                  className="p-1.5 rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 transition-colors"
+                  className="p-2 rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 transition-colors"
                   title="Editar nome"
                 >
                   <Edit2 className="w-4 h-4" />
@@ -112,39 +112,39 @@ export const JourneyDashboardHeader: React.FC<JourneyDashboardHeaderProps> = ({
               </div>
             )}
           </div>
-          <p className="text-sm text-zinc-400 mt-1 max-w-2xl font-light">
+          <p className="text-sm sm:text-base text-zinc-300 mt-1.5 max-w-3xl font-light leading-relaxed">
             Monitore a evolução dos seus folículos, compare fotografias padronizadas e receba orientações fisiológicas a cada etapa do tratamento.
           </p>
         </div>
 
         {/* State Presets Simulator (Quick switch for testing all states) */}
-        <div className="bg-[#111116] p-2 sm:p-2.5 rounded-2xl border border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center gap-2 shrink-0">
-          <span className="text-[11px] font-mono text-zinc-400 px-2 uppercase tracking-wider flex items-center gap-1.5">
-            <RefreshCw className="w-3 h-3 text-zinc-400" />
+        <div className="bg-[#111116] p-2.5 sm:p-3 rounded-2xl border border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center gap-2.5 shrink-0">
+          <span className="text-xs font-mono text-zinc-400 px-2 uppercase tracking-wider flex items-center gap-1.5">
+            <RefreshCw className="w-3.5 h-3.5 text-zinc-400" />
             Modo de Demonstração:
           </span>
-          <div className="flex flex-wrap items-center gap-1">
+          <div className="flex flex-wrap items-center gap-1.5">
             <button
               onClick={() => onSelectPreset('3_meses')}
-              className="px-2.5 py-1 rounded-lg text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white border border-zinc-700 transition-colors cursor-pointer"
+              className="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white border border-zinc-700 transition-colors cursor-pointer"
             >
               3º Mês (Ativo)
             </button>
             <button
               onClick={() => onSelectPreset('novo_cliente')}
-              className="px-2.5 py-1 rounded-lg text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white border border-zinc-700 transition-colors cursor-pointer"
+              className="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white border border-zinc-700 transition-colors cursor-pointer"
             >
               Novo Início
             </button>
             <button
               onClick={() => onSelectPreset('atrasado')}
-              className="px-2.5 py-1 rounded-lg text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-amber-300 hover:text-amber-200 border border-amber-500/30 transition-colors cursor-pointer"
+              className="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-zinc-800 hover:bg-zinc-700 text-amber-300 hover:text-amber-200 border border-amber-500/30 transition-colors cursor-pointer"
             >
               Atrasado
             </button>
             <button
               onClick={() => onSelectPreset('completo')}
-              className="px-2.5 py-1 rounded-lg text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-emerald-300 hover:text-emerald-200 border border-emerald-500/30 transition-colors cursor-pointer"
+              className="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-zinc-800 hover:bg-zinc-700 text-emerald-300 hover:text-emerald-200 border border-emerald-500/30 transition-colors cursor-pointer"
             >
               11 Meses Pleno
             </button>
@@ -153,40 +153,40 @@ export const JourneyDashboardHeader: React.FC<JourneyDashboardHeaderProps> = ({
       </div>
 
       {/* Main Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         
         {/* Card 1: Protocol & Month */}
-        <div className="p-5 rounded-2xl bg-[#0f0f13]/90 border border-zinc-800/80 backdrop-blur-md relative overflow-hidden flex flex-col justify-between">
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#0f0f13]/90 border border-zinc-800/80 backdrop-blur-md relative overflow-hidden flex flex-col justify-between space-y-4">
           <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
-              <span className="flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5" style={{ color: goldPrimary }} />
+            <div className="flex items-center justify-between text-xs sm:text-sm font-mono text-zinc-400">
+              <span className="flex items-center gap-1.5 font-medium">
+                <Sparkles className="w-4 h-4" style={{ color: goldPrimary }} />
                 Protocolo Ativo
               </span>
-              <span className="px-2 py-0.5 rounded-md bg-zinc-800/80 text-zinc-300 text-[11px] font-bold">
+              <span className="px-2.5 py-0.5 rounded-md bg-zinc-800/80 text-zinc-200 text-xs font-bold">
                 {profile.currentMonth}º Mês
               </span>
             </div>
-            <h3 className="font-display font-bold text-base text-white leading-snug line-clamp-2">
+            <h3 className="font-display font-bold text-lg sm:text-xl text-white leading-snug">
               {profile.protocolName}
             </h3>
           </div>
 
-          <div className="pt-4 mt-2 border-t border-zinc-800/50 flex items-center justify-between text-xs text-zinc-400 font-mono">
+          <div className="pt-3.5 border-t border-zinc-800/50 flex items-center justify-between text-xs sm:text-sm text-zinc-400 font-mono">
             <span>Início:</span>
-            <span className="text-zinc-200 font-medium">{profile.startDate}</span>
+            <span className="text-zinc-200 font-semibold">{profile.startDate}</span>
           </div>
         </div>
 
         {/* Card 2: Visual Progress */}
-        <div className="p-5 rounded-2xl bg-[#0f0f13]/90 border border-zinc-800/80 backdrop-blur-md flex flex-col justify-between">
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
-              <span className="flex items-center gap-1.5">
-                <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#0f0f13]/90 border border-zinc-800/80 backdrop-blur-md flex flex-col justify-between space-y-4">
+          <div className="space-y-2.5">
+            <div className="flex items-center justify-between text-xs sm:text-sm font-mono text-zinc-400">
+              <span className="flex items-center gap-1.5 font-medium">
+                <TrendingUp className="w-4 h-4 text-emerald-400" />
                 Progresso Clínico
               </span>
-              <span className="text-xs font-bold font-mono" style={{ color: goldPrimary }}>
+              <span className="text-sm font-bold font-mono" style={{ color: goldPrimary }}>
                 {progressPercent}%
               </span>
             </div>
@@ -204,7 +204,7 @@ export const JourneyDashboardHeader: React.FC<JourneyDashboardHeaderProps> = ({
             </div>
           </div>
 
-          <div className="pt-4 mt-2 border-t border-zinc-800/50 flex items-center justify-between text-xs text-zinc-400">
+          <div className="pt-3.5 border-t border-zinc-800/50 flex items-center justify-between text-xs sm:text-sm text-zinc-400">
             <span>Etapas concluídas:</span>
             <span className="text-zinc-200 font-mono font-bold">
               {completedCount} de {profile.milestones.length} marcos
@@ -215,16 +215,16 @@ export const JourneyDashboardHeader: React.FC<JourneyDashboardHeaderProps> = ({
         {/* Card 3: Next Recommended Milestone */}
         <div
           onClick={() => currentMilestone && onSelectStage(currentMilestone.stageKey)}
-          className="p-5 rounded-2xl bg-[#0f0f13]/90 border border-zinc-800/80 backdrop-blur-md flex flex-col justify-between hover:border-zinc-700 transition-all cursor-pointer group"
+          className="p-5 sm:p-6 rounded-2xl bg-[#0f0f13]/90 border border-zinc-800/80 backdrop-blur-md flex flex-col justify-between hover:border-zinc-700 transition-all cursor-pointer group space-y-4"
         >
           <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
-              <span className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-amber-400" />
+            <div className="flex items-center justify-between text-xs sm:text-sm font-mono text-zinc-400">
+              <span className="flex items-center gap-1.5 font-medium">
+                <Clock className="w-4 h-4 text-amber-400" />
                 Próxima Etapa
               </span>
               <span
-                className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider ${
+                className={`px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider ${
                   currentMilestone.status === 'concluido'
                     ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
                     : currentMilestone.status === 'atrasado'
@@ -236,47 +236,47 @@ export const JourneyDashboardHeader: React.FC<JourneyDashboardHeaderProps> = ({
               </span>
             </div>
 
-            <h3 className="font-display font-bold text-base text-white group-hover:text-[#fae596] transition-colors line-clamp-1">
+            <h3 className="font-display font-bold text-lg text-white group-hover:text-[#fae596] transition-colors line-clamp-1">
               {currentMilestone.shortLabel} — {currentMilestone.clinicalGuidelines.phaseName}
             </h3>
-            <p className="text-xs text-zinc-400 line-clamp-2">
+            <p className="text-xs sm:text-sm text-zinc-300 line-clamp-2 leading-relaxed">
               {currentMilestone.clinicalGuidelines.whatToExpect}
             </p>
           </div>
 
-          <div className="pt-3 mt-2 border-t border-zinc-800/50 flex items-center justify-between text-xs text-zinc-400">
-            <span className="flex items-center gap-1 text-[11px] text-zinc-300 group-hover:text-white font-medium">
-              Abrir detalhes <ChevronRight className="w-3 h-3" />
+          <div className="pt-3.5 border-t border-zinc-800/50 flex items-center justify-between text-xs sm:text-sm text-zinc-400">
+            <span className="flex items-center gap-1 text-xs sm:text-sm text-zinc-200 group-hover:text-white font-medium">
+              Abrir detalhes <ChevronRight className="w-3.5 h-3.5" />
             </span>
-            <span className="font-mono text-[11px] text-zinc-400">{profile.nextPhotoDate}</span>
+            <span className="font-mono text-xs sm:text-sm text-zinc-400">{profile.nextPhotoDate}</span>
           </div>
         </div>
 
         {/* Card 4: Daily Application Habit */}
-        <div className="p-5 rounded-2xl bg-[#0f0f13]/90 border border-zinc-800/80 backdrop-blur-md flex flex-col justify-between">
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#0f0f13]/90 border border-zinc-800/80 backdrop-blur-md flex flex-col justify-between space-y-4">
           <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
-              <span className="flex items-center gap-1.5">
-                <Flame className="w-3.5 h-3.5 text-amber-500" />
+            <div className="flex items-center justify-between text-xs sm:text-sm font-mono text-zinc-400">
+              <span className="flex items-center gap-1.5 font-medium">
+                <Flame className="w-4 h-4 text-amber-500" />
                 Aplicação Diária
               </span>
-              <span className="text-xs font-bold font-mono text-zinc-300">
+              <span className="text-xs sm:text-sm font-bold font-mono text-zinc-300">
                 1 dose/dia
               </span>
             </div>
 
             <div className="flex items-baseline gap-2">
-              <span className="font-display text-2xl font-bold text-white">
+              <span className="font-display text-2xl sm:text-3xl font-bold text-white">
                 {profile.applicationTime}
               </span>
-              <span className="text-xs text-zinc-400">todas as manhãs</span>
+              <span className="text-xs sm:text-sm text-zinc-400">todas as manhãs</span>
             </div>
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
               Tomar com 200ml de água para absorção otimizada.
             </p>
           </div>
 
-          <div className="pt-3 mt-2 border-t border-zinc-800/50 flex items-center justify-between text-xs text-zinc-400 font-mono">
+          <div className="pt-3.5 border-t border-zinc-800/50 flex items-center justify-between text-xs sm:text-sm text-zinc-400 font-mono">
             <span>Doses no frasco:</span>
             <span className={`font-bold ${profile.dosesRemaining <= 5 ? 'text-rose-400' : 'text-emerald-400'}`}>
               {profile.dosesRemaining} de {profile.totalDoses}
