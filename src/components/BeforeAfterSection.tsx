@@ -61,7 +61,7 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
   };
 
   return (
-    <section id="resultados" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
+    <section id="resultados" className="py-24 px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 bg-transparent border-t border-zinc-800/70 relative">
       {/* Background Subtle Ambient Glow */}
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full blur-[140px] pointer-events-none opacity-20"
@@ -70,7 +70,7 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="w-full max-w-[1720px] 2xl:max-w-[1840px] mx-auto relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
@@ -107,7 +107,7 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
         </div>
 
         {/* Master Control Bar: Case Selector Tabs + View Mode Toggle */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 max-w-6xl 2xl:max-w-7xl mx-auto">
           {/* Case Selector Tabs */}
           <div className="p-1.5 rounded-2xl bg-zinc-950/90 border border-zinc-800/90 backdrop-blur-xl flex flex-wrap gap-2 shadow-xl">
             {cases.map((c, idx) => (
@@ -163,7 +163,7 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
         </div>
 
         {/* Interactive Showcase Container with Synchronized Luxury Contour & Margins */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-6xl 2xl:max-w-7xl mx-auto">
           
           {/* Main Photo Frame (Desktop 7/12 cols) */}
           <div className="lg:col-span-7 flex flex-col justify-center">

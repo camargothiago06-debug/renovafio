@@ -72,8 +72,8 @@ export const SocialProofSection: React.FC<SocialProofSectionProps> = ({ gender }
       ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section className="py-24 px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 bg-transparent border-t border-zinc-800/70 relative">
+      <div className="w-full max-w-[1720px] 2xl:max-w-[1840px] mx-auto relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">

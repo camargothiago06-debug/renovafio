@@ -17,8 +17,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
   const goldSecondary = isFemale ? '#DFB775' : '#AA771C';
 
   return (
-    <section id="protocolos" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section id="protocolos" className="py-24 px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 bg-transparent border-t border-zinc-800/70 relative">
+      <div className="w-full max-w-[1720px] 2xl:max-w-[1840px] mx-auto relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
@@ -55,7 +55,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch max-w-6xl 2xl:max-w-7xl mx-auto">
           {plans.map((plan) => {
             const isHighlighted = plan.isPopular || plan.isBestValue;
             return (

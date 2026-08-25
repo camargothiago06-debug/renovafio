@@ -36,8 +36,8 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
           : 'bg-[#09090c]/95 border-b border-zinc-800/80'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar py-2.5 gap-1.5 sm:gap-2">
+      <div className="w-full max-w-[1920px] mx-auto px-2 sm:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-24">
+        <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar py-2.5 gap-2 sm:gap-3 lg:gap-4">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;

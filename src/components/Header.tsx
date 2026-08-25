@@ -40,7 +40,7 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="w-full relative z-40 transition-all duration-300">
       {/* Top micro announcement bar (100% width) */}
       <div
-        className={`w-full py-1.5 px-4 text-center text-[10px] sm:text-xs font-light tracking-wider transition-colors duration-500 flex items-center justify-center space-x-2 sm:space-x-3 ${
+        className={`w-full py-1.5 px-4 sm:px-8 text-center text-[10px] sm:text-xs font-light tracking-wider transition-colors duration-500 flex items-center justify-center space-x-2 sm:space-x-3 ${
           isFemale
             ? 'bg-[#1b1216] text-[#ffdcd3] border-b border-[#E2A999]/20'
             : 'bg-[#12100a] text-[#fae596] border-b border-[#D4AF37]/20'
@@ -56,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({
         <span className="hidden md:inline">Garantia Clínica de 90 Dias</span>
       </div>
 
-      {/* Main Navigation Bar (100% width with centered responsive inner content) */}
+      {/* Main Navigation Bar (100% width with generous widescreen responsive inner layout) */}
       <div
         className={`w-full transition-all duration-500 border-b backdrop-blur-xl ${
           scrolled
@@ -68,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({
             : 'bg-[#111114]/70 border-[#D4AF37]/30 py-3 sm:py-3.5'
         }`}
       >
-        <div className="hero-content flex items-center justify-between">
+        <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-24 flex items-center justify-between">
           {/* Brand Logo */}
           <button
             onClick={() => {
