@@ -12,6 +12,7 @@ import { DiagnosticQuizModal } from './components/DiagnosticQuizModal';
 import { PricingSection } from './components/PricingSection';
 import { SocialProofSection } from './components/SocialProofSection';
 import { FaqSection } from './components/FaqSection';
+import { CustomerJourneySection } from './components/journey/CustomerJourneySection';
 import { CartDrawer } from './components/CartDrawer';
 import { CheckoutModal } from './components/CheckoutModal';
 import { WhatsAppConcierge } from './components/WhatsAppConcierge';
@@ -232,7 +233,14 @@ export function App() {
                 </div>
               )}
 
-              {/* TAB 6: DÚVIDAS & FAQ */}
+              {/* TAB 6: MINHA JORNADA / ACOMPANHAMENTO DO CLIENTE */}
+              {activeTab === 'jornada' && (
+                <div className="w-full">
+                  <CustomerJourneySection gender={gender} onSelectTab={setActiveTab} />
+                </div>
+              )}
+
+              {/* TAB 7: DÚVIDAS & FAQ */}
               {activeTab === 'faq' && (
                 <div className="w-full">
                   <FaqSection gender={gender} />

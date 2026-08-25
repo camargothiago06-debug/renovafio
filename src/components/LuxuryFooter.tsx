@@ -85,6 +85,11 @@ export const LuxuryFooter: React.FC<LuxuryFooterProps> = ({
                 </button>
               </li>
               <li>
+                <button onClick={() => handleTabClick('jornada')} className="hover:text-white transition-colors text-left cursor-pointer text-[#fae596] font-medium">
+                  Minha Jornada (Acompanhamento)
+                </button>
+              </li>
+              <li>
                 <button onClick={() => handleTabClick('faq')} className="hover:text-white transition-colors text-left cursor-pointer">
                   Dúvidas Frequentes
                 </button>

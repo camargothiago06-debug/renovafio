@@ -1,6 +1,44 @@
 export type GenderMode = 'masculino' | 'feminino';
 
-export type TabType = 'inicio' | 'galeria' | 'ciencia' | 'resultados' | 'protocolos' | 'faq';
+export type TabType = 'inicio' | 'galeria' | 'ciencia' | 'resultados' | 'protocolos' | 'jornada' | 'faq';
+
+export interface JourneyMilestone {
+  id: string;
+  stageKey: 'dia01' | 'mes01' | 'mes03' | 'mes06' | 'mes11';
+  title: string;
+  shortLabel: string;
+  recommendedDays: number;
+  expectedDate?: string;
+  completedDate?: string;
+  status: 'concluido' | 'em_andamento' | 'proximo' | 'atrasado';
+  photoUrl?: string;
+  notes?: string;
+  clinicalGuidelines: {
+    phaseName: string;
+    description: string;
+    whatToExpect: string;
+    careTips: string[];
+  };
+}
+
+export interface CustomerJourneyProfile {
+  id: string;
+  customerName: string;
+  gender: GenderMode;
+  protocolName: string;
+  startDate: string;
+  currentMonth: number;
+  currentStageKey: 'dia01' | 'mes01' | 'mes03' | 'mes06' | 'mes11';
+  applicationTime: string;
+  nextPhotoDate: string;
+  refillDate: string;
+  nextEvaluationDate: string;
+  dosesRemaining: number;
+  totalDoses: number;
+  consentAccepted: boolean;
+  milestones: JourneyMilestone[];
+}
+
 
 export interface Ingredient {
   id: string;
@@ -64,6 +102,9 @@ export interface ClinicalCase {
   afterDesc: string;
   densityIncrease: string;
   verifiedDoctor: string;
+  combinedImageUrl?: string;
+  beforeImageUrl?: string;
+  afterImageUrl?: string;
 }
 
 export interface QuizQuestion {

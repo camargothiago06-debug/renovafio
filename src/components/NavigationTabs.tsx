@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { TabType, GenderMode } from '../types';
-import { Sparkles, Package, FlaskConical, Award, ShieldCheck, HelpCircle } from 'lucide-react';
+import { Sparkles, Package, FlaskConical, Award, ShieldCheck, HelpCircle, CalendarCheck } from 'lucide-react';
 
 interface NavigationTabsProps {
   activeTab: TabType;
@@ -23,6 +23,7 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
     { id: 'ciencia', label: 'A Ciência 450mg', shortLabel: 'Ciência', icon: FlaskConical },
     { id: 'resultados', label: 'Resultados Clínicos', shortLabel: 'Resultados', icon: Award },
     { id: 'protocolos', label: 'Protocolos & Preços', shortLabel: 'Protocolos', icon: ShieldCheck },
+    { id: 'jornada', label: 'Minha Jornada', shortLabel: 'Jornada', icon: CalendarCheck },
     { id: 'faq', label: 'Dúvidas Frequentes', shortLabel: 'Dúvidas', icon: HelpCircle },
   ];
 

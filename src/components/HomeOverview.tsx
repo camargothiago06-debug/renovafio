@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { GenderMode, TabType, Plan } from '../types';
 import { HeroBannerSlider } from './HeroBannerSlider';
-import { Sparkles, Package, FlaskConical, Award, ShieldCheck, ArrowRight, CheckCircle2, Shield, Microscope, ChevronRight } from 'lucide-react';
+import { Sparkles, Package, FlaskConical, Award, ShieldCheck, ArrowRight, CheckCircle2, Shield, Microscope, ChevronRight, CalendarCheck } from 'lucide-react';
 
 interface HomeOverviewProps {
   gender: GenderMode;
@@ -51,6 +51,14 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({
       description: 'Confira os valores exclusivos, bônus de frete VIP e a garantia incondicional de 90 dias.',
       icon: ShieldCheck,
       badge: 'Garantia de 90 Dias',
+    },
+    {
+      tab: 'jornada' as TabType,
+      title: 'Minha Jornada',
+      tag: 'ACOMPANHAMENTO VIP',
+      description: 'Painel interativo para registrar fotos da evolução, comparar folículos e receber lembretes de aplicação.',
+      icon: CalendarCheck,
+      badge: 'Área do Cliente',
     },
   ];
 

@@ -32,6 +32,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
     { label: 'A Ciência & Fórmula', tab: 'ciencia', desc: 'Os 4 ativos farmacêuticos em dose única 450mg' },
     { label: 'Resultados Clínicos', tab: 'resultados', desc: 'Casos reais antes/depois aos 3 e 11 meses' },
     { label: 'Protocolos & Preços', tab: 'protocolos', desc: 'Planos de 1, 3 e 6 meses com garantia de 90 dias' },
+    { label: 'Minha Jornada', tab: 'jornada', desc: 'Acompanhamento do cliente, comparador de fotos e lembretes' },
     { label: 'Dúvidas Frequentes', tab: 'faq', desc: 'Como tomar, prescrição e envio discreto' },
   ];
 
