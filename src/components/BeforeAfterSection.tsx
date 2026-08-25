@@ -193,10 +193,17 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
                     <img
                       src={activeCase.combinedImageUrl}
                       alt={`Fotografia Clínica ${activeCase.patientName} - ${activeCase.treatmentDuration}`}
-                      className={`w-full h-full object-cover sm:object-contain transition-transform duration-300 ${
+                      className={`w-full h-full object-cover transition-transform duration-300 ${
                         isZoomed ? 'scale-125' : 'scale-100'
                       }`}
                       referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        // Fallback to svg or alternative path if needed
+                        const target = e.currentTarget;
+                        if (!target.src.includes('clinical-3m-combined')) {
+                          target.src = '/images/clinical-3m-combined.png';
+                        }
+                      }}
                     />
                   </div>
                 ) : (
@@ -214,11 +221,21 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
                       <img
                         src={activeCase.afterImageUrl}
                         alt={`${activeCase.afterLabel} - ${activeCase.patientName}`}
-                        className={`w-full h-full object-cover sm:object-contain transition-transform duration-300 pointer-events-none ${
+                        className={`w-full h-full object-cover transition-transform duration-300 pointer-events-none ${
                           isZoomed ? 'scale-125' : 'scale-100'
                         }`}
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (!target.src.includes('clinical-3m-after')) {
+                            target.src = '/images/clinical-3m-after.png';
+                          }
+                        }}
                       />
+                      {/* After Badge */}
+                      <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 z-10 px-3.5 py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-black text-xs uppercase tracking-wider shadow-xl border border-[#eaa351] pointer-events-none">
+                        {activeCase.afterLabel}
+                      </div>
                     </div>
 
                     {/* BEFORE Layer (Left / Clipped smoothly via inset) */}
@@ -231,11 +248,21 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
                       <img
                         src={activeCase.beforeImageUrl}
                         alt={`${activeCase.beforeLabel} - ${activeCase.patientName}`}
-                        className={`w-full h-full object-cover sm:object-contain transition-transform duration-300 pointer-events-none ${
+                        className={`w-full h-full object-cover transition-transform duration-300 pointer-events-none ${
                           isZoomed ? 'scale-125' : 'scale-100'
                         }`}
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (!target.src.includes('clinical-3m-before')) {
+                            target.src = '/images/clinical-3m-before.png';
+                          }
+                        }}
                       />
+                      {/* Before Badge */}
+                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 z-10 px-3.5 py-1.5 rounded-lg bg-[#f7be72] text-zinc-950 font-mono font-black text-xs uppercase tracking-wider shadow-xl border border-[#eaa351] pointer-events-none">
+                        {activeCase.beforeLabel}
+                      </div>
                     </div>
 
                     {/* Golden Glowing Divider Line & Center Drag Handle */}
