@@ -190,11 +190,13 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
                 {/* Mode 1: Side by Side Real Clinical Photo */}
                 {viewMode === 'sideBySide' ? (
                   <div className="relative w-full aspect-[16/9] overflow-hidden bg-zinc-950 flex items-center justify-center">
-                    <ScalpClinicalCanvas
-                      gender={gender}
-                      caseIndex={activeCaseIndex}
-                      stage="combined"
-                      isZoomed={isZoomed}
+                    <img
+                      src={activeCase.combinedImageUrl}
+                      alt={`Fotografia Clínica ${activeCase.patientName} - ${activeCase.treatmentDuration}`}
+                      className={`w-full h-full object-cover sm:object-contain transition-transform duration-300 ${
+                        isZoomed ? 'scale-125' : 'scale-100'
+                      }`}
+                      referrerPolicy="no-referrer"
                     />
                   </div>
                 ) : (
@@ -209,11 +211,13 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
                   >
                     {/* AFTER Layer (Right / Base background) */}
                     <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-zinc-950">
-                      <ScalpClinicalCanvas
-                        gender={gender}
-                        caseIndex={activeCaseIndex}
-                        stage="after"
-                        isZoomed={isZoomed}
+                      <img
+                        src={activeCase.afterImageUrl}
+                        alt={`${activeCase.afterLabel} - ${activeCase.patientName}`}
+                        className={`w-full h-full object-cover sm:object-contain transition-transform duration-300 pointer-events-none ${
+                          isZoomed ? 'scale-125' : 'scale-100'
+                        }`}
+                        referrerPolicy="no-referrer"
                       />
                     </div>
 
@@ -224,11 +228,13 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
                         clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`
                       }}
                     >
-                      <ScalpClinicalCanvas
-                        gender={gender}
-                        caseIndex={activeCaseIndex}
-                        stage="before"
-                        isZoomed={isZoomed}
+                      <img
+                        src={activeCase.beforeImageUrl}
+                        alt={`${activeCase.beforeLabel} - ${activeCase.patientName}`}
+                        className={`w-full h-full object-cover sm:object-contain transition-transform duration-300 pointer-events-none ${
+                          isZoomed ? 'scale-125' : 'scale-100'
+                        }`}
+                        referrerPolicy="no-referrer"
                       />
                     </div>
 
