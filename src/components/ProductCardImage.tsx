@@ -47,15 +47,9 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
   };
 
   const containerHeights = {
-    sm: 'h-80 sm:h-96',
-    md: 'h-[460px] sm:h-[520px] md:h-[560px]',
-    lg: 'h-[500px] sm:h-[560px] md:h-[600px]',
-  };
-
-  const imageScales = {
-    sm: 'scale-[1.8] sm:scale-[2.0]',
-    md: 'scale-[2.1] sm:scale-[2.3] md:scale-[2.45]',
-    lg: 'scale-[2.2] sm:scale-[2.4] md:scale-[2.55]',
+    sm: 'h-64 sm:h-72',
+    md: 'h-80 sm:h-96',
+    lg: 'h-96 sm:h-[420px]',
   };
 
   return (
@@ -64,25 +58,25 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
     >
       {/* Soft Luxury Golden Halo in Background */}
       <div
-        className="absolute w-80 sm:w-[420px] h-80 sm:h-[420px] rounded-full blur-3xl opacity-35 group-hover:opacity-55 transition-opacity duration-700 pointer-events-none"
+        className="absolute w-60 sm:w-80 h-60 sm:h-80 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-700 pointer-events-none"
         style={{
           backgroundColor: goldPrimary,
         }}
       />
 
       {/* Subtle Ambient Radial Highlight */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.18)_0%,_transparent_75%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.15)_0%,_transparent_75%)] pointer-events-none" />
 
-      {/* Real Product Image Container */}
+      {/* Real Product Image Container with Full Framing & Elegant Padding */}
       {!hasAllErrors ? (
-        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center overflow-hidden">
+        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 overflow-hidden">
           <img
             src={currentSrc}
             alt={alt}
             referrerPolicy="no-referrer"
             onLoad={() => setImageLoaded(true)}
             onError={handleImageError}
-            className={`w-full h-full object-contain ${imageScales[size]} filter drop-shadow-[0_25px_45px_rgba(0,0,0,0.98)] transition-all duration-500 group-hover:scale-[2.55] select-none ${
+            className={`w-auto h-auto max-w-full max-h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.95)] transition-transform duration-500 group-hover:scale-105 select-none ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
           />
@@ -90,7 +84,7 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
           {/* Loading Skeleton */}
           {!imageLoaded && (
             <div className="absolute inset-0 flex items-center justify-center p-6">
-              <div className="w-60 h-80 rounded-2xl bg-[#1a1a24]/60 border border-[#d4af37]/20 animate-pulse flex flex-col items-center justify-center">
+              <div className="w-48 h-64 rounded-2xl bg-[#1a1a24]/60 border border-[#d4af37]/20 animate-pulse flex flex-col items-center justify-center">
                 <span className="text-[#fae596] font-display text-base font-bold tracking-wider">
                   RENOVA FIO
                 </span>
@@ -102,17 +96,17 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
       ) : (
         /* Clean Vector Stand-in (Fallback if image URL cannot be fetched) */
         <div className="relative z-10 w-full h-full p-4 flex flex-col items-center justify-center group-hover:scale-105 transition-transform duration-500">
-          <div className="relative w-48 sm:w-52 h-64 sm:h-72 rounded-2xl bg-gradient-to-b from-[#2a1408] via-[#1c0d05] to-[#0d0502] border border-amber-500/30 shadow-2xl flex flex-col items-center justify-between p-3.5 overflow-hidden">
+          <div className="relative w-40 sm:w-48 h-56 sm:h-64 rounded-2xl bg-gradient-to-b from-[#2a1408] via-[#1c0d05] to-[#0d0502] border border-amber-500/30 shadow-2xl flex flex-col items-center justify-between p-3 overflow-hidden">
             {/* Cap */}
-            <div className="w-28 h-8 rounded-t-lg bg-gradient-to-b from-zinc-700 via-zinc-900 to-black border-t border-zinc-500/40 flex items-center justify-center">
+            <div className="w-24 h-7 rounded-t-lg bg-gradient-to-b from-zinc-700 via-zinc-900 to-black border-t border-zinc-500/40 flex items-center justify-center">
               <div className="w-full h-0.5 bg-[#d4af37]/40" />
             </div>
 
             {/* Label */}
-            <div className="w-full bg-[#111114] border-y border-[#d4af37]/50 py-3 px-2 rounded flex flex-col items-center text-center shadow-lg my-auto">
-              <div className="flex items-center space-x-1 mb-1">
+            <div className="w-full bg-[#111114] border-y border-[#d4af37]/50 py-2.5 px-2 rounded flex flex-col items-center text-center shadow-lg my-auto">
+              <div className="flex items-center space-x-1 mb-0.5">
                 <span
-                  className="font-display font-bold text-sm tracking-wider uppercase bg-clip-text text-transparent"
+                  className="font-display font-bold text-xs sm:text-sm tracking-wider uppercase bg-clip-text text-transparent"
                   style={{
                     backgroundImage: `linear-gradient(135deg, ${goldLight} 0%, ${goldPrimary} 100%)`,
                   }}
@@ -121,24 +115,24 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
                 </span>
                 <span className="font-editorial italic text-xs lowercase text-[#fae596]">fio</span>
               </div>
-              <span className="text-[11px] font-semibold text-white">Fórmula Capilar</span>
-              <span className="text-[9px] text-zinc-400">tratamento para queda capilar</span>
-              <div className="w-3/4 h-[1px] bg-[#d4af37]/30 my-1.5" />
-              <div className="flex items-center justify-between w-full px-1 text-[9px]">
+              <span className="text-[10px] sm:text-[11px] font-semibold text-white">Fórmula Capilar</span>
+              <span className="text-[8px] sm:text-[9px] text-zinc-400">tratamento para queda capilar</span>
+              <div className="w-3/4 h-[1px] bg-[#d4af37]/30 my-1" />
+              <div className="flex items-center justify-between w-full px-1 text-[8px] sm:text-[9px]">
                 <span className="font-mono font-bold text-[#fae596]">450mg</span>
-                <span className="text-zinc-400 text-[8px] uppercase tracking-wider">
+                <span className="text-zinc-400 text-[7px] sm:text-[8px] uppercase tracking-wider">
                   Manipulado
                 </span>
               </div>
             </div>
 
             {/* Bottom Capsules */}
-            <div className="flex items-center space-x-1.5 mt-1">
-              <div className="w-9 h-4 rounded-full bg-gradient-to-r from-zinc-800 to-black border border-white/10 rotate-6" />
-              <div className="w-9 h-4 rounded-full bg-gradient-to-r from-black to-zinc-800 border border-white/10 -rotate-12" />
+            <div className="flex items-center space-x-1.5 mt-0.5">
+              <div className="w-8 h-3.5 rounded-full bg-gradient-to-r from-zinc-800 to-black border border-white/10 rotate-6" />
+              <div className="w-8 h-3.5 rounded-full bg-gradient-to-r from-black to-zinc-800 border border-white/10 -rotate-12" />
             </div>
           </div>
-          <div className="w-40 h-3 rounded-full bg-black/80 blur-md mt-1" />
+          <div className="w-36 h-2.5 rounded-full bg-black/80 blur-md mt-1" />
         </div>
       )}
     </div>
