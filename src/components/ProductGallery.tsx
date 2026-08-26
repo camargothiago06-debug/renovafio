@@ -62,7 +62,11 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
             <motion.div
               key={product.id}
               whileHover={{ y: -6 }}
-              className="rounded-2xl bg-[#121216] border border-zinc-800 hover:border-zinc-700 p-6 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden shadow-xl"
+              className={`rounded-2xl p-6 flex flex-col justify-between transition-all duration-500 relative group overflow-hidden shadow-2xl border ${
+                isFemale
+                  ? 'bg-gradient-to-b from-[#140e11] via-[#0e090c] to-[#080507] border-zinc-800/80 hover:border-[#E2A999]/50'
+                  : 'bg-gradient-to-b from-[#131319] via-[#0d0d12] to-[#08080c] border-zinc-800/80 hover:border-[#D4AF37]/50'
+              }`}
             >
               {/* Top Tag & Rating */}
               <div className="flex items-center justify-between mb-4">

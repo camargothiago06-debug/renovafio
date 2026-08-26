@@ -18,9 +18,10 @@ const MALE_IMAGE_PATHS = [
 ];
 
 const FEMALE_IMAGE_PATHS = [
+  '/images/frasco-feminino-renova-fio.svg',
   '/images/frasco-feminino-renova-fio.png.png',
   '/images/frasco-feminino-renova-fio.png',
-  '/images/frasco-feminino-renova-fio.svg',
+  '/frasco-feminino-renova-fio.svg',
   '/frasco-feminino-renova-fio.png.png',
   '/frasco-feminino-renova-fio.png',
 ];
@@ -51,6 +52,7 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
   }, [gender, imageUrl]);
 
   const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
+  const goldSecondary = isFemale ? '#D9AB6D' : '#AA771C';
   const goldLight = isFemale ? '#FFF2F0' : '#FFF0D0';
 
   const currentSrc = candidatePaths[pathIndex];
@@ -77,18 +79,52 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
 
   return (
     <div
-      className={`relative w-full ${containerHeights[size]} flex items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-b from-[#181824] via-[#0e0e14] to-[#07070a] border border-zinc-800/90 group-hover:border-[#d4af37]/70 transition-all duration-500 shadow-2xl ${className}`}
+      className={`relative w-full ${containerHeights[size]} flex items-center justify-center overflow-hidden rounded-2xl transition-all duration-500 shadow-2xl ${
+        isFemale
+          ? 'bg-gradient-to-b from-[#1d1317] via-[#120b0f] to-[#070406] border border-rose-900/30 group-hover:border-[#E2A999]/60'
+          : 'bg-gradient-to-b from-[#181824] via-[#0e0e14] to-[#07070a] border border-zinc-800/90 group-hover:border-[#D4AF37]/60'
+      } ${className}`}
     >
-      {/* Soft Luxury Golden Halo in Background */}
+      {/* 1. Deep Ambient Luxury Glow */}
       <div
-        className="absolute w-72 sm:w-96 h-72 sm:h-96 rounded-full blur-3xl opacity-35 group-hover:opacity-55 transition-opacity duration-700 pointer-events-none"
+        className="absolute w-80 sm:w-[420px] h-80 sm:h-[420px] rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-700 pointer-events-none"
         style={{
           backgroundColor: goldPrimary,
         }}
       />
 
-      {/* Subtle Ambient Radial Highlight */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.18)_0%,_transparent_75%)] pointer-events-none" />
+      {/* 2. Concentric Fine Studio Light Rings for Architectural Depth */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+        <div
+          className="w-56 h-56 rounded-full border border-dashed animate-pulse"
+          style={{ borderColor: goldPrimary }}
+        />
+        <div
+          className="absolute w-72 h-72 rounded-full border"
+          style={{ borderColor: `${goldPrimary}30` }}
+        />
+      </div>
+
+      {/* 3. Subtle Ambient Radial Highlight */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: isFemale
+            ? 'radial-gradient(circle at 50% 45%, rgba(226,169,153,0.18) 0%, rgba(217,171,109,0.06) 45%, transparent 75%)'
+            : 'radial-gradient(circle at 50% 45%, rgba(212,175,55,0.18) 0%, rgba(170,119,28,0.06) 45%, transparent 75%)',
+        }}
+      />
+
+      {/* 4. Luxury Pedestal / Studio Podium Floor Light */}
+      <div
+        className="absolute bottom-4 sm:bottom-6 w-48 sm:w-60 h-8 rounded-full blur-md opacity-40 pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse, ${goldSecondary} 0%, rgba(0,0,0,0.8) 70%, transparent 100%)`,
+        }}
+      />
+
+      {/* 5. Edge Vignette for Cinematic Focus */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_transparent_55%,_rgba(0,0,0,0.65)_100%)] pointer-events-none" />
 
       {/* Real Product Image Container with Optimized Balanced Framing */}
       {!hasAllErrors ? (
@@ -107,12 +143,21 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
           {/* Loading Skeleton */}
           {!imageLoaded && (
             <div className="absolute inset-0 flex items-center justify-center p-6">
-              <div className="w-48 h-64 rounded-2xl bg-[#1a1a24]/60 border border-[#d4af37]/20 animate-pulse flex flex-col items-center justify-center">
-                <span className="text-[#fae596] font-display text-base font-bold tracking-wider">
+              <div
+                className={`w-48 h-64 rounded-2xl border animate-pulse flex flex-col items-center justify-center ${
+                  isFemale
+                    ? 'bg-[#1a1216]/70 border-[#E2A999]/30'
+                    : 'bg-[#1a1a24]/70 border-[#D4AF37]/30'
+                }`}
+              >
+                <span
+                  className="font-display text-base font-bold tracking-wider"
+                  style={{ color: goldPrimary }}
+                >
                   RENOVA FIO
                 </span>
-                <span className="text-zinc-500 text-xs mt-1 font-mono">
-                  {isFemale ? 'Nutri-Capilar Feminino' : '450mg Manipulado'}
+                <span className="text-zinc-400 text-xs mt-1 font-mono">
+                  {isFemale ? 'Fórmula Capilar Feminina' : '450mg Manipulado'}
                 </span>
               </div>
             </div>
