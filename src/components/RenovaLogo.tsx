@@ -18,10 +18,10 @@ export const RenovaLogo: React.FC<RenovaLogoProps> = ({
 
   // Responsive class-based sizing preserving aspect ratio perfectly
   const sizeClasses = {
-    sm: 'h-7 sm:h-8',
-    md: 'h-8 sm:h-9.5 md:h-10',
-    lg: 'h-10 sm:h-12 md:h-14',
-    xl: 'h-12 sm:h-16 md:h-20',
+    sm: 'h-8 sm:h-9 md:h-10',
+    md: 'h-10 sm:h-12 md:h-13 lg:h-14',
+    lg: 'h-12 sm:h-14 md:h-16 lg:h-18',
+    xl: 'h-16 sm:h-20 md:h-24 lg:h-28',
   };
 
   const gradientId = `renovaBrandGrad-${gender}`;

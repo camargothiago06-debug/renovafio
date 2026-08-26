@@ -78,7 +78,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center shrink-0 cursor-pointer bg-transparent border-0 p-0 hover:opacity-90 transition-opacity"
             aria-label="Página inicial Renova Fio"
           >
-            <RenovaLogo gender={gender} size="md" showSubtitle={false} />
+            <RenovaLogo gender={gender} size="lg" showSubtitle={false} />
           </button>
 
           {/* Central Floating Gender Switcher Pill */}

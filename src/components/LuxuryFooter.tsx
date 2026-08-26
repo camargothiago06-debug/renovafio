@@ -35,7 +35,7 @@ export const LuxuryFooter: React.FC<LuxuryFooterProps> = ({
           
           {/* Col 1 & 2: Brand Info & Quality Seal */}
           <div className="lg:col-span-2 space-y-4">
-            <RenovaLogo gender={gender} size="md" showSubtitle={true} />
+            <RenovaLogo gender={gender} size="lg" showSubtitle={true} />
             <p className="text-sm text-zinc-300 font-light leading-relaxed max-w-sm">
               Alta tricologia farmacêutica e medicina capilar de precisão. Fórmulas magistrais sob medida desenvolvidas para reverter a calvície e devolver a plenitude dos seus cabelos.
             </p>
