@@ -49,7 +49,13 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
   const containerHeights = {
     sm: 'h-64 sm:h-72',
     md: 'h-80 sm:h-96',
-    lg: 'h-96 sm:h-[420px]',
+    lg: 'h-96 sm:h-[440px]',
+  };
+
+  const imageScales = {
+    sm: 'scale-[1.35] sm:scale-[1.40]',
+    md: 'scale-[1.42] sm:scale-[1.48]',
+    lg: 'scale-[1.46] sm:scale-[1.52]',
   };
 
   return (
@@ -58,25 +64,25 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
     >
       {/* Soft Luxury Golden Halo in Background */}
       <div
-        className="absolute w-60 sm:w-80 h-60 sm:h-80 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-700 pointer-events-none"
+        className="absolute w-72 sm:w-96 h-72 sm:h-96 rounded-full blur-3xl opacity-35 group-hover:opacity-55 transition-opacity duration-700 pointer-events-none"
         style={{
           backgroundColor: goldPrimary,
         }}
       />
 
       {/* Subtle Ambient Radial Highlight */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.15)_0%,_transparent_75%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.18)_0%,_transparent_75%)] pointer-events-none" />
 
-      {/* Real Product Image Container with Full Framing & Elegant Padding */}
+      {/* Real Product Image Container with Optimized Balanced Framing */}
       {!hasAllErrors ? (
-        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 overflow-hidden">
+        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-2 sm:p-3 overflow-hidden">
           <img
             src={currentSrc}
             alt={alt}
             referrerPolicy="no-referrer"
             onLoad={() => setImageLoaded(true)}
             onError={handleImageError}
-            className={`w-auto h-auto max-w-full max-h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.95)] transition-transform duration-500 group-hover:scale-105 select-none ${
+            className={`w-full h-full object-contain ${imageScales[size]} filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.95)] transition-transform duration-500 group-hover:scale-[1.54] select-none ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
           />
