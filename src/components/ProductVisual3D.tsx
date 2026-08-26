@@ -20,11 +20,7 @@ const MALE_CANDIDATE_URLS = [
 
 const FEMALE_CANDIDATE_URLS = [
   '/images/frasco-feminino-renova-fio.svg',
-  '/images/frasco-feminino-renova-fio.png.png',
-  '/images/frasco-feminino-renova-fio.png',
   '/frasco-feminino-renova-fio.svg',
-  '/frasco-feminino-renova-fio.png.png',
-  '/frasco-feminino-renova-fio.png',
 ];
 
 export const ProductVisual3D: React.FC<ProductVisual3DProps> = ({

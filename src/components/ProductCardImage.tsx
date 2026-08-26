@@ -19,11 +19,7 @@ const MALE_IMAGE_PATHS = [
 
 const FEMALE_IMAGE_PATHS = [
   '/images/frasco-feminino-renova-fio.svg',
-  '/images/frasco-feminino-renova-fio.png.png',
-  '/images/frasco-feminino-renova-fio.png',
   '/frasco-feminino-renova-fio.svg',
-  '/frasco-feminino-renova-fio.png.png',
-  '/frasco-feminino-renova-fio.png',
 ];
 
 export const ProductCardImage: React.FC<ProductCardImageProps> = ({
@@ -81,50 +77,52 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
     <div
       className={`relative w-full ${containerHeights[size]} flex items-center justify-center overflow-hidden rounded-2xl transition-all duration-500 shadow-2xl ${
         isFemale
-          ? 'bg-gradient-to-b from-[#1d1317] via-[#120b0f] to-[#070406] border border-rose-900/30 group-hover:border-[#E2A999]/60'
+          ? 'bg-gradient-to-b from-[#2a1622] via-[#1b0d16] to-[#0c050a] border border-[#E2A999]/35 group-hover:border-[#E2A999]/80 shadow-[0_15px_35px_rgba(226,169,153,0.15)]'
           : 'bg-gradient-to-b from-[#181824] via-[#0e0e14] to-[#07070a] border border-zinc-800/90 group-hover:border-[#D4AF37]/60'
       } ${className}`}
     >
-      {/* 1. Deep Ambient Luxury Glow */}
+      {/* 1. Deep Ambient Luxury Glow in Brand Palette */}
       <div
-        className="absolute w-80 sm:w-[420px] h-80 sm:h-[420px] rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-700 pointer-events-none"
+        className="absolute w-80 sm:w-[420px] h-80 sm:h-[420px] rounded-full blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"
         style={{
           backgroundColor: goldPrimary,
         }}
       />
 
       {/* 2. Concentric Fine Studio Light Rings for Architectural Depth */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-25">
         <div
           className="w-56 h-56 rounded-full border border-dashed animate-pulse"
           style={{ borderColor: goldPrimary }}
         />
         <div
           className="absolute w-72 h-72 rounded-full border"
-          style={{ borderColor: `${goldPrimary}30` }}
+          style={{ borderColor: isFemale ? 'rgba(226, 169, 153, 0.35)' : `${goldPrimary}30` }}
         />
       </div>
 
-      {/* 3. Subtle Ambient Radial Highlight */}
+      {/* 3. Subtle Ambient Radial Spotlight & Rose Gold Atmosphere */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: isFemale
-            ? 'radial-gradient(circle at 50% 45%, rgba(226,169,153,0.18) 0%, rgba(217,171,109,0.06) 45%, transparent 75%)'
-            : 'radial-gradient(circle at 50% 45%, rgba(212,175,55,0.18) 0%, rgba(170,119,28,0.06) 45%, transparent 75%)',
+            ? 'radial-gradient(circle at 50% 40%, rgba(226,169,153,0.35) 0%, rgba(223,183,117,0.18) 35%, rgba(42,22,34,0) 75%)'
+            : 'radial-gradient(circle at 50% 45%, rgba(212,175,55,0.22) 0%, rgba(170,119,28,0.08) 45%, transparent 75%)',
         }}
       />
 
       {/* 4. Luxury Pedestal / Studio Podium Floor Light */}
       <div
-        className="absolute bottom-4 sm:bottom-6 w-48 sm:w-60 h-8 rounded-full blur-md opacity-40 pointer-events-none"
+        className="absolute bottom-4 sm:bottom-6 w-48 sm:w-60 h-8 rounded-full blur-md opacity-60 pointer-events-none"
         style={{
-          background: `radial-gradient(ellipse, ${goldSecondary} 0%, rgba(0,0,0,0.8) 70%, transparent 100%)`,
+          background: isFemale
+            ? 'radial-gradient(ellipse, #DFB775 0%, rgba(226,169,153,0.6) 40%, transparent 80%)'
+            : `radial-gradient(ellipse, ${goldSecondary} 0%, rgba(0,0,0,0.8) 70%, transparent 100%)`,
         }}
       />
 
       {/* 5. Edge Vignette for Cinematic Focus */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_transparent_55%,_rgba(0,0,0,0.65)_100%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_transparent_50%,_rgba(0,0,0,0.65)_100%)] pointer-events-none" />
 
       {/* Real Product Image Container with Optimized Balanced Framing */}
       {!hasAllErrors ? (
