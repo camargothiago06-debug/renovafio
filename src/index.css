@@ -6,7 +6,7 @@
     --font-cormorant: 'Cormorant Garamond', Georgia, serif;
     --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
     --font-outfit: 'Outfit', sans-serif;
-    --header-height: 124px;
+    --header-height: 158px;
     --gold-primary: #D4AF37;
     --gold-secondary: #AA771C;
     --gold-light: #FFF0D0;
@@ -15,7 +15,7 @@
 
   @media (max-width: 640px) {
     :root {
-      --header-height: 114px;
+      --header-height: 148px;
     }
   }
 

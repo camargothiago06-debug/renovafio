@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CartItem, GenderMode, Plan, Product, TabType } from './types';
 import { Header } from './components/Header';
@@ -28,6 +28,38 @@ export function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [topBarHeight, setTopBarHeight] = useState<number>(158);
+  const topBarRef = useRef<HTMLDivElement>(null);
+
+  // Dynamically observe and measure top fixed bar height to avoid any overlap
+  useEffect(() => {
+    const updateHeight = () => {
+      if (topBarRef.current) {
+        const height = topBarRef.current.getBoundingClientRect().height;
+        if (height > 0) {
+          setTopBarHeight(height);
+        }
+      }
+    };
+
+    updateHeight();
+
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && topBarRef.current) {
+      resizeObserver = new ResizeObserver(() => {
+        updateHeight();
+      });
+      resizeObserver.observe(topBarRef.current);
+    }
+
+    window.addEventListener('resize', updateHeight);
+    return () => {
+      window.removeEventListener('resize', updateHeight);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
+  }, []);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -149,7 +181,7 @@ export function App() {
       </div>
 
       {/* Top Fixed Master Bar: Announcement + Header + Navigation Tabs (100% Frozen at Top) */}
-      <div className="fixed top-0 left-0 right-0 w-full z-40">
+      <div ref={topBarRef} className="fixed top-0 left-0 right-0 w-full z-40">
         <Header
           gender={gender}
           onSelectGender={setGender}
@@ -171,7 +203,10 @@ export function App() {
       </div>
 
       {/* Main Screen Content with Top Offset for Combined Frozen Top Bar */}
-      <div className="w-full pt-[var(--header-height,136px)]">
+      <div
+        className="w-full"
+        style={{ paddingTop: `${topBarHeight}px` }}
+      >
         {/* Expanding Minimalist Menu Drawer */}
         <MenuDrawer
           isOpen={isMenuOpen}

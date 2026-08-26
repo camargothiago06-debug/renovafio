@@ -211,7 +211,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
       />
 
       {/* Main Proportional Stage */}
-      <div className="relative flex-1 w-full flex items-center py-8 sm:py-10 min-h-[500px] lg:min-h-[560px]">
+      <div className="relative flex-1 w-full flex items-center pt-8 sm:pt-10 md:pt-12 pb-8 sm:pb-10 min-h-[500px] lg:min-h-[560px]">
         
         {/* Full Viewport Slide Background Images (100% Width & Height, Cover, Preserves Ratio) */}
         <AnimatePresence mode="wait">
