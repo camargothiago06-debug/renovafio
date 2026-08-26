@@ -20,8 +20,8 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ gender }) => {
   };
 
   return (
-    <section id="faq" className="py-14 sm:py-16 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
-      <div className="w-full max-w-4xl 2xl:max-w-5xl mx-auto relative z-10">
+    <section id="faq" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
+      <div className="w-full max-w-5xl 2xl:max-w-6xl mx-auto relative z-10">
         
         {/* Header */}
         <div className="text-center space-y-3.5 mb-12">

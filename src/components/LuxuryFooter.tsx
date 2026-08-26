@@ -28,7 +28,7 @@ export const LuxuryFooter: React.FC<LuxuryFooterProps> = ({
 
   return (
     <footer className="bg-[#070709] border-t border-zinc-800/80 pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-zinc-400 relative">
-      <div className="w-full max-w-7xl mx-auto space-y-12">
+      <div className="w-full max-w-[1536px] mx-auto space-y-12">
         
         {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">

@@ -75,7 +75,7 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({
       />
 
       {/* Luxury Curated Tab Navigation Matrix */}
-      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-3 mb-10">
           <div
             className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase border"
@@ -172,7 +172,7 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({
       </div>
 
       {/* Trust & Quality Certifications Strip */}
-      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="p-8 rounded-3xl bg-gradient-to-r from-[#111116] via-[#15151d] to-[#111116] border border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="flex items-center gap-4">
             <div

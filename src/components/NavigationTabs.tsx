@@ -36,8 +36,8 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
           : 'bg-[#09090c]/95 border-b border-zinc-800/80'
       }`}
     >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar py-2.5 gap-2 sm:gap-3 lg:gap-4">
+      <div className="w-full max-w-[1536px] mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar py-2 gap-1.5 sm:gap-2.5 lg:gap-3.5" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;

@@ -39,6 +39,16 @@
 }
 
 /* Proportional, Balanced Hero Architecture */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
 .hero-section {
   width: 100%;
   position: relative;
@@ -62,25 +72,25 @@
 }
 
 .hero-content {
-  width: min(100% - 32px, 1280px);
+  width: min(100% - 32px, 1440px);
   margin: 0 auto;
 }
 
 @media (min-width: 640px) {
   .hero-content {
-    width: min(100% - 48px, 1280px);
+    width: min(100% - 48px, 1440px);
   }
 }
 
 @media (min-width: 1024px) {
   .hero-content {
-    width: min(100% - 64px, 1280px);
+    width: min(100% - 64px, 1536px);
   }
 }
 
 @media (min-width: 1536px) {
   .hero-content {
-    width: min(100% - 80px, 1340px);
+    width: min(100% - 80px, 1600px);
   }
 }
 

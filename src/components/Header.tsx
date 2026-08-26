@@ -68,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({
             : 'bg-[#111114]/70 border-[#D4AF37]/30 py-3 sm:py-3.5'
         }`}
       >
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <button
             onClick={() => {

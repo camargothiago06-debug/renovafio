@@ -17,8 +17,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ gender, onSelect
   const goldSecondary = isFemale ? '#DFB775' : '#AA771C';
 
   return (
-    <section id="protocolos" className="py-14 sm:py-16 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
-      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto relative z-10">
+    <section id="protocolos" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
+      <div className="w-full max-w-[1536px] mx-auto relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-12">

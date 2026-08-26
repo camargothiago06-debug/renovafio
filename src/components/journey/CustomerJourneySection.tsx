@@ -82,7 +82,7 @@ export const CustomerJourneySection: React.FC<CustomerJourneySectionProps> = ({
   };
 
   return (
-    <section className="w-full py-8 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-6xl 2xl:max-w-7xl mx-auto space-y-8">
+    <section className="w-full py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto space-y-10">
       
       {/* 1. Dashboard Top Header & Profile Overview */}
       <JourneyDashboardHeader
