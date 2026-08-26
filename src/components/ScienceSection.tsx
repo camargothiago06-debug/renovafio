@@ -18,10 +18,10 @@ export const ScienceSection: React.FC<ScienceSectionProps> = ({ gender }) => {
   const goldSecondary = isFemale ? '#DFB775' : '#AA771C';
 
   return (
-    <section id="ciencia" className="py-24 px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 bg-transparent border-t border-zinc-800/70 relative">
-      <div className="w-full max-w-[1720px] 2xl:max-w-[1840px] mx-auto relative z-10">
+    <section id="ciencia" className="py-14 sm:py-16 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
+      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto relative z-10">
         {/* Section Header (Replicating Foto 4 Layout) */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
           <div className="space-y-4">
             {/* Pill Tag */}
             <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-[#d4af37]/40 bg-[#16130b] text-xs sm:text-sm font-mono tracking-widest uppercase text-[#fae596] shadow-[0_0_15px_rgba(212,175,55,0.2)]">

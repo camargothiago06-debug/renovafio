@@ -64,16 +64,16 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({ gender }
     <section id="resultados" className="py-24 px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 bg-transparent border-t border-zinc-800/70 relative">
       {/* Background Subtle Ambient Glow */}
       <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full blur-[140px] pointer-events-none opacity-20"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-[140px] pointer-events-none opacity-20"
         style={{
           backgroundColor: isFemale ? '#E2A999' : '#D4AF37',
         }}
       />
 
-      <div className="w-full max-w-[1720px] 2xl:max-w-[1840px] mx-auto relative z-10">
+      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
+        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-12">
           <div
             className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border text-xs sm:text-sm font-medium uppercase tracking-wider backdrop-blur-md"
             style={{

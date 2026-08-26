@@ -6,7 +6,7 @@
     --font-cormorant: 'Cormorant Garamond', Georgia, serif;
     --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
     --font-outfit: 'Outfit', sans-serif;
-    --header-height: 136px;
+    --header-height: 124px;
     --gold-primary: #D4AF37;
     --gold-secondary: #AA771C;
     --gold-light: #FFF0D0;
@@ -15,7 +15,7 @@
 
   @media (max-width: 640px) {
     :root {
-      --header-height: 126px;
+      --header-height: 114px;
     }
   }
 
@@ -38,10 +38,9 @@
   }
 }
 
-/* Full Viewport 100% Width & Height Hero Architecture */
+/* Proportional, Balanced Hero Architecture */
 .hero-section {
   width: 100%;
-  min-height: calc(100vh - var(--header-height));
   position: relative;
   overflow: hidden;
   display: flex;
@@ -63,25 +62,25 @@
 }
 
 .hero-content {
-  width: min(100% - 32px, 1780px);
+  width: min(100% - 32px, 1280px);
   margin: 0 auto;
 }
 
 @media (min-width: 640px) {
   .hero-content {
-    width: min(100% - 48px, 1780px);
+    width: min(100% - 48px, 1280px);
   }
 }
 
 @media (min-width: 1024px) {
   .hero-content {
-    width: min(100% - 80px, 1780px);
+    width: min(100% - 64px, 1280px);
   }
 }
 
 @media (min-width: 1536px) {
   .hero-content {
-    width: min(100% - 120px, 1840px);
+    width: min(100% - 80px, 1340px);
   }
 }
 

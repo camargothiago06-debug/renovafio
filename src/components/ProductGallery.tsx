@@ -19,11 +19,11 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ gender, onAddToC
   const goldSecondary = isFemale ? '#DFB775' : '#AA771C';
 
   return (
-    <section id="produtos" className="py-24 px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 bg-transparent border-t border-zinc-800/70 relative">
-      <div className="w-full max-w-[1720px] 2xl:max-w-[1840px] mx-auto relative z-10">
+    <section id="produtos" className="py-14 sm:py-16 px-4 sm:px-6 lg:px-8 bg-transparent border-t border-zinc-800/70 relative">
+      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-12">
           <div
             className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border text-xs font-medium uppercase tracking-wider backdrop-blur-md"
             style={{

@@ -195,14 +195,14 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
       }`}
       style={{
         width: '100%',
-        minHeight: 'calc(100vh - var(--header-height, 136px))',
+        minHeight: 'clamp(520px, 70vh, 660px)',
       }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Ambient Halo in Top Area */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-64 blur-3xl pointer-events-none z-10"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-56 blur-3xl pointer-events-none z-10"
         style={{
           background: isFemale
             ? 'radial-gradient(ellipse at 50% 0%, rgba(226,169,153,0.3) 0%, rgba(212,175,55,0.18) 35%, transparent 70%)'
@@ -210,8 +210,8 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({
         }}
       />
 
-      {/* Main Fullscreen Stage */}
-      <div className="relative flex-1 w-full flex items-center py-6 sm:py-8 min-h-[560px] lg:min-h-[calc(100vh-var(--header-height,136px)-82px)]">
+      {/* Main Proportional Stage */}
+      <div className="relative flex-1 w-full flex items-center py-6 sm:py-8 min-h-[460px] lg:min-h-[500px]">
         
         {/* Full Viewport Slide Background Images (100% Width & Height, Cover, Preserves Ratio) */}
         <AnimatePresence mode="wait">
