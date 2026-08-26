@@ -242,7 +242,7 @@ export const PRODUCTS_LIST: Record<GenderMode, Product[]> = {
       howToUse: 'Ingerir 1 cápsula ao dia com água, junto a uma refeição principal.',
       isBestSeller: true,
       image: 'amber-jar-standing',
-      imageUrl: '/images/produto-formula-capilar.png.png',
+      imageUrl: '/images/frasco-feminino-renova-fio.png.png',
       tag: 'Mais Vendido'
     },
     {
@@ -266,7 +266,7 @@ export const PRODUCTS_LIST: Record<GenderMode, Product[]> = {
       keyActives: ['Bio-Peptídeos', 'Ácido Hialurônico', 'Extrato de Flor de Lótus', 'Niacinamida'],
       howToUse: 'Borrifar 4 a 6 jatos diretamente no couro cabeludo e espalhar com a ponta dos dedos.',
       image: 'serum-dropper',
-      imageUrl: '/images/produto-formula-capilar.png.png',
+      imageUrl: '/images/frasco-feminino-renova-fio.png.png',
       tag: 'Toque de Seda'
     },
     {
@@ -292,7 +292,7 @@ export const PRODUCTS_LIST: Record<GenderMode, Product[]> = {
       howToUse: '1 cápsula ao dia + aplicação do elixir fortificante 1x ao dia.',
       isBestSeller: true,
       image: 'amber-jar-floating',
-      imageUrl: '/images/produto-formula-capilar.png.png',
+      imageUrl: '/images/frasco-feminino-renova-fio.png.png',
       tag: 'Escolha das Especialistas'
     }
   ]

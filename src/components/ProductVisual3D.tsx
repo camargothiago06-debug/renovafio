@@ -11,11 +11,19 @@ interface ProductVisual3DProps {
   interactive?: boolean;
 }
 
-const CANDIDATE_IMAGE_URLS = [
+const MALE_CANDIDATE_URLS = [
   '/images/produto-formula-capilar.png.png',
   '/images/produto-formula-capilar.png',
   '/produto-formula-capilar.png.png',
   '/produto-formula-capilar.png',
+];
+
+const FEMALE_CANDIDATE_URLS = [
+  '/images/frasco-feminino-renova-fio.png.png',
+  '/images/frasco-feminino-renova-fio.png',
+  '/images/frasco-feminino-renova-fio.svg',
+  '/frasco-feminino-renova-fio.png.png',
+  '/frasco-feminino-renova-fio.png',
 ];
 
 export const ProductVisual3D: React.FC<ProductVisual3DProps> = ({
@@ -35,9 +43,17 @@ export const ProductVisual3D: React.FC<ProductVisual3DProps> = ({
   const goldSecondary = isFemale ? '#DFB775' : '#AA771C';
   const goldLight = isFemale ? '#FFF2F0' : '#FFF0D0';
 
+  const defaultUrls = isFemale ? FEMALE_CANDIDATE_URLS : MALE_CANDIDATE_URLS;
+
   const imageSources = imageUrl
-    ? [imageUrl, ...CANDIDATE_IMAGE_URLS.filter((url) => url !== imageUrl)]
-    : CANDIDATE_IMAGE_URLS;
+    ? [imageUrl, ...defaultUrls.filter((url) => url !== imageUrl)]
+    : defaultUrls;
+
+  useEffect(() => {
+    setCurrentImgIndex(0);
+    setImageLoaded(false);
+    setHasImageError(false);
+  }, [gender, imageUrl]);
 
   const currentSrc = imageSources[currentImgIndex];
 

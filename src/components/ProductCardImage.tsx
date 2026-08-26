@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { GenderMode } from '../types';
 
@@ -10,11 +10,19 @@ interface ProductCardImageProps {
   alt?: string;
 }
 
-const FALLBACK_IMAGE_PATHS = [
+const MALE_IMAGE_PATHS = [
   '/images/produto-formula-capilar.png.png',
   '/images/produto-formula-capilar.png',
   '/produto-formula-capilar.png.png',
   '/produto-formula-capilar.png',
+];
+
+const FEMALE_IMAGE_PATHS = [
+  '/images/frasco-feminino-renova-fio.png.png',
+  '/images/frasco-feminino-renova-fio.png',
+  '/images/frasco-feminino-renova-fio.svg',
+  '/frasco-feminino-renova-fio.png.png',
+  '/frasco-feminino-renova-fio.png',
 ];
 
 export const ProductCardImage: React.FC<ProductCardImageProps> = ({
@@ -29,12 +37,21 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
   const [hasAllErrors, setHasAllErrors] = useState(false);
 
   const isFemale = gender === 'feminino';
-  const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
-  const goldLight = isFemale ? '#FFF2F0' : '#FFF0D0';
+  const defaultList = isFemale ? FEMALE_IMAGE_PATHS : MALE_IMAGE_PATHS;
 
   const candidatePaths = imageUrl
-    ? [imageUrl, ...FALLBACK_IMAGE_PATHS.filter((p) => p !== imageUrl)]
-    : FALLBACK_IMAGE_PATHS;
+    ? [imageUrl, ...defaultList.filter((p) => p !== imageUrl)]
+    : defaultList;
+
+  // Reset error & loading states when gender or image url changes
+  useEffect(() => {
+    setPathIndex(0);
+    setImageLoaded(false);
+    setHasAllErrors(false);
+  }, [gender, imageUrl]);
+
+  const goldPrimary = isFemale ? '#E2A999' : '#D4AF37';
+  const goldLight = isFemale ? '#FFF2F0' : '#FFF0D0';
 
   const currentSrc = candidatePaths[pathIndex];
 
@@ -94,13 +111,53 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
                 <span className="text-[#fae596] font-display text-base font-bold tracking-wider">
                   RENOVA FIO
                 </span>
-                <span className="text-zinc-500 text-xs mt-1 font-mono">450mg Manipulado</span>
+                <span className="text-zinc-500 text-xs mt-1 font-mono">
+                  {isFemale ? 'Nutri-Capilar Feminino' : '450mg Manipulado'}
+                </span>
               </div>
             </div>
           )}
         </div>
+      ) : isFemale ? (
+        /* Clean Vector Stand-in: Feminine White Porcelain Bottle */
+        <div className="relative z-10 w-full h-full p-4 flex flex-col items-center justify-center group-hover:scale-105 transition-transform duration-500">
+          <div className="relative w-40 sm:w-48 h-56 sm:h-64 rounded-2xl bg-gradient-to-b from-[#FAF8F5] via-[#FFFFFF] to-[#EAE6DF] border border-amber-300/40 shadow-2xl flex flex-col items-center justify-between p-3 overflow-hidden">
+            {/* Bronze/Rose-Gold Cap */}
+            <div className="w-24 h-7 rounded-t-lg bg-gradient-to-b from-[#B8860B] via-[#8C5C2A] to-[#4A2A0C] border-t border-amber-200/50 flex items-center justify-center shadow-md">
+              <div className="w-full h-0.5 bg-[#FFF0D0]/50" />
+            </div>
+
+            {/* Label on White Jar */}
+            <div className="w-full bg-white/90 border-y border-[#D4AF37]/40 py-2.5 px-2 rounded flex flex-col items-center text-center shadow-sm my-auto">
+              <div className="flex items-center space-x-1 mb-0.5">
+                <span
+                  className="font-display font-bold text-xs sm:text-sm tracking-wider uppercase bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage: `linear-gradient(135deg, ${goldLight} 0%, ${goldPrimary} 100%)`,
+                  }}
+                >
+                  Renova
+                </span>
+                <span className="font-editorial italic text-xs lowercase text-[#C59B27]">fio</span>
+              </div>
+              <span className="text-[10px] sm:text-[11px] font-semibold text-zinc-900">Fórmula Capilar</span>
+              <span className="text-[8px] sm:text-[9px] text-zinc-600">tratamento para queda capilar</span>
+              <div className="w-3/4 h-[1px] bg-[#d4af37]/40 my-1" />
+              <div className="flex items-center justify-between w-full px-1 text-[8px] sm:text-[9px]">
+                <span className="font-mono font-bold text-[#8C5C2A]">450mg</span>
+                <span className="text-zinc-500 text-[7px] sm:text-[8px] uppercase tracking-wider">
+                  Manipulado
+                </span>
+              </div>
+            </div>
+
+            {/* Bottom Gold Stripe on White Bottle */}
+            <div className="w-full h-2 bg-gradient-to-r from-[#D4AF37] via-[#FFF0D0] to-[#AA771C] rounded-sm" />
+          </div>
+          <div className="w-36 h-2.5 rounded-full bg-black/40 blur-md mt-1" />
+        </div>
       ) : (
-        /* Clean Vector Stand-in (Fallback if image URL cannot be fetched) */
+        /* Clean Vector Stand-in: Male Dark Amber Bottle */
         <div className="relative z-10 w-full h-full p-4 flex flex-col items-center justify-center group-hover:scale-105 transition-transform duration-500">
           <div className="relative w-40 sm:w-48 h-56 sm:h-64 rounded-2xl bg-gradient-to-b from-[#2a1408] via-[#1c0d05] to-[#0d0502] border border-amber-500/30 shadow-2xl flex flex-col items-center justify-between p-3 overflow-hidden">
             {/* Cap */}
