@@ -1,20 +1,11 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Renova Fio — site
 
-# Run and deploy your AI Studio app
+Site estático (HTML, CSS e JavaScript puros), publicado na Vercel.
 
-This contains everything you need to run your app locally.
+- `public/index.html`: a página, com as abas Masculino e Feminino.
+- `public/img/`: logo, frascos e fotos de antes e depois.
+- `vercel.json`: diz à Vercel para publicar a pasta `public` sem etapa de build.
 
-View your app in AI Studio: https://ai.studio/apps/24d85a0e-895b-4b37-9e84-650876a41166
+Para abrir direto numa linha: `/?linha=feminino` ou `/?linha=masculino`.
 
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Os textos entre colchetes, como `[NÚMERO]` e `[LINK DO WHATSAPP OU CHECKOUT]`, ainda precisam ser preenchidos com os dados reais.
